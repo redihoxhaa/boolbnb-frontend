@@ -1,4 +1,5 @@
 <script>
+
 // IMPORTS
 
 
@@ -19,7 +20,10 @@ export default {
 </script>
 
 <template>
-  <span class="text-uppercase p-5">rieccoci</span>
+  <p class="text-uppercase p-5">Header</p>
+<router-link :to="{name: 'home'}">Home</router-link>
+<router-link :to="{name: 'posts'}">Posts</router-link>
+
 </template>
 
 <style lang="scss" scoped>
