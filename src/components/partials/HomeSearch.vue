@@ -1,16 +1,44 @@
 <script>
+import { store } from "../../store";
+import axios from "axios";
+
 export default {
   name: "HomeSearch",
   data() {
     return {
-      address: '',
+      address: "",
       roomsCounter: 0,
       bedsCounter: 0,
       radiusCounter: 0,
       isDropdownOpen: false,
-    }
+      suggestions: [],
+      store,
+    };
   },
   methods: {
+    getAddresses() {
+      if (this.address.trim() !== "") {
+        axios
+          .get(
+            `https://api.tomtom.com/search/2/search/${encodeURIComponent(
+              this.address.trim()
+            )}.json?key=${this.store.tomTomAPIKey}`
+          )
+          .then((response) => {
+            if (!response.data) {
+              throw new Error("The research was unsuccessful");
+            }
+            this.suggestions = response.data.results ? response.data.results : [];
+          })
+          .catch((error) => console.error("Error:", error));
+      } else {
+        this.suggestions = [];
+      }
+    },
+    selectAddress(suggestion) {
+      this.address = suggestion.address.freeformAddress;
+      this.suggestions = [];
+    },
     searchApartment() {
       const apartmentQuery = {
         address: this.address,
@@ -18,76 +46,78 @@ export default {
         beds: this.bedsCounter,
         radius: this.radiusCounter,
       };
-      this.$emit('search', apartmentQuery);
+      this.$emit("search", apartmentQuery);
     },
     increaseValue(counter) {
-      if (counter === 'radiusCounter') {
-        this[counter] += 10
+      if (counter === "radiusCounter") {
+        this[counter] += 10;
       } else {
         this[counter]++;
       }
     },
     decreaseValue(counter) {
       if (this[counter] > 0) {
-        if (counter === 'radiusCounter') {
-          this[counter] -= 10
+        if (counter === "radiusCounter") {
+          this[counter] -= 10;
         } else {
           this[counter]--;
         }
       }
     },
     toggleDropdown() {
-      this.isDropdownOpen = true
+      this.isDropdownOpen = true;
     },
     closeDropdown() {
       this.isDropdownOpen = false;
     },
     preventClose(event) {
       event.stopPropagation();
-    }
+    },
   },
   mounted() {
-    document.addEventListener('click', this.closeDropdown)
+    document.addEventListener("click", this.closeDropdown);
   },
   beforeDestroy() {
-    document.removeEventListener('click', this.closeDropdown)
+    document.removeEventListener("click", this.closeDropdown);
   },
 };
 </script>
 
 <template>
-
   <!-- Container -->
   <div class="search-container d-flex">
-
     <!-- Input container -->
     <div class="input-container" @click="preventClose">
-
-      <!-- Adress group -->
+      <!-- Address group -->
       <div class="address-group">
         <label for="address" class="">Location</label>
-        <input type="text" id="address" v-model="this.address" placeholder="What are you dreaming of?" />
+        <input type="text" id="address" v-model="address" placeholder="What are you dreaming of?"
+          @input="getAddresses" />
+        <ul id="suggestionsMenu" class="suggestions-menu" :class="{ 'd-none': !suggestions.length }">
+          <li v-for="suggestion in suggestions" :key="suggestion.id" @click="selectAddress(suggestion)">
+            {{ suggestion.address.freeformAddress }}
+          </li>
+        </ul>
       </div>
 
       <!-- Input group -->
       <div class="select-section" @click="toggleDropdown">
-
         <!-- Rooms -->
         <div class="select-group">
           <label for="rooms">Rooms</label>
-          <input type="number" min="0" v-model="this.roomsCounter" id="rooms">
+          <input type="number" min="0" v-model="this.roomsCounter" id="rooms" />
         </div>
 
         <!-- Beds -->
         <div class="select-group">
           <label for="beds">Beds</label>
-          <input type="number" min="0" v-model="this.bedsCounter" id="beds">
+          <input type="number" min="0" v-model="this.bedsCounter" id="beds" />
         </div>
 
         <!-- Radius -->
         <div class="select-group">
           <label for="radius">Radius</label>
-          <input type="number" min="0" step="10" v-model="this.radiusCounter" id="radius">
+          <input type="number" min="0" step="10" v-model="this.radiusCounter" id="radius" />
         </div>
 
         <!-- Dropdown -->
@@ -96,7 +126,7 @@ export default {
             <span>Rooms</span>
             <div class="dropdown-input-group">
               <button @click.stop="decreaseValue('roomsCounter')">-</button>
-              <input type="text" v-model="this.roomsCounter" id="rooms" class="dropdown-input">
+              <input type="text" v-model="this.roomsCounter" id="rooms" class="dropdown-input" />
               <button @click.stop="increaseValue('roomsCounter')">+</button>
             </div>
           </div>
@@ -104,7 +134,7 @@ export default {
             <span>Beds</span>
             <div class="dropdown-input-group">
               <button @click.stop="decreaseValue('bedsCounter')">-</button>
-              <input type="text" v-model="this.bedsCounter" id="beds" class="dropdown-input">
+              <input type="text" v-model="this.bedsCounter" id="beds" class="dropdown-input" />
               <button @click.stop="increaseValue('bedsCounter')">+</button>
             </div>
           </div>
@@ -112,26 +142,21 @@ export default {
             <span>Radius</span>
             <div class="dropdown-input-group">
               <button @click.stop="decreaseValue('radiusCounter')">-</button>
-              <input type="text" v-model="this.radiusCounter" id="radius" class="dropdown-input">
+              <input type="text" v-model="this.radiusCounter" id="radius" class="dropdown-input" />
               <button @click.stop="increaseValue('radiusCounter')">+</button>
             </div>
           </div>
-
         </div>
       </div>
-
-
     </div>
 
     <!-- Search button -->
     <div class="search-button-container">
       <button @click="searchApartment" @keyup.enter="searchApartment">
-        <img src="/src/assets/img/search-icon.svg" alt="">
+        <img src="/src/assets/img/search-icon.svg" alt="" />
       </button>
     </div>
-
   </div>
-
 </template>
 
 <style lang="scss" scoped>
@@ -146,13 +171,12 @@ export default {
     font-size: 12px;
     font-weight: 600;
     color: #484848;
-
   }
 
   input {
     border: none;
     font-size: 14px;
-    color: #C2C6CC;
+    color: #c2c6cc;
     padding: 0;
 
     &:focus {
@@ -161,9 +185,8 @@ export default {
 
     &::placeholder {
       font-size: 14px;
-      color: #C2C6CC;
+      color: #c2c6cc;
     }
-
   }
 
   .input-container {
@@ -176,7 +199,6 @@ export default {
       input {
         width: 100%;
       }
-
     }
 
     .select-section {
@@ -186,15 +208,13 @@ export default {
       .select-group {
         position: relative;
         padding: 0 20px;
-        border-left: 1px solid #DDDDDD;
+        border-left: 1px solid #dddddd;
 
         input {
           width: 50px;
           display: block;
         }
-
       }
-
     }
 
     .dropdown-content {
@@ -208,7 +228,7 @@ export default {
       top: 68px;
 
       &>*:not(:last-child) {
-        border-bottom: 1px solid #DDDDDD;
+        border-bottom: 1px solid #dddddd;
       }
 
       .dropdown-group {
@@ -223,7 +243,6 @@ export default {
         }
 
         .dropdown-input-group {
-
           .dropdown-input {
             width: 60px;
             background: none;
@@ -249,16 +268,12 @@ export default {
               transition: background-color 0.2s ease-in-out;
             }
           }
-
         }
       }
-
     }
-
   }
 
   .search-button-container {
-
     display: flex;
     align-items: center;
 
@@ -273,9 +288,28 @@ export default {
       img {
         width: 40%;
       }
-
     }
   }
 
+  .suggestions-menu {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 999;
+  }
+
+  .suggestions-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  .suggestions-menu li:hover {
+    background-color: #f9f9f9;
+  }
 }
 </style>

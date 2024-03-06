@@ -5,5 +5,6 @@ export const store = reactive({
     singleApartmentURI: '/show',
     allApartmentsAPI: 'http://127.0.0.1:8000/api/apartments',
     showHeader: true,
+    tomTomAPIKey: 'CGrCXRtpRKgwQl1fo2NZ0mOC3k7CHzUX',
 });
 
