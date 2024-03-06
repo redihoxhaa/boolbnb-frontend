@@ -1,23 +1,25 @@
 <script>
 import HomeMenu from "../components/partials/HomeMenu.vue";
 import HomeSearch from "../components/partials/HomeSearch.vue";
+import { store } from "../store";
 
 export default {
   name: "AppHome",
   props: [],
   components: { HomeMenu, HomeSearch },
   data() {
-    return {};
+    return {
+      store,
+    };
   },
   mounted() {
-    // Emit evento al componente genitore con il valore false
-    this.$emit("header-toggle", false);
+    this.store.showHeader = false;
   },
   methods: {
     handleSearch(apartmentQuery) {
-      this.$emit('search', apartmentQuery);
-    }
-  }
+      this.$emit("search", apartmentQuery);
+    },
+  },
 };
 </script>
 

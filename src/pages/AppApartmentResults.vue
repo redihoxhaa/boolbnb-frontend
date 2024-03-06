@@ -1,34 +1,39 @@
 <script>
 // IMPORTS
 
-
+import { store } from "../store";
 
 // /IMPORTS
 
 export default {
-  props: ['apartmentResults'],
-  emits: ['headerToggle', 'search'],
+  props: ["apartmentResults"],
+  emits: ["search"],
   components: {},
   data() {
     return {
-
-    }
+      store,
+    };
   },
-  methods: {},
+  methods: {
+    visitApartment(apartmentID) {
+      this.$router.push({ name: "single-apartment", params: { id: apartmentID } });
+    },
+  },
   mounted() {
-    console.log('pagina risultati montata')
+    this.store.showHeader = true;
   },
-}
+};
 </script>
 
 <template>
-  <p>PostList</p>
-  <h1 v-for="apartment in apartmentResults"> {{ apartment.title }}</h1>
+  <h1>Apartment Results</h1>
+  <h5 v-for="apartment in apartmentResults" @click="visitApartment(apartment.id)">
+    {{ apartment.title }}
+  </h5>
 </template>
 
 <style lang="scss" scoped>
 // USES
 
-
-
-// /USES</style>
+// /USES
+</style>

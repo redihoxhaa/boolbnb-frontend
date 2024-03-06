@@ -16,7 +16,9 @@ export default {
       </div>
       <ul class="menu-list">
         <router-link class="link-item" :to="{ name: '' }">Home</router-link>
-        <router-link class="link-item" :to="{ name: '' }">Apartments</router-link>
+        <router-link class="link-item" :to="{ name: 'all-apartments' }"
+          >Apartments</router-link
+        >
         <router-link class="link-item" :to="{ name: '' }">About Us</router-link>
         <router-link class="link-item" :to="{ name: '' }">Contacts</router-link>
       </ul>
@@ -62,18 +64,15 @@ export default {
       li {
         height: 100%;
       }
-
     }
 
     .link-item {
       text-decoration: none;
       color: black;
-
     }
-
   }
 
-  .cta>*:not(:last-child) {
+  .cta > *:not(:last-child) {
     margin-right: 10px;
   }
 }
