@@ -3,3 +3,7 @@
 @use '../scss/partials/typography' as *;
 @use '../scss/partials/utilities' as *;
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+body {
+  font-family: "Montserrat";
+}

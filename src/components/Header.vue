@@ -3,7 +3,6 @@
 // IMPORTS
 
 
-
 // /IMPORTS
 
 export default {
@@ -21,15 +20,8 @@ export default {
 
 <template>
   <p class="text-uppercase p-5">Header</p>
-<router-link :to="{name: 'home'}">Home</router-link>
-<router-link :to="{name: 'posts'}">Posts</router-link>
+  <router-link :to="{ name: 'home' }">Home</router-link>
 
 </template>
 
-<style lang="scss" scoped>
-// USES
-
-
-
-// /USES
-</style>
+<style lang="scss" scoped></style>

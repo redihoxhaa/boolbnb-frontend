@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import AppHome from './pages/AppHome.vue';
-import PostList from './pages/PostList.vue';
+import AppApartmentResults from './pages/AppApartmentResults.vue'
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -10,9 +10,10 @@ const router = createRouter({
             component: AppHome
         },
         {
-            path: '/blog',
-            name: 'posts',
-            component: PostList
+            path: '/apartments/results',
+            name: 'apartments-results',
+            component: AppApartmentResults,
+            props: true,
         },
     ]
 });
