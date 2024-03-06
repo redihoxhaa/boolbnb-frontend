@@ -29,18 +29,14 @@ export default {
     <div class="apartment-list">
       <div v-for="apartment in apartmentResults" :key="apartment.id" class="apartment-card">
         <div class="card-header">
-          <img :src="apartment.image" class="card-image" alt="Apartment Image">
+          <img :src="this.store.imagesAPI + apartment.images.split(',')[0]" class="card-image" alt="Apartment Image" />
         </div>
         <div class="card-content">
           <h2 class="title">{{ apartment.title }}</h2>
           <p class="description">{{ apartment.description }}</p>
           <div class="details">
-            <div class="detail">
-              <strong>Rooms:</strong> {{ apartment.rooms }}
-            </div>
-            <div class="detail">
-              <strong>Beds:</strong> {{ apartment.beds }}
-            </div>
+            <div class="detail"><strong>Rooms:</strong> {{ apartment.rooms }}</div>
+            <div class="detail"><strong>Beds:</strong> {{ apartment.beds }}</div>
             <div class="detail">
               <strong>Bathrooms:</strong> {{ apartment.bathrooms }}
             </div>
@@ -48,7 +44,9 @@ export default {
               <strong>Square Meters:</strong> {{ apartment.square_meters }}
             </div>
           </div>
-          <button @click="visitApartment(apartment.id)" class="detail-button">View Details</button>
+          <button @click="visitApartment(apartment.id)" class="detail-button">
+            View Details
+          </button>
         </div>
       </div>
     </div>

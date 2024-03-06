@@ -3,17 +3,14 @@
     <h1 class="page-title">Apartment List</h1>
     <ul class="apartment-list">
       <li v-for="apartment in apartments" :key="apartment.id" class="apartment-item">
-        <div class="apartment-content">
-          <img :src="apartment.image" class="apartment-image" alt="Apartment Image">
+        <div class="apartment-content" @click="visitApartment(apartment.id)">
+          <img :src="this.store.imagesAPI + apartment.images.split(',')[0]" class="card-image w-25"
+            alt="Apartment Image" />
           <h2 class="title">{{ apartment.title }}</h2>
           <p class="description">{{ apartment.description }}</p>
           <div class="details">
-            <div class="detail">
-              <strong>Rooms:</strong> {{ apartment.rooms }}
-            </div>
-            <div class="detail">
-              <strong>Beds:</strong> {{ apartment.beds }}
-            </div>
+            <div class="detail"><strong>Rooms:</strong> {{ apartment.rooms }}</div>
+            <div class="detail"><strong>Beds:</strong> {{ apartment.beds }}</div>
             <div class="detail">
               <strong>Bathrooms:</strong> {{ apartment.bathrooms }}
             </div>
@@ -42,6 +39,10 @@ export default {
       axios.get(this.store.allApartmentsAPI).then((response) => {
         this.apartments = response.data;
       });
+    },
+
+    visitApartment(apartmentID) {
+      this.$router.push({ name: "single-apartment", params: { id: apartmentID } });
     },
   },
   mounted() {
