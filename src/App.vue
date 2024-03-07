@@ -37,11 +37,8 @@ export default {
 
 <template>
   <Header v-if="store.showHeader" />
-  <router-view
-    @header-toggle="toggleHeader"
-    @search="getApartments"
-    :apartmentResults="this.apartmentResults"
-  ></router-view>
+  <router-view @header-toggle="toggleHeader" @search="getApartments"
+    :apartmentResults="this.apartmentResults"></router-view>
   <Footer />
 </template>
 

@@ -176,7 +176,7 @@ export default {
   input {
     border: none;
     font-size: 14px;
-    color: #c2c6cc;
+    color: #000000;
     padding: 0;
 
     &:focus {
