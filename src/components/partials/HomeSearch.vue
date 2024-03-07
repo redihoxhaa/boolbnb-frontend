@@ -150,12 +150,12 @@ export default {
           </div>
           <div class="dropdown-group border-bottom-0">
             <span>Radius</span>
-            <div class="dropdown-input-group d-flex flex-column align-items-center justify-content-center">
+            <div class="dropdown-input-group">
               <input type="range" class="form-range dropdown-input" min="0" max="1000" step="5" id="radius"
                 v-model="this.radiusCounter" />
-              <span class="range-disclaimer text-end">Max range is 1000km</span>
             </div>
           </div>
+          <span class="range-disclaimer">Max range is 1000km</span>
 
         </div>
       </div>
@@ -287,6 +287,7 @@ export default {
   .search-button-container {
     display: flex;
     align-items: center;
+    padding-left: 5px;
 
     button {
       background-color: #bfe373;
@@ -326,6 +327,8 @@ export default {
 
 input[type="range"] {
   width: 100% !important;
+  display: flex;
+
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -353,5 +356,10 @@ input[type="number"]::-webkit-outer-spin-button {
 .range-disclaimer {
   font-size: 10px;
   width: 100%;
+  display: flex;
+  justify-content: end;
+  margin-top: -8px;
+  padding-right: 9px;
+
 }
 </style>
