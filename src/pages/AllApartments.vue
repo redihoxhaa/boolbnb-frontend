@@ -5,7 +5,7 @@
       <li v-for="apartment in apartments" :key="apartment.id" class="apartment-item">
         <div class="apartment-content" @click="visitApartment(apartment.id)">
           <img :src="this.store.imagesAPI + apartment.images.split(',')[0]" class="card-image w-25"
-            alt="Apartment Image" v-if="apartment.images.length" />
+            alt="Apartment Image" v-if="apartment.images" />
           <h2 class="title">{{ apartment.title }}</h2>
           <p class="description">{{ apartment.description }}</p>
           <div class="details">
