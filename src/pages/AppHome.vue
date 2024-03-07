@@ -15,11 +15,7 @@ export default {
   mounted() {
     this.store.showHeader = false;
   },
-  methods: {
-    handleSearch(apartmentQuery) {
-      this.$emit("search", apartmentQuery);
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -29,7 +25,7 @@ export default {
       <HomeMenu />
     </div>
     <div>
-      <HomeSearch @search="handleSearch" />
+      <HomeSearch />
     </div>
   </header>
 </template>

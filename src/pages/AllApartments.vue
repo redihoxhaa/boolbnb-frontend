@@ -35,12 +35,14 @@ export default {
     };
   },
   methods: {
+    // Funzione per ottenere tutti gli appartamenti
     getApartments() {
       axios.get(this.store.allApartmentsAPI).then((response) => {
         this.apartments = response.data;
       });
     },
 
+    // Funzione per visitare l'appartamento
     visitApartment(apartmentID) {
       this.$router.push({ name: "single-apartment", params: { id: apartmentID } });
     },

@@ -13,9 +13,11 @@ export default {
       isDropdownOpen: false,
       suggestions: [],
       store,
+      apartmentResults: [],
     };
   },
   methods: {
+    // Funzione per ottenere gli indirizzi suggeriti
     getAddresses() {
       if (this.address.trim() !== "") {
         axios
@@ -35,41 +37,49 @@ export default {
         this.suggestions = [];
       }
     },
+
+    // Funzione per selezionare l'indirizzo suggerito
     selectAddress(suggestion) {
       this.address = suggestion.address.freeformAddress;
       this.suggestions = [];
     },
-    searchApartment() {
-      const apartmentQuery = {
-        address: this.address,
-        rooms: this.roomsCounter,
-        beds: this.bedsCounter,
-        radius: this.radiusCounter,
-      };
-      this.$emit("search", apartmentQuery);
+
+    // Funzione per ricercare gli appartamenti
+    goToResults() {
+      this.$router.push({
+        name: "apartments-results",
+        params: {
+          address: this.address,
+          rooms: this.roomsCounter,
+          beds: this.bedsCounter,
+          radius: this.radiusCounter,
+        },
+      });
     },
+
+    // Funzione per incrementare contatore letti, camere e raggio
     increaseValue(counter) {
-      if (counter === "radiusCounter") {
-        this[counter] += 10;
-      } else {
-        this[counter]++;
-      }
+      this[counter]++;
     },
+
+    // Funzione per decrementare contatore letti, camere, e raggio
     decreaseValue(counter) {
       if (this[counter] > 0) {
-        if (counter === "radiusCounter") {
-          this[counter] -= 10;
-        } else {
-          this[counter]--;
-        }
+        this[counter]--;
       }
     },
+
+    // Funzione per mostrare il dropdown
     toggleDropdown() {
       this.isDropdownOpen = true;
     },
+
+    //Funzione per chiudere il dropdown
     closeDropdown() {
       this.isDropdownOpen = false;
     },
+
+    // Funzione per evitare il click attraverso il dropdown
     preventClose(event) {
       event.stopPropagation();
     },
@@ -117,7 +127,7 @@ export default {
         <!-- Radius -->
         <div class="select-group">
           <label for="radius">Radius</label>
-          <input type="number" min="0" step="10" v-model="this.radiusCounter" id="radius" />
+          <input type="number" min="0" max="1000" step="5" v-model="this.radiusCounter" id="radius" />
         </div>
 
         <!-- Dropdown -->
@@ -138,21 +148,22 @@ export default {
               <button @click.stop="increaseValue('bedsCounter')">+</button>
             </div>
           </div>
-          <div class="dropdown-group">
+          <div class="dropdown-group border-bottom-0">
             <span>Radius</span>
-            <div class="dropdown-input-group">
-              <button @click.stop="decreaseValue('radiusCounter')">-</button>
-              <input type="text" v-model="this.radiusCounter" id="radius" class="dropdown-input" />
-              <button @click.stop="increaseValue('radiusCounter')">+</button>
+            <div class="dropdown-input-group d-flex flex-column align-items-center justify-content-center">
+              <input type="range" class="form-range dropdown-input" min="0" max="1000" step="5" id="radius"
+                v-model="this.radiusCounter" />
+              <span class="range-disclaimer text-end">Max range is 1000km</span>
             </div>
           </div>
+
         </div>
       </div>
     </div>
 
     <!-- Search button -->
     <div class="search-button-container">
-      <button @click="searchApartment" @keyup.enter="searchApartment">
+      <button @click="goToResults" @keyup.enter="goToResults">
         <img src="/src/assets/img/search-icon.svg" alt="" />
       </button>
     </div>
@@ -311,5 +322,36 @@ export default {
   .suggestions-menu li:hover {
     background-color: #f9f9f9;
   }
+}
+
+input[type="range"] {
+  width: 100% !important;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  background-color: var(--thumb-color, #bfe373);
+  /* Colore del pallino */
+  width: var(--thumb-size, 16px);
+  /* Dimensioni del pallino */
+  height: var(--thumb-size, 16px);
+  /* Dimensioni del pallino */
+  border: none;
+  /* Rimuovi il bordo */
+  border-radius: 50%;
+  /* Imposta il bordo a forma di cerchio */
+  -webkit-appearance: none;
+  /* Nascondi il controllo predefinito di WebKit */
+  appearance: none;
+  /* Nascondi il controllo predefinito di WebKit */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.range-disclaimer {
+  font-size: 10px;
+  width: 100%;
 }
 </style>

@@ -9,27 +9,11 @@ export default {
   data() {
     return {
       store,
-      apartmentResults: {},
     };
   },
   methods: {
     toggleHeader(value) {
       this.store.showHeader = value; // Aggiorniamo la variabile showHeader con il valore ricevuto dall'evento
-    },
-    getApartments(apartmentQuery) {
-      axios
-        .get(this.store.allApartmentsAPI + this.store.searchApartmentsURI, {
-          params: {
-            address: apartmentQuery.address,
-            radius: apartmentQuery.radius,
-          },
-        })
-        .then((response) => {
-          console.log("chiamata effettuata");
-          this.apartmentResults = response.data;
-          console.log(this.apartmentResults);
-          this.$router.push({ name: "apartments-results" });
-        });
     },
   },
 };
@@ -37,8 +21,7 @@ export default {
 
 <template>
   <Header v-if="store.showHeader" />
-  <router-view @header-toggle="toggleHeader" @search="getApartments"
-    :apartmentResults="this.apartmentResults"></router-view>
+  <router-view @header-toggle="toggleHeader"></router-view>
   <Footer />
 </template>
 

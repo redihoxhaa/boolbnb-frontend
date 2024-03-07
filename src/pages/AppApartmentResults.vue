@@ -1,30 +1,50 @@
 <script>
 // IMPORTS
 import { store } from "../store";
+import axios from "axios";
 // /IMPORTS
 
 export default {
-  props: ["apartmentResults"],
-  emits: ["search"],
   components: {},
   data() {
     return {
       store,
+      apartmentResults: null,
     };
   },
   methods: {
+    // Funzione per ricercare gli appartamenti
+    getApartments() {
+      axios
+        .get(this.store.allApartmentsAPI + this.store.searchApartmentsURI, {
+          params: {
+            address: this.$route.params.address,
+            rooms: this.$route.params.rooms,
+            beds: this.$route.params.beds,
+            radius: this.$route.params.radius,
+          },
+        })
+        .then((response) => {
+          console.log("chiamata effettuata");
+          this.apartmentResults = response.data;
+          console.log(this.apartmentResults);
+        });
+    },
+
+    // Funzione per visitare l'appartamento
     visitApartment(apartmentID) {
       this.$router.push({ name: "single-apartment", params: { id: apartmentID } });
     },
   },
-  mounted() {
+  created() {
     this.store.showHeader = true;
+    this.getApartments();
   },
 };
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" v-if="apartmentResults">
     <h1 class="page-title">Apartment Results</h1>
     <div class="apartment-list">
       <div v-for="apartment in apartmentResults" :key="apartment.id" class="apartment-card">
