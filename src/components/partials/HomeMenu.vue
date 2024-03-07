@@ -30,6 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .menu-container {
+  margin: 10px auto;
   width: fit-content;
   background-color: #fff;
   padding: 8px;

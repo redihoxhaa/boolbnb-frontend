@@ -172,11 +172,16 @@ export default {
 
 <style lang="scss" scoped>
 .search-container {
+  position: relative;
   background-color: #fff;
   padding: 10px 20px;
   border-radius: 14px;
   max-width: 800px;
   display: flex;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 5vh;
+  margin-bottom: 20vh;
 
   label {
     font-size: 12px;
@@ -234,7 +239,7 @@ export default {
       min-width: 280px;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
       padding: 16px 26px 12px;
-      border-radius: 6px;
+      border-radius: 20px;
       z-index: 1;
       top: 68px;
 
@@ -306,18 +311,26 @@ export default {
   .suggestions-menu {
     position: absolute;
     background-color: white;
-    border: 1px solid #ddd;
     list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: 200px;
+    padding: 10px;
+    margin-top: 20px;
+    left: 0;
+    border-radius: 20px;
+    max-height: 215px;
     overflow-y: auto;
     z-index: 999;
+    width: 40%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 
   .suggestions-menu li {
     padding: 8px 12px;
     cursor: pointer;
+    font-size: 12px;
   }
 
   .suggestions-menu li:hover {
@@ -361,5 +374,10 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-top: -8px;
   padding-right: 9px;
 
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
 }
 </style>

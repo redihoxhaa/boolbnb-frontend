@@ -21,10 +21,8 @@ export default {
 
 <template>
   <header>
-    <div class="menu-container">
+    <div class="custom-container d-flex flex-column justify-content-between ">
       <HomeMenu />
-    </div>
-    <div>
       <HomeSearch />
     </div>
   </header>
@@ -33,12 +31,15 @@ export default {
 <style lang="scss" scoped>
 header {
   height: 100vh;
-  width: 100vw;
+  max-width: 100vw;
   background-image: url(/src/assets/img/homepage_background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 
-  .menu-container {
+  .custom-container {
     margin: 0 auto;
     padding: 10px;
+    height: 100%;
   }
 }
 </style>

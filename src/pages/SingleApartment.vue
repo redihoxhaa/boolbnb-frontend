@@ -50,6 +50,9 @@ export default {
                 <img :src="`${this.store.imagesAPI}${image.trim()}`" class="img-fluid mb-2" alt="Apartment Image" />
               </div>
             </div>
+            <img
+              src="https://plus.unsplash.com/premium_photo-1674676471104-3c4017645e6f?q=80&w=1940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              class="card-image w-25" alt="Apartment Image" v-else>
             <p class="card-text">{{ apartment.description }}</p>
             <ul class="list-group list-group-flush mt-3">
               <li class="list-group-item">Rooms: {{ apartment.rooms }}</li>
