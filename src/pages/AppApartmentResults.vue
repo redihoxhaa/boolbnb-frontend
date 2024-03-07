@@ -49,7 +49,8 @@ export default {
     <div class="apartment-list">
       <div v-for="apartment in apartmentResults" :key="apartment.id" class="apartment-card">
         <div class="card-header">
-          <img :src="this.store.imagesAPI + apartment.images.split(',')[0]" class="card-image" alt="Apartment Image" />
+          <img :src="this.store.imagesAPI + apartment.images.split(',')[0]" class="card-image" alt="Apartment Image"
+            v-if="apartment.images.length" />
         </div>
         <div class="card-content">
           <h2 class="title">{{ apartment.title }}</h2>

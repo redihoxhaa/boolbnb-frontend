@@ -45,7 +45,7 @@ export default {
             <h5 class="card-title">{{ apartment.title }}</h5>
           </div>
           <div class="card-body">
-            <div class="row mb-3">
+            <div class="row mb-3" v-if="apartment.images.length">
               <div v-for="(image, index) in apartment.images.split(',')" :key="index" class="col-md-4">
                 <img :src="`${this.store.imagesAPI}${image.trim()}`" class="img-fluid mb-2" alt="Apartment Image" />
               </div>
