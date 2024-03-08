@@ -17,7 +17,7 @@ const router = createRouter({
             component: AllApartments
         },
         {
-            path: '/apartments/results/:address',
+            path: '/apartments/results/:address/:radius?/:rooms?/:beds?/:bathrooms?/:services?',
             name: 'apartments-results',
             component: AppApartmentResults,
             props: true,

@@ -1,10 +1,11 @@
 <script>
+import AdvancedSearch from "../components/partials/AdvancedSearch.vue";
 import { store } from "../store";
 import axios from "axios";
 
 export default {
   props: [],
-  components: {},
+  components: { AdvancedSearch },
   data() {
     return {
       store,
@@ -32,6 +33,7 @@ export default {
 </script>
 
 <template>
+  <AdvancedSearch />
   <div class="container" v-if="apartments">
     <h1 class="page-title">All Apartments</h1>
     <div class="apartment-list">

@@ -1,12 +1,13 @@
 <script>
 import HomeMenu from "../components/partials/HomeMenu.vue";
 import HomeSearch from "../components/partials/HomeSearch.vue";
+import SponsoredApartments from "../components/partials/SponsoredApartments.vue";
 import { store } from "../store";
 
 export default {
   name: "AppHome",
   props: [],
-  components: { HomeMenu, HomeSearch },
+  components: { HomeMenu, HomeSearch, SponsoredApartments },
   data() {
     return {
       store,
@@ -24,6 +25,7 @@ export default {
     <div class="custom-container d-flex flex-column justify-content-between ">
       <HomeMenu />
       <HomeSearch />
+      <SponsoredApartments />
     </div>
   </header>
 </template>

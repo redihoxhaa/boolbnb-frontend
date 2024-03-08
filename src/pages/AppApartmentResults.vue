@@ -1,29 +1,61 @@
 <script>
 // IMPORTS
+import AdvancedSearch from "../components/partials/AdvancedSearch.vue";
 import { store } from "../store";
 import axios from "axios";
 // /IMPORTS
 
 export default {
-  components: {},
+  components: { AdvancedSearch },
   data() {
     return {
       store,
       apartmentResults: [],
     };
   },
+  watch: {
+    '$route'(to, from) {
+      // Controlla se ci sono cambiamenti nei parametri dell'URL
+      if (to.params.address !== from.params.address ||
+        to.params.rooms !== from.params.rooms ||
+        to.params.beds !== from.params.beds ||
+        to.params.bathrooms !== from.params.bathrooms ||
+        to.params.radius !== from.params.radius ||
+        to.params.services !== from.params.services) {
+        // Richiama la funzione getApartments() per ottenere i nuovi risultati degli appartamenti
+        this.getApartments();
+      }
+    }
+  },
   methods: {
     // Funzione per ricercare gli appartamenti
     getApartments() {
+      const params = {
+        address: this.$route.params.address,
+      };
+
+      if (this.$route.params.rooms) {
+        params.rooms = this.$route.params.rooms;
+      }
+
+      if (this.$route.params.beds) {
+        params.beds = this.$route.params.beds;
+      }
+
+      if (this.$route.params.bathrooms) {
+        params.bathrooms = this.$route.params.bathrooms;
+      }
+
+      if (this.$route.params.radius) {
+        params.radius = this.$route.params.radius;
+      }
+
+      if (this.$route.params.services) {
+        params.services = this.$route.params.services;
+      }
+
       axios
-        .get(this.store.allApartmentsAPI + this.store.searchApartmentsURI, {
-          params: {
-            address: this.$route.params.address,
-            rooms: this.$route.params.rooms,
-            beds: this.$route.params.beds,
-            radius: this.$route.params.radius,
-          },
-        })
+        .get(this.store.allApartmentsAPI + this.store.searchApartmentsURI, { params })
         .then((response) => {
           console.log("chiamata effettuata");
           this.apartmentResults = response.data;
@@ -36,7 +68,7 @@ export default {
       this.$router.push({ name: "single-apartment", params: { id: apartmentID } });
     },
   },
-  created() {
+  mounted() {
     this.store.showHeader = true;
     this.getApartments();
   },
@@ -44,6 +76,8 @@ export default {
 </script>
 
 <template>
+
+  <AdvancedSearch />
   <div class="container" v-if="apartmentResults.length">
     <h1 class="page-title">Apartment Results</h1>
     <div class="apartment-list">
