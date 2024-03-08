@@ -9,7 +9,7 @@ export default {
   data() {
     return {
       store,
-      apartmentResults: null,
+      apartmentResults: [],
     };
   },
   methods: {
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <template>
-  <div class="container" v-if="apartmentResults">
+  <div class="container" v-if="apartmentResults.length">
     <h1 class="page-title">Apartment Results</h1>
     <div class="apartment-list">
       <div v-for="apartment in apartmentResults" :key="apartment.id" class="apartment-card">
@@ -75,6 +75,7 @@ export default {
       </div>
     </div>
   </div>
+  <h4 class="text-center" v-else>No apartment was found</h4>
 </template>
 
 <style scoped>

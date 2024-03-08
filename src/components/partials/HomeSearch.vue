@@ -50,9 +50,9 @@ export default {
         name: "apartments-results",
         params: {
           address: this.address,
-          rooms: this.roomsCounter,
-          beds: this.bedsCounter,
-          radius: this.radiusCounter,
+          // rooms: this.roomsCounter,
+          // beds: this.bedsCounter,
+          // radius: this.radiusCounter,
         },
       });
     },
@@ -110,27 +110,30 @@ export default {
         </ul>
       </div>
 
-      <!-- Input group -->
+      <!-- Input group 
       <div class="select-section" @click="toggleDropdown">
-        <!-- Rooms -->
+        
         <div class="select-group">
           <label for="rooms">Rooms</label>
           <input type="number" min="0" v-model="this.roomsCounter" id="rooms" />
         </div>
 
-        <!-- Beds -->
+        
         <div class="select-group">
           <label for="beds">Beds</label>
           <input type="number" min="0" v-model="this.bedsCounter" id="beds" />
         </div>
 
-        <!-- Radius -->
+     
         <div class="select-group">
           <label for="radius">Radius</label>
-          <input type="number" min="0" max="1000" step="5" v-model="this.radiusCounter" id="radius" />
+          <div class="d-flex justify-content-start">
+            <input type="number" min="0" max="1000" step="5" v-model="this.radiusCounter" id="radius" />
+            <span>km</span>
+          </div>
         </div>
 
-        <!-- Dropdown -->
+   
         <div class="dropdown-content" v-if="isDropdownOpen" @click="preventClose">
           <div class="dropdown-group">
             <span>Rooms</span>
@@ -158,7 +161,9 @@ export default {
           <span class="range-disclaimer">Max range is 1000km</span>
 
         </div>
+        
       </div>
+      -->
     </div>
 
     <!-- Search button -->
@@ -319,7 +324,7 @@ export default {
     max-height: 215px;
     overflow-y: auto;
     z-index: 999;
-    width: 40%;
+    width: 100%;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     -ms-overflow-style: none;
     /* IE and Edge */
@@ -330,7 +335,7 @@ export default {
   .suggestions-menu li {
     padding: 8px 12px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .suggestions-menu li:hover {
