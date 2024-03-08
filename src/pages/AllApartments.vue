@@ -10,6 +10,7 @@ export default {
     return {
       store,
       apartments: null,
+      loaderStatus: true,
     };
   },
   methods: {
@@ -34,7 +35,14 @@ export default {
 
 <template>
   <AdvancedSearch />
-  <div class="container" v-if="apartments">
+
+  <div class="d-flex justify-content-center" v-if="loaderStatus && !apartments">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div class="container" v-else>
     <h1 class="page-title">All Apartments</h1>
     <div class="apartment-list">
       <div v-for="apartment in apartments" :key="apartment.id" class="apartment-card">

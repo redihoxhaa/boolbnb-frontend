@@ -11,6 +11,7 @@ export default {
     return {
       store,
       apartmentResults: [],
+      loaderStatus: true,
     };
   },
   watch: {
@@ -30,6 +31,9 @@ export default {
   methods: {
     // Funzione per ricercare gli appartamenti
     getApartments() {
+      this.apartmentResults = [];
+      console.log('metto lo status a true');
+      this.loaderStatus = true;
       const params = {
         address: this.$route.params.address,
       };
@@ -60,7 +64,7 @@ export default {
           console.log("chiamata effettuata");
           this.apartmentResults = response.data;
           console.log(this.apartmentResults);
-        });
+        }).finally(() => { this.loaderStatus = false; console.log('metto lo status a true'); })
     },
 
     // Funzione per visitare l'appartamento
@@ -78,38 +82,47 @@ export default {
 <template>
 
   <AdvancedSearch />
-  <div class="container" v-if="apartmentResults.length">
-    <h1 class="page-title">Apartment Results</h1>
-    <div class="apartment-list">
-      <div v-for="apartment in apartmentResults" :key="apartment.id" class="apartment-card">
-        <div class="card-header">
-          <img :src="this.store.imagesAPI + apartment.images.split(',')[0]" class="card-image" alt="Apartment Image"
-            v-if="apartment.images" />
-          <img
-            src="https://plus.unsplash.com/premium_photo-1674676471104-3c4017645e6f?q=80&w=1940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            class="card-image" alt="Apartment Image" v-else>
-        </div>
-        <div class="card-content">
-          <h2 class="title">{{ apartment.title }}</h2>
-          <p class="description">{{ apartment.description }}</p>
-          <div class="details">
-            <div class="detail"><strong>Rooms:</strong> {{ apartment.rooms }}</div>
-            <div class="detail"><strong>Beds:</strong> {{ apartment.beds }}</div>
-            <div class="detail">
-              <strong>Bathrooms:</strong> {{ apartment.bathrooms }}
-            </div>
-            <div class="detail">
-              <strong>Square Meters:</strong> {{ apartment.square_meters }}
-            </div>
+
+  <div class="d-flex justify-content-center" v-if="loaderStatus">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div class="content" v-else>
+    <div class="container" v-if="apartmentResults.length && loaderStatus === false">
+      <h1 class="page-title">Apartment Results</h1>
+      <div class="apartment-list">
+        <div v-for="apartment in apartmentResults" :key="apartment.id" class="apartment-card">
+          <div class="card-header">
+            <img :src="this.store.imagesAPI + apartment.images.split(',')[0]" class="card-image" alt="Apartment Image"
+              v-if="apartment.images" />
+            <img
+              src="https://plus.unsplash.com/premium_photo-1674676471104-3c4017645e6f?q=80&w=1940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              class="card-image" alt="Apartment Image" v-else>
           </div>
-          <button @click="visitApartment(apartment.id)" class="detail-button">
-            View Details
-          </button>
+          <div class="card-content">
+            <h2 class="title">{{ apartment.title }}</h2>
+            <p class="description">{{ apartment.description }}</p>
+            <div class="details">
+              <div class="detail"><strong>Rooms:</strong> {{ apartment.rooms }}</div>
+              <div class="detail"><strong>Beds:</strong> {{ apartment.beds }}</div>
+              <div class="detail">
+                <strong>Bathrooms:</strong> {{ apartment.bathrooms }}
+              </div>
+              <div class="detail">
+                <strong>Square Meters:</strong> {{ apartment.square_meters }}
+              </div>
+            </div>
+            <button @click="visitApartment(apartment.id)" class="detail-button">
+              View Details
+            </button>
+          </div>
         </div>
       </div>
     </div>
+    <h4 class="text-center" v-else>No apartment was found</h4>
   </div>
-  <h4 class="text-center" v-else>No apartment was found</h4>
 </template>
 
 <style scoped>
