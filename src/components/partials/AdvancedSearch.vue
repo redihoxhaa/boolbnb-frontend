@@ -13,9 +13,14 @@ export default {
       radiusCounter: 0,
       isDropdownOpen: false,
       suggestions: [],
+      services: [],
       store,
       apartmentResults: [],
+      selectedServices: [],
     };
+  },
+  created() {
+    this.getServices();
   },
   methods: {
     // Funzione per ottenere gli indirizzi suggeriti
@@ -79,6 +84,14 @@ export default {
       });
     },
 
+    // Funzione per ottenere i servizi
+    getServices() {
+      axios.get(this.store.allServicesAPI).then(response => {
+        this.services = response.data;
+        console.log(this.services)
+      }
+      )
+    },
 
 
     // Funzione per incrementare contatore letti, camere e raggio
@@ -107,6 +120,18 @@ export default {
     preventClose(event) {
       event.stopPropagation();
     },
+
+    // Funzione per selezionare i servizi
+    addService(serviceID) {
+      if (!this.selectedServices.includes(serviceID)) {
+        this.selectedServices.push(serviceID);
+      } else {
+        const index = this.selectedServices.indexOf(serviceID);
+        if (index !== -1) {
+          this.selectedServices.splice(index, 1);
+        }
+      }
+    }
   },
   mounted() {
     this.address = this.addressProp;
@@ -119,88 +144,115 @@ export default {
 </script>
 
 <template>
-  <!-- Container -->
-  <div class="search-container d-flex">
-    <!-- Input container -->
-    <div class="input-container" @click="preventClose">
-      <!-- Address group -->
-      <div class="address-group">
-        <label for="address" class="">Location</label>
-        <input type="text" id="address" v-model="address" placeholder="What are you dreaming of?"
-          @input="getAddresses" />
-        <ul id="suggestionsMenu" class="suggestions-menu" :class="{ 'd-none': !suggestions.length }">
-          <li v-for="suggestion in suggestions" :key="suggestion.id" @click="selectAddress(suggestion)">
-            {{ suggestion.address.freeformAddress }}
-          </li>
-        </ul>
+  <div class="wrapper">
+    <!-- Container -->
+    <div class="search-container d-flex">
+      <!-- Input container -->
+      <div class="input-container" @click="preventClose">
+        <!-- Address group -->
+        <div class="address-group">
+          <label for="address" class="">Location</label>
+          <input type="text" id="address" v-model="address" placeholder="What are you dreaming of?"
+            @input="getAddresses" />
+          <ul id="suggestionsMenu" class="suggestions-menu" :class="{ 'd-none': !suggestions.length }">
+            <li v-for="suggestion in suggestions" :key="suggestion.id" @click="selectAddress(suggestion)">
+              {{ suggestion.address.freeformAddress }}
+            </li>
+          </ul>
+        </div>
+
+        <!-- Input group -->
+        <div class="select-section" @click="toggleDropdown">
+
+          <div class="select-group">
+            <label for="rooms">Rooms</label>
+            <input type="number" min="0" v-model="this.roomsCounter" id="rooms" />
+          </div>
+
+
+          <div class="select-group">
+            <label for="beds">Beds</label>
+            <input type="number" min="0" v-model="this.bedsCounter" id="beds" />
+          </div>
+
+          <div class="select-group">
+            <label for="beds">Bathrooms</label>
+            <input type="number" min="0" v-model="this.bathroomsCounter" id="bathrooms" />
+          </div>
+
+
+          <div class="select-group">
+            <label for="radius">Radius</label>
+            <div class="d-flex justify-content-start">
+              <input type="number" min="0" max="1000" step="5" v-model="this.radiusCounter" id="radius" />
+              <span>km</span>
+            </div>
+          </div>
+
+          <div class="dropdown-content" v-if="isDropdownOpen" @click="preventClose">
+            <div class="dropdown-group">
+              <span>Rooms</span>
+              <div class="dropdown-input-group">
+                <button @click.stop="decreaseValue('roomsCounter')">-</button>
+                <input type="text" v-model="this.roomsCounter" id="rooms" class="dropdown-input" />
+                <button @click.stop="increaseValue('roomsCounter')">+</button>
+              </div>
+            </div>
+            <div class="dropdown-group">
+              <span>Beds</span>
+              <div class="dropdown-input-group">
+                <button @click.stop="decreaseValue('bedsCounter')">-</button>
+                <input type="text" v-model="this.bedsCounter" id="beds" class="dropdown-input" />
+                <button @click.stop="increaseValue('bedsCounter')">+</button>
+              </div>
+            </div>
+            <div class="dropdown-group">
+              <span>Bathrooms</span>
+              <div class="dropdown-input-group">
+                <button @click.stop="decreaseValue('bathroomsCounter')">-</button>
+                <input type="text" v-model="this.bathroomsCounter" id="bathrooms" class="dropdown-input" />
+                <button @click.stop="increaseValue('bathroomsCounter')">+</button>
+              </div>
+            </div>
+            <div class="dropdown-group border-bottom-0">
+              <span>Radius</span>
+              <div class="dropdown-input-group">
+                <input type="range" class="form-range dropdown-input" min="0" max="1000" step="5" id="radius"
+                  v-model="this.radiusCounter" />
+              </div>
+            </div>
+            <span class="range-disclaimer">Max range is 1000km</span>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <!-- Input group -->
-      <div class="select-section" @click="toggleDropdown">
-
-        <div class="select-group">
-          <label for="rooms">Rooms</label>
-          <input type="number" min="0" v-model="this.roomsCounter" id="rooms" />
-        </div>
-
-
-        <div class="select-group">
-          <label for="beds">Beds</label>
-          <input type="number" min="0" v-model="this.bedsCounter" id="beds" />
-        </div>
-
-
-        <div class="select-group">
-          <label for="radius">Radius</label>
-          <div class="d-flex justify-content-start">
-            <input type="number" min="0" max="1000" step="5" v-model="this.radiusCounter" id="radius" />
-            <span>km</span>
-          </div>
-        </div>
-
-
-        <div class="dropdown-content" v-if="isDropdownOpen" @click="preventClose">
-          <div class="dropdown-group">
-            <span>Rooms</span>
-            <div class="dropdown-input-group">
-              <button @click.stop="decreaseValue('roomsCounter')">-</button>
-              <input type="text" v-model="this.roomsCounter" id="rooms" class="dropdown-input" />
-              <button @click.stop="increaseValue('roomsCounter')">+</button>
-            </div>
-          </div>
-          <div class="dropdown-group">
-            <span>Beds</span>
-            <div class="dropdown-input-group">
-              <button @click.stop="decreaseValue('bedsCounter')">-</button>
-              <input type="text" v-model="this.bedsCounter" id="beds" class="dropdown-input" />
-              <button @click.stop="increaseValue('bedsCounter')">+</button>
-            </div>
-          </div>
-          <div class="dropdown-group border-bottom-0">
-            <span>Radius</span>
-            <div class="dropdown-input-group">
-              <input type="range" class="form-range dropdown-input" min="0" max="1000" step="5" id="radius"
-                v-model="this.radiusCounter" />
-            </div>
-          </div>
-          <span class="range-disclaimer">Max range is 1000km</span>
-
-        </div>
-
+      <!-- Search button -->
+      <div class="search-button-container">
+        <button @click="goToResults" @keyup.enter="goToResults">
+          <img src="/src/assets/img/search-icon.svg" alt="" />
+        </button>
       </div>
-
     </div>
 
-    <!-- Search button -->
-    <div class="search-button-container">
-      <button @click="goToResults" @keyup.enter="goToResults">
-        <img src="/src/assets/img/search-icon.svg" alt="" />
-      </button>
-    </div>
+    <ul class="services container d-flex gap-3 text-center">
+      <li class="service text-nowrap" :class="{ 'selected': selectedServices.includes(service.id) }" v-for=" service in
+        services" @click="addService(service.id)">{{ service.name }}
+      </li>
+    </ul>
+
   </div>
 </template>
 
 <style lang="scss" scoped>
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .search-container {
   position: relative;
   background-color: #fff;
@@ -208,10 +260,7 @@ export default {
   border-radius: 14px;
   max-width: 800px;
   display: flex;
-  margin-left: 5vw;
-  margin-right: 5vw;
-  margin-top: 5vh;
-  margin-bottom: 20vh;
+  margin-bottom: 50px;
 
   label {
     font-size: 12px;
@@ -365,6 +414,27 @@ export default {
 
   .suggestions-menu li:hover {
     background-color: #f9f9f9;
+  }
+}
+
+.services {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 50px;
+
+  .service {
+    font-size: 14px;
+    background-color: #f0f0f0;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .selected {
+    background-color: #bfe373;
   }
 }
 

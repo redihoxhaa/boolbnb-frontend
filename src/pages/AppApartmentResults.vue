@@ -80,7 +80,6 @@ export default {
 </script>
 
 <template>
-
   <AdvancedSearch :addressProp="this.$route.params.address" />
 
   <div class="d-flex justify-content-center" v-if="loaderStatus">
@@ -123,9 +122,10 @@ export default {
     </div>
     <h4 class="text-center" v-else>No apartment was found</h4>
   </div>
+
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .container {
   max-width: 1200px;
   margin: 0 auto;
