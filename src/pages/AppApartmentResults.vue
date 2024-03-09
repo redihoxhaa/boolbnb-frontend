@@ -81,7 +81,7 @@ export default {
 
 <template>
 
-  <AdvancedSearch />
+  <AdvancedSearch :addressProp="this.$route.params.address" />
 
   <div class="d-flex justify-content-center" v-if="loaderStatus">
     <div class="spinner-border" role="status">

@@ -3,7 +3,7 @@ import { store } from "../../store";
 import axios from "axios";
 
 export default {
-  name: "HomeSearch",
+  props: ['addressProp'],
   data() {
     return {
       address: "",
@@ -109,6 +109,7 @@ export default {
     },
   },
   mounted() {
+    this.address = this.addressProp;
     document.addEventListener("click", this.closeDropdown);
   },
   beforeDestroy() {
