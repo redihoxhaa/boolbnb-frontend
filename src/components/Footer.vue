@@ -21,7 +21,7 @@ export default {
 <template>
   <footer>
     <div class="a container-fluid">
-      <div class=" row gap-5 justify-content-center">
+      <div class="row m-0 gap-5 justify-content-center">
         <div class="col-md-3">
           <img src="" alt="Logo">
           <p class="p-font my-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, officia eligendi! Iste
@@ -83,7 +83,8 @@ export default {
 // USES
 footer {
   background-color: #EFF0F2;
-  overflow-x: hidden;
+  max-width: 100%;
+
 
   .container-fluid {
     padding: 100px 0 150px 0;
