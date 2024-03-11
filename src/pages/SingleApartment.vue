@@ -27,13 +27,29 @@ export default {
           this.apartment = response.data;
         });
     },
+    registerVisit() {
+      axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+      axios.post(this.store.sendVisitAPI, {
+        apartment_id: this.apartment.id
+      })
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
   },
   created() {
     this.getApartment();
   },
   mounted() {
     this.store.showHeader = true;
-  },
+    setTimeout(() => {
+      this.registerVisit();
+    }, 5000);
+  }
 };
 </script>
 
