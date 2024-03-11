@@ -2,12 +2,13 @@
 // IMPORTS
 import { store } from "../store";
 import axios from "axios";
+import MessageSender from "../components/partials/MessageSender.vue";
 
 // /IMPORTS
 
 export default {
   props: [],
-  components: {},
+  components: { MessageSender },
   data() {
     return {
       store,
@@ -38,6 +39,7 @@ export default {
 
 <template>
   <div class="container" v-if="apartment">
+    <MessageSender :apartmentID="apartment.id" />
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="apartment-card card">
