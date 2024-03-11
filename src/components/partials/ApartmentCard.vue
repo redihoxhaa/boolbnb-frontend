@@ -4,6 +4,11 @@ import { DateTime } from 'luxon';
 export default {
     name: 'ApartmentCard',
     props: ['apartment'],
+    data() {
+        return {
+            store
+        }
+    },
     methods: {
         showSponsoredTag(endDate) {
             const currentDate = DateTime.now();
@@ -25,8 +30,12 @@ export default {
         <div class="apartment-image-container">
             <div class="apartment-icon">
                 <div class="icon-sponsor">
-                    <span
-                        v-if="apartment.sponsorships && showSponsoredTag(apartment.sponsorships[apartment.sponsorships.length - 1].pivot.end_date)">Sponsored</span>
+                    <div v-if="apartment.sponsorships && apartment.sponsorships.length">
+                        <div
+                            v-if="showSponsoredTag(apartment.sponsorships[apartment.sponsorships.length - 1].pivot.end_date)">
+                            Sponsored
+                        </div>
+                    </div>
                 </div>
                 <div class="icon-redirect">
                     <div class="arrow-icon">
