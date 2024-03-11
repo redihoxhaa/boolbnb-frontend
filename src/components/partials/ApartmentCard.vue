@@ -26,7 +26,7 @@ export default {
             <div class="apartment-icon">
                 <div class="icon-sponsor">
                     <span
-                        v-if="showSponsoredTag(apartment.sponsorships[apartment.sponsorships.length - 1].pivot.end_date)">Sponsored</span>
+                        v-if="apartment.sponsorships && showSponsoredTag(apartment.sponsorships[apartment.sponsorships.length - 1].pivot.end_date)">Sponsored</span>
                 </div>
                 <div class="icon-redirect">
                     <div class="arrow-icon">
