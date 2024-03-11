@@ -54,7 +54,7 @@ export default {
 </script>
 
 <template>
-  <div class="container mt-4">
+  <div class="container mt-4" v-if="apartment">
     <div class="row">
       <!-- Dettagli dell'appartamento -->
       <div class="col-md-6 mb-4">

@@ -43,8 +43,8 @@ export default {
                         </div>
                     </div>
                 </div>
-                <div class="icon-redirect" @click="visitApartment(apartment.id)">
-                    <div class="arrow-icon">
+                <div class="icon-redirect">
+                    <div class=" arrow-icon" role="button" @click="visitApartment(apartment.id)">
                         <img src="../../assets/img/arrow_card_icon.svg" alt="">
                     </div>
                 </div>
@@ -99,6 +99,7 @@ export default {
         margin: 10px;
         display: flex;
         justify-content: end;
+
 
         .arrow-icon {
             width: 40px;

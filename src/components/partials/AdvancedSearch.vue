@@ -10,7 +10,7 @@ export default {
       roomsCounter: 0,
       bedsCounter: 0,
       bathroomsCounter: 0,
-      radiusCounter: 0,
+      radiusCounter: 50,
       isDropdownOpen: false,
       suggestions: [],
       services: [],
@@ -88,7 +88,7 @@ export default {
     getServices() {
       axios.get(this.store.allServicesAPI).then(response => {
         this.services = response.data;
-        console.log(this.services)
+        // console.log(this.services)
       }
       )
     },
@@ -184,7 +184,7 @@ export default {
           <div class="select-group">
             <label for="radius">Radius</label>
             <div class="d-flex justify-content-start">
-              <input type="number" min="0" max="1000" step="5" v-model="this.radiusCounter" id="radius" />
+              <input type="number" min="50" max="1000" step="5" v-model="this.radiusCounter" id="radius" />
               <span>km</span>
             </div>
           </div>
@@ -217,7 +217,7 @@ export default {
             <div class="dropdown-group border-bottom-0">
               <span>Radius</span>
               <div class="dropdown-input-group">
-                <input type="range" class="form-range dropdown-input" min="0" max="1000" step="5" id="radius"
+                <input type="range" class="form-range dropdown-input" min="50" max="1000" step="5" id="radius"
                   v-model="this.radiusCounter" />
               </div>
             </div>

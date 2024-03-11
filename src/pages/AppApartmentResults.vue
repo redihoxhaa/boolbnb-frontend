@@ -33,7 +33,7 @@ export default {
     // Funzione per ricercare gli appartamenti
     getApartments() {
       this.apartmentResults = [];
-      console.log('metto lo status a true');
+      // console.log('metto lo status a true');
       this.loaderStatus = true;
       const params = {
         address: this.$route.params.address,
@@ -62,10 +62,13 @@ export default {
       axios
         .get(this.store.allApartmentsAPI + this.store.searchApartmentsURI, { params })
         .then((response) => {
-          console.log("chiamata effettuata");
+          // console.log("chiamata effettuata");
           this.apartmentResults = response.data;
-          console.log(this.apartmentResults);
-        }).finally(() => { this.loaderStatus = false; console.log('metto lo status a true'); })
+          // console.log(this.apartmentResults);
+        }).finally(() => {
+          this.loaderStatus = false;
+          // console.log('metto lo status a true'); 
+        })
     },
 
     // Funzione per visitare l'appartamento

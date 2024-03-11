@@ -21,7 +21,7 @@ export default {
 
 <template>
   <Header v-if="store.showHeader" />
-  <router-view @header-toggle="toggleHeader"></router-view>
+  <router-view></router-view>
   <Footer />
 </template>
 
