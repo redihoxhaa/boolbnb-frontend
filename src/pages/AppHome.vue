@@ -25,9 +25,9 @@ export default {
     <div class="custom-container d-flex flex-column justify-content-between ">
       <HomeMenu />
       <HomeSearch />
-      <SponsoredApartments />
     </div>
   </header>
+  <SponsoredApartments />
 </template>
 
 <style lang="scss" scoped>
