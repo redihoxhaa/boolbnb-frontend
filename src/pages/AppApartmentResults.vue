@@ -3,10 +3,11 @@
 import AdvancedSearch from "../components/partials/AdvancedSearch.vue";
 import { store } from "../store";
 import axios from "axios";
+import ApartmentCard from "../components/partials/ApartmentCard.vue";
 // /IMPORTS
 
 export default {
-  components: { AdvancedSearch },
+  components: { AdvancedSearch, ApartmentCard },
   data() {
     return {
       store,
@@ -93,7 +94,9 @@ export default {
       <h1 class="page-title">Apartment Results</h1>
       <div class="apartment-list">
         <div v-for="apartment in apartmentResults" :key="apartment.id" class="apartment-card">
-          <div class="card-header">
+          <ApartmentCard :apartment="apartment" />
+
+          <!-- <div class="card-header">
             <img :src="this.store.imagesAPI + apartment.images.split(',')[0]" class="card-image" alt="Apartment Image"
               v-if="apartment.images" />
             <img
@@ -116,7 +119,8 @@ export default {
             <button @click="visitApartment(apartment.id)" class="detail-button">
               View Details
             </button>
-          </div>
+          </div> -->
+
         </div>
       </div>
     </div>
@@ -145,76 +149,75 @@ export default {
   grid-gap: 20px;
 }
 
-.apartment-card {
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  background-color: #fff;
-  transition: transform 0.3s ease;
-}
+// .apartment-card {
+//   border-radius: 12px;
+//   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+//   overflow: hidden;
+//   background-color: #fff;
+//   transition: transform 0.3s ease;
+// }
 
-.apartment-card:hover {
-  transform: translateY(-5px);
-}
+// .apartment-card:hover {
+//   transform: translateY(-5px);
+// }
 
-.card-header {
-  height: 200px;
-  overflow: hidden;
-}
+// .card-header {
+//   height: 200px;
+//   overflow: hidden;
+// }
 
-.card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+// .card-image {
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+// }
 
-.card-content {
-  padding: 20px;
-}
+// .card-content {
+//   padding: 20px;
+// }
 
-.title {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #333;
-}
+// .title {
+//   font-size: 24px;
+//   margin-bottom: 10px;
+//   color: #333;
+// }
 
-.description {
-  font-size: 16px;
-  margin-bottom: 15px;
-  color: #555;
-}
+// .description {
+//   font-size: 16px;
+//   margin-bottom: 15px;
+//   color: #555;
+// }
 
-.details {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-}
+// .details {
+//   display: flex;
+//   flex-wrap: wrap;
+//   margin-bottom: 10px;
+// }
 
-.detail {
-  margin-right: 20px;
-  font-size: 14px;
-  color: #666;
-}
+// .detail {
+//   margin-right: 20px;
+//   font-size: 14px;
+//   color: #666;
+// }
 
-.detail strong {
-  font-weight: bold;
-}
+// .detail strong {
+//   font-weight: bold;
+// }
 
-.detail-button {
-  background-color: #ff8c00;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+// .detail-button {
+//   background-color: #ff8c00;
+//   color: white;
+//   border: none;
+//   padding: 10px 20px;
+//   text-align: center;
+//   text-decoration: none;
+//   display: inline-block;
+//   font-size: 14px;
+//   border-radius: 6px;
+//   cursor: pointer;
+//   transition: background-color 0.3s ease;
+// }
 
-.detail-button:hover {
-  background-color: #ff6b00;
-}
-</style>
+// .detail-button:hover {
+//   background-color: #ff6b00;
+// }</style>
