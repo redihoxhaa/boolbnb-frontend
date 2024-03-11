@@ -1,11 +1,13 @@
 <script>
 import { store } from "../../store";
 import { DateTime } from 'luxon';
+
 export default {
     name: 'ApartmentCard',
     props: ['apartment'],
     data() {
         return {
+            props: [],
             store
         }
     },
@@ -17,7 +19,11 @@ export default {
             } else {
                 return false
             }
-        }
+        },
+        // Funzione per visitare l'appartamento
+        visitApartment(apartmentID) {
+            this.$router.push({ name: "single-apartment", params: { id: apartmentID } });
+        },
     },
     mounted() {
         this.showSponsoredTag();
@@ -37,11 +43,10 @@ export default {
                         </div>
                     </div>
                 </div>
-                <div class="icon-redirect">
+                <div class="icon-redirect" @click="visitApartment(apartment.id)">
                     <div class="arrow-icon">
                         <img src="../../assets/img/arrow_card_icon.svg" alt="">
                     </div>
-
                 </div>
             </div>
             <div class="apartment-image">
