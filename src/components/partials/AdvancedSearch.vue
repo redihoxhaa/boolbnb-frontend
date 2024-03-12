@@ -17,6 +17,7 @@ export default {
       store,
       apartmentResults: [],
       selectedServices: [],
+      closeSuggestion: false,
     };
   },
   created() {
@@ -36,6 +37,7 @@ export default {
             if (!response.data) {
               throw new Error("The research was unsuccessful");
             }
+            this.closeSuggestion = false;
             this.suggestions = response.data.results ? response.data.results : [];
           })
           .catch((error) => console.error("Error:", error));
@@ -118,6 +120,7 @@ export default {
     //Funzione per chiudere il dropdown
     closeDropdown() {
       this.isDropdownOpen = false;
+      this.closeSuggestion = true;
     },
 
     // Funzione per evitare il click attraverso il dropdown
@@ -158,7 +161,8 @@ export default {
           <label for="address" class="">Location</label>
           <input type="text" id="address" v-model="address" placeholder="What are you dreaming of?"
             @input="getAddresses" />
-          <ul id="suggestionsMenu" class="suggestions-menu" :class="{ 'd-none': !suggestions.length }">
+          <ul id="suggestionsMenu" class="suggestions-menu"
+            :class="{ 'd-none': !suggestions.length || closeSuggestion }">
             <li v-for="suggestion in suggestions" :key="suggestion.id" @click="selectAddress(suggestion)">
               {{ suggestion.address.freeformAddress }}
             </li>
