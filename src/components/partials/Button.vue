@@ -3,7 +3,7 @@ export default {
   name: "Button",
   props: {
     buttonRedirect: {
-      default: "#",
+      default: "",
     },
     buttonText: {
       type: String,
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <template>
-  <router-link class="button" :class="buttonClass" :to="{ name: '' }">
+  <router-link class="button" :class="buttonClass" :to="{ name: buttonRedirect }">
     <i v-if="buttonIcon" class="icon"> {{ buttonIcon }}</i>
     {{ buttonText }}
   </router-link>
@@ -33,6 +33,9 @@ export default {
   padding: 12px 24px;
   border: none;
   border-radius: 50px;
+  text-decoration: none;
+  color: #1b1b1b;
+  font-size: 14px;
 }
 
 .default {

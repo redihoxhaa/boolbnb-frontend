@@ -181,12 +181,8 @@ export default {
   background-color: #fff;
   padding: 10px 20px;
   border-radius: 14px;
-  max-width: 800px;
+  width: 40%;
   display: flex;
-  margin-left: 5vw;
-  margin-right: 5vw;
-  margin-top: 5vh;
-  margin-bottom: 20vh;
 
   label {
     font-size: 12px;
@@ -285,7 +281,7 @@ export default {
             line-height: 50%;
 
             &:hover {
-              background-color: #bfe373;
+              background-color: #afcd6d;
               transition: background-color 0.2s ease-in-out;
             }
           }
@@ -306,6 +302,11 @@ export default {
       aspect-ratio: 1;
       width: 50px;
       height: 50px;
+
+      &:hover {
+        background-color: #b9da73;
+        transition: background-color 0.2s ease-in-out;
+      }
 
       img {
         width: 40%;
