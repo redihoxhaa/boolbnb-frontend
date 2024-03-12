@@ -73,22 +73,22 @@ export default {
         <form @submit.prevent="sendMessage">
             <!-- Input per il nome -->
             <div class="mb-3">
-                <label for="sender_name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="sender_name" v-model="sender_name">
+                <!-- <label for="sender_name" class="form-label">Name</label> -->
+                <input type="text" placeholder="Name" class="form-control" id="sender_name" v-model="sender_name">
                 <!-- Messaggio di errore specifico -->
                 <div v-if="errors.sender_name" class="text-danger">{{ errors.sender_name }}</div>
             </div>
             <!-- Input per l'email -->
             <div class="mb-3">
-                <label for="sender_email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="sender_email" v-model="sender_email">
+                <!-- <label for="sender_email" class="form-label">Email</label> -->
+                <input type="email" placeholder="Email" class="form-control" id="sender_email" v-model="sender_email">
                 <!-- Messaggio di errore specifico -->
                 <div v-if="errors.sender_email" class="text-danger">{{ errors.sender_email }}</div>
             </div>
             <!-- Input per il messaggio -->
             <div class="mb-3">
-                <label for="message_text" class="form-label">Message</label>
-                <textarea class="form-control" id="message_text" rows="4" v-model="message_text"></textarea>
+                <!-- <label for="message_text" class="form-label">Message</label> -->
+                <textarea class="form-control" placeholder="Message" id="message_text" rows="4" v-model="message_text"></textarea>
                 <!-- Messaggio di errore specifico -->
                 <div v-if="errors.message_text" class="text-danger">{{ errors.message_text }}</div>
             </div>
