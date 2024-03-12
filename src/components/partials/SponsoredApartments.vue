@@ -41,7 +41,7 @@ export default {
                 <h6>EXPLORE OUR</h6>
                 <h2>Sponsored Apartments</h2>
             </div>
-            <div class="mb-5">
+            <div class="mb-5 d-flex flex-shrink-0 flex-wrap gap-4">
                 <ApartmentCard v-for="apartment in apartments" :apartment="apartment" />
             </div>
             <div class="text-center mb-5">

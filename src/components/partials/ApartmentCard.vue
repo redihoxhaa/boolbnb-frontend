@@ -65,7 +65,9 @@ export default {
 
 <style lang="scss" scoped>
 .apartment-card {
-    width: 250px;
+    flex-shrink: 0;
+    max-width: 260px;
+    min-width: 20px;
     position: relative;
 }
 
