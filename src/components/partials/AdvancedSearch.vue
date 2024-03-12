@@ -10,7 +10,7 @@ export default {
       roomsCounter: 0,
       bedsCounter: 0,
       bathroomsCounter: 0,
-      radiusCounter: 50,
+      radiusCounter: 0,
       isDropdownOpen: false,
       suggestions: [],
       services: [],
@@ -184,7 +184,7 @@ export default {
           <div class="select-group">
             <label for="radius">Radius</label>
             <div class="d-flex justify-content-start">
-              <input type="number" min="50" max="1000" step="5" v-model="this.radiusCounter" id="radius" />
+              <input type="number" min="0" max="50" step="5" v-model="this.radiusCounter" id="radius" />
               <span>km</span>
             </div>
           </div>
@@ -217,11 +217,11 @@ export default {
             <div class="dropdown-group border-bottom-0">
               <span>Radius</span>
               <div class="dropdown-input-group">
-                <input type="range" class="form-range dropdown-input" min="50" max="1000" step="5" id="radius"
+                <input type="range" class="form-range dropdown-input" min="0" max="50" step="1" id="radius"
                   v-model="this.radiusCounter" />
               </div>
             </div>
-            <span class="range-disclaimer">Max range is 1000km</span>
+            <span class="range-disclaimer">Max range is 50km</span>
 
           </div>
 
@@ -237,6 +237,7 @@ export default {
       </div>
     </div>
 
+    <h5 class="text-center">Services</h5>
     <ul class="services container d-flex gap-3 text-center">
       <li class="service text-nowrap" :class="{ 'selected': selectedServices.includes(service.id) }" v-for=" service in
         services" @click="addService(service.id)">{{ service.name }}
