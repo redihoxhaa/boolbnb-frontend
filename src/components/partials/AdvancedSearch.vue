@@ -54,6 +54,10 @@ export default {
     goToResults() {
       const params = {
         address: this.address,
+        rooms: this.roomsCounter || 0, // Se non è selezionato alcun numero di stanze, impostalo a 0
+        beds: this.bedsCounter || 0, // Se non è selezionato alcun numero di letti, impostalo a 0
+        bathrooms: this.bathroomsCounter || 0, // Se non è selezionato alcun numero di bagni, impostalo a 0
+        radius: this.radiusCounter || 5
       };
 
       if (this.roomsCounter) {
@@ -73,7 +77,7 @@ export default {
       }
 
       // Gestione dei servizi
-      if (this.selectedServices) {
+      if (this.selectedServices.length > 0) {
         // Selezioni almeno un servizio, converti l'array di ID in una stringa separata da virgole
         params.services = this.selectedServices.join(',');
       }
