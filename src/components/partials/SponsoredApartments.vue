@@ -35,7 +35,7 @@ export default {
 </script>
 
 <template>
-    <section id="sponsored-apartments">
+    <section id="sponsored-apartments" v-if="apartments">
         <div class="container">
             <div class="header mt-5 mb-3">
                 <h6>EXPLORE OUR</h6>
