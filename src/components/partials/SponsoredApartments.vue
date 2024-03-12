@@ -1,10 +1,12 @@
 <script>
 import { store } from "../../store";
 import axios from "axios";
+import ApartmentCard from "./ApartmentCard.vue";
+import Button from "./Button.vue";
 
 export default {
     props: [],
-    components: {},
+    components: { ApartmentCard, Button },
     data() {
         return {
             store,
@@ -33,8 +35,25 @@ export default {
 </script>
 
 <template>
-    <div class="container" v-if="apartments">
-        <h1 class="page-title">All Apartments</h1>
+    <section id="sponsored-apartments">
+        <div class="container">
+            <div class="header mt-5 mb-3">
+                <h6>EXPLORE OUR</h6>
+                <h2>Sponsored Apartments</h2>
+            </div>
+            <div class="mb-5">
+                <ApartmentCard v-for="apartment in apartments" :apartment="apartment" />
+            </div>
+            <div class="text-center mb-5">
+                <Button :buttonText="'Explore All'" />
+            </div>
+        </div>
+    </section>
+
+    <!-- <div class="container" v-if="apartments">
+        <h6>EXPLORE OUR</h6>
+        <h1 class="page-title">Sponsored Apartments</h1>
+        
         <div class="apartment-list">
             <div v-for="apartment in apartments" :key="apartment.id" class="apartment-card">
                 <div class="card-header">
@@ -62,11 +81,11 @@ export default {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <style scoped>
-.container {
+/* .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -156,5 +175,5 @@ export default {
 
 .detail-button:hover {
     background-color: #ff6b00;
-}
+} */
 </style>

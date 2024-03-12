@@ -23,8 +23,13 @@ export default {
 <template>
   <header>
     <div class="custom-container d-flex flex-column justify-content-between ">
-      <HomeMenu />
-      <HomeSearch />
+      <div class="home-top">
+        <HomeMenu />
+      </div>
+      <div class="home-bottom">
+        <h1 class="main-title">Redefining tourist lifestyles through our premium apartment</h1>
+        <HomeSearch />
+      </div>
     </div>
   </header>
   <SponsoredApartments />
@@ -40,8 +45,18 @@ header {
 
   .custom-container {
     margin: 0 auto;
-    padding: 10px;
+    padding-top: 10px;
+    padding: 10px 2rem 2rem;
     height: 100%;
+  }
+
+  .main-title {
+    color: #fff;
+    font-size: 4vw;
+    line-height: 110%;
+    width: 60%;
+    font-weight: 400;
+    margin-bottom: 2%;
   }
 }
 </style>

@@ -30,10 +30,10 @@ export default {
 
 <style lang="scss" scoped>
 .menu-container {
-  margin: 10px auto;
+  margin: 0 auto;
   width: fit-content;
   background-color: #fff;
-  padding: 8px;
+  padding: 6px;
   border-radius: 50px;
   display: flex;
   gap: 40px;
@@ -44,7 +44,7 @@ export default {
     align-items: center;
 
     .brand {
-      width: 50px;
+      width: 45px;
       padding: 8px;
 
       img {
@@ -59,6 +59,7 @@ export default {
       gap: 20px;
       align-items: center;
       margin: 0;
+      font-size: 14px;
 
       li {
         height: 100%;
