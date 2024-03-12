@@ -87,9 +87,10 @@ export default {
     .icon-sponsor {
         margin: 10px;
 
-        span {
+        div {
+            display: inline;
             background-color: #CEF27F;
-            padding: 8px 14px;
+            padding: 8px 8px;
             font-size: 12px;
             border-radius: 100px;
         }
