@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 
 export default {
     name: 'ApartmentCard',
-    props: ['apartment'],
+    props: ['apartment', 'colSize'],
     data() {
         return {
             props: [],
@@ -32,11 +32,11 @@ export default {
 </script>
 
 <template>
-    <div class="apartment-card">
+    <div class="apartment-card" :class="colSize">
         <div class="apartment-image-container m-0">
             <div class="apartment-icon">
                 <div class="icon-sponsor">
-                    <div v-if="apartment.sponsorships && apartment.sponsorships.length">
+                    <div v-if="apartment.sponsorships && apartment.sponsorships.length" class="p-1">
                         <div
                             v-if="showSponsoredTag(apartment.sponsorships[apartment.sponsorships.length - 1].pivot.end_date)">
                             Sponsored
@@ -64,11 +64,13 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use '../../assets/scss/partials/variables' as *;
+
+
 .apartment-card {
     flex-shrink: 0;
-    max-width: 260px;
-    min-width: 20px;
     position: relative;
+    width: 100%;
 }
 
 .apartment-image-container {
@@ -94,9 +96,9 @@ export default {
             div {
                 display: inline;
                 background-color: #CEF27F;
-                padding: 8px 8px;
+                padding: 10px 12px;
                 font-size: 12px;
-                border-radius: 100px;
+                border-radius: 10px;
             }
         }
     }
@@ -144,6 +146,7 @@ export default {
     span {
         font-size: 15px;
         font-weight: 300;
+        color: $placeholder;
     }
 }
 </style>

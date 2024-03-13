@@ -62,6 +62,7 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  overflow-x: hidden;
 
   .container {
     margin: 0 auto;
