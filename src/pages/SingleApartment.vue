@@ -3,12 +3,13 @@
 import { store } from "../store";
 import axios from "axios";
 import MessageSender from "../components/partials/MessageSender.vue";
+import ImageGrid from "../components/partials/ImageGrid.vue";
 
 // /IMPORTS
 
 export default {
   props: [],
-  components: { MessageSender },
+  components: { MessageSender, ImageGrid },
   data() {
     return {
       store,
@@ -45,7 +46,7 @@ export default {
     this.getApartment();
   },
   mounted() {
-    this.store.showHeader = true;
+
     setTimeout(() => {
       this.registerVisit();
     }, 5000);
@@ -57,27 +58,14 @@ export default {
   <div class="container mt-4" v-if="apartment">
     <!-- Immagini dell'appartamento -->
     <div class="mb-3">
-      <div v-if="apartment.images" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div v-for="(image, index) in apartment.images.split(',')" :key="index"
-            :class="['carousel-item', index === 0 ? 'active' : '']">
-            <img :src="`${this.store.imagesAPI}${image.trim()}`" class="d-block w-100" alt="Apartment Image" />
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+      <div v-if="apartment.images">
+
+        <ImageGrid :images="apartment.images.split(',')" />
+
       </div>
-      <img v-else
-        src="https://plus.unsplash.com/premium_photo-1674676471104-3c4017645e6f?q=80&w=1940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        class="img-fluid mb-2" alt="Apartment Image" />
+      <div class="pic-container" v-else>
+        <img src="../assets/img/apartment-default.webp" class="center" alt="Apartment Image" />
+      </div>
     </div>
     <div class="row">
       <!-- Dettagli dell'appartamento -->
@@ -151,46 +139,44 @@ export default {
 
 
 
-<style scoped>
+<style lang="scss" scoped>
+.center {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
 .apartment-card {
   margin-top: 20px;
 }
 
-.mini-container{
+.mini-container {
   max-width: 400px;
 }
 
-.b-none{
+.b-none {
   border-style: none;
 }
 
 
 
-.w-mx{
+.w-mx {
   max-width: 200px;
   list-style: none;
 }
 
 img {
-  height: 400px;
   width: 100%;
 }
 
-.box-sz{
+.box-sz {
   height: 160px;
   width: 150px;
 }
 
-.carousel-item {
-  height: 300px;
-  /* Imposta l'altezza delle immagini del carousel */
+.pic-container {
+  height: 500px;
+  overflow: hidden;
+  border-radius: 30px;
 }
 </style>
-
-<style lang="scss" scoped>
-// USES
-.apartment-card {
-  margin-bottom: 20px;
-}
-
-// /USES</style>

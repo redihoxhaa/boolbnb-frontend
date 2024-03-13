@@ -1,15 +1,17 @@
 <script>
 import AdvancedSearch from "../components/partials/AdvancedSearch.vue";
+import ApartmentCard from "../components/partials/ApartmentCard.vue";
+import HomeMenu from "../components/partials/HomeMenu.vue";
 import { store } from "../store";
 import axios from "axios";
 
 export default {
   props: [],
-  components: { AdvancedSearch },
+  components: { AdvancedSearch, HomeMenu, ApartmentCard },
   data() {
     return {
       store,
-      apartments: null,
+      apartments: [],
       loaderStatus: true,
     };
   },
@@ -17,7 +19,9 @@ export default {
     // Funzione per ottenere tutti gli appartamenti
     getApartments() {
       axios.get(this.store.allApartmentsAPI).then((response) => {
-        this.apartments = response.data;
+        console.log(response.data)
+        this.apartments = response.data.sponsored_apartments;
+        this.apartments = this.apartments.concat(response.data.non_sponsored_apartments);
       });
     },
 
@@ -28,13 +32,16 @@ export default {
   },
   mounted() {
     this.getApartments();
-    this.store.showHeader = true;
   },
 };
 </script>
 
 <template>
-  <AdvancedSearch />
+  <div class="container">
+    <HomeMenu linkColorBS="text-black" logoPath="src\assets\img\logo-black.svg" navColor="navbar-light" />
+    <AdvancedSearch />
+  </div>
+
 
   <div class="d-flex justify-content-center" v-if="loaderStatus && !apartments">
     <div class="spinner-border" role="status">
@@ -44,36 +51,11 @@ export default {
 
   <div class="container" v-else>
     <h1 class="page-title">All Apartments</h1>
-    <div class="apartment-list">
-      <div v-for="apartment in apartments" :key="apartment.id" class="apartment-card">
-
-        <div class="card-header">
-          <img :src="this.store.imagesAPI + apartment.images.split(',')[0]" class="card-image" alt="Apartment Image"
-            v-if="apartment.images" />
-          <img
-            src="https://plus.unsplash.com/premium_photo-1674676471104-3c4017645e6f?q=80&w=1940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            class="card-image" alt="Apartment Image" v-else>
-        </div>
-
-        <div class="card-content">
-          <h2 class="title">{{ apartment.title }}</h2>
-          <p class="description">{{ apartment.description }}</p>
-          <div class="details">
-            <div class="detail"><strong>Rooms:</strong> {{ apartment.rooms }}</div>
-            <div class="detail"><strong>Beds:</strong> {{ apartment.beds }}</div>
-            <div class="detail">
-              <strong>Bathrooms:</strong> {{ apartment.bathrooms }}
-            </div>
-            <div class="detail">
-              <strong>Square Meters:</strong> {{ apartment.square_meters }}
-            </div>
-          </div>
-          <button @click="visitApartment(apartment.id)" class="detail-button">
-            View Details
-          </button>
-        </div>
-
+    <div class="apartment-list row g-5">
+      <div v-for="apartment in apartments" class="col-4">
+        <ApartmentCard :apartment="apartment" />
       </div>
+
     </div>
   </div>
 </template>
@@ -92,17 +74,10 @@ export default {
   text-align: center;
 }
 
-.apartment-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 20px;
-}
+.apartment-list {}
 
 .apartment-card {
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  background-color: #fff;
+
   transition: transform 0.3s ease;
 }
 

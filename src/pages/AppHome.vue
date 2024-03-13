@@ -15,7 +15,6 @@ export default {
     };
   },
   mounted() {
-    this.store.showHeader = false;
   },
   methods: {},
 };
@@ -25,7 +24,8 @@ export default {
   <header class="p-4 p-sm-0">
     <div class="container d-flex flex-column justify-content-between ">
       <div class="home-top">
-        <HomeMenu />
+        <HomeMenu :textColorBSProp="'text-white'" linkColorBS="text-white" logoPath="src\assets\img\logo-white.svg"
+          navColor="navbar-dark" />
       </div>
       <div class="home-bottom">
         <h1 class="main-title col-12 col-sm-8 col-md-9 col-lg-6">Redefining <span>tourist</span> lifestyles through our

@@ -12,15 +12,11 @@ export default {
     };
   },
   methods: {
-    toggleHeader(value) {
-      this.store.showHeader = value; // Aggiorniamo la variabile showHeader con il valore ricevuto dall'evento
-    },
   },
 };
 </script>
 
 <template>
-  <Header v-if="store.showHeader" />
   <router-view></router-view>
   <Footer />
 </template>

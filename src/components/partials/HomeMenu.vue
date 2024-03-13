@@ -3,14 +3,16 @@
 import ButtonToLink from "./ButtonToLink.vue";
 export default {
   name: "HomeMenu",
+  props: ['textColorBSProp', 'linkColorBS', 'logoPath', 'navColor'],
   components: { ButtonToLink },
 };
 </script>
 
 <template>
 
-  <nav class="navbar navbar-expand-lg navbar-dark d-flex gap-4">
-    <a class="navbar-brand" href="#">Navbar</a>
+
+  <nav class="navbar navbar-expand-lg d-flex gap-4" :class="navColor">
+    <a class="navbar-brand" href="#"><img :src="logoPath" alt="Luxor logo" class="logo"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -19,21 +21,22 @@ export default {
     <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="navbarSupportedContent">
       <ul class="link-list d-flex gap-4 gap-sm-5 m-0 p-0">
         <li class="nav-item">
-          <router-link class="link-item" :to="{ name: 'all-apartments' }">Apartments</router-link>
+          <router-link class="link-item" :class="linkColorBS" :to="{ name: 'all-apartments' }">Apartments</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="link-item " :to="{ name: '' }">About Us</router-link>
+          <router-link class="link-item" :class="linkColorBS" :to="{ name: '' }">About Us</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="link-item " :to="{ name: '' }">Contacts</router-link>
+          <router-link class="link-item" :class="linkColorBS" :to="{ name: '' }">Contacts</router-link>
         </li>
 
 
       </ul>
       <div class="buttons d-flex gap-3">
-        <ButtonToLink :buttonText="'Login'" textColorBS="text-white" :buttonClass="'outline'"
+        <ButtonToLink :buttonText="'Login'" :textColorBS="textColorBSProp" :buttonClass="'outline'"
           buttonRedirect="http://127.0.0.1:8000/login" />
-        <ButtonToLink :buttonText="'Register'" buttonRedirect="http://127.0.0.1:8000/register" />
+        <ButtonToLink :buttonText="'Register'" buttonRedirect="http://127.0.0.1:8000/register"
+          textColorBS="d-flex align-items-center" />
       </div>
 
     </div>
@@ -48,12 +51,15 @@ img {
   object-fit: contain;
 }
 
+.logo {
+  width: 180px;
+}
+
 .link-list {
   list-style-type: none;
 
   .link-item {
     text-decoration: none;
-    color: white;
     font-size: 18px;
     font-weight: 300;
   }

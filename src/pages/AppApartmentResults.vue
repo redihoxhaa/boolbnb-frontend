@@ -77,7 +77,7 @@ export default {
     },
   },
   mounted() {
-    this.store.showHeader = true;
+
     this.getApartments();
   },
 };

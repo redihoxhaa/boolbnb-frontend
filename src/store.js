@@ -8,7 +8,6 @@ export const store = reactive({
     allServicesAPI: 'http://127.0.0.1:8000/api/services',
     sendMessageAPI: 'http://127.0.0.1:8000/api/guest/messages',
     sendVisitAPI: 'http://127.0.0.1:8000/api/guest/visits',
-    showHeader: true,
     tomTomAPIKey: 'CGrCXRtpRKgwQl1fo2NZ0mOC3k7CHzUX',
     imagesAPI: 'http://127.0.0.1:8000/storage/'
 });

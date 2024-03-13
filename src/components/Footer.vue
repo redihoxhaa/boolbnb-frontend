@@ -23,12 +23,12 @@ export default {
     <div class="a container pt-5">
       <div class="row m-0 gap-5 justify-content-between">
         <div class="col-md-3">
-          <img src="" alt="Logo">
-          <p class="p-font my-4">At Luxor, we specialize in curating exquisite, luxury apartments for
+          <img class="logo" src="../assets/img/logo-black" alt="Logo">
+          <p class="p-font my-4">At MalHome, we specialize in curating exquisite, luxury apartments for
             short-term rentals. Our mission is to provide discerning travelers with exceptional accommodations that
             combine elegance, comfort, and convenience. From stunning city penthouses to secluded beachfront villas, we
             strive to exceed our guests' expectations and create unforgettable experiences. Welcome to a world of luxury
-            living with Luxor.</p>
+            living with MalHome.</p>
           <div class="buttons d-flex gap-3 mb-5">
 
 
@@ -77,8 +77,8 @@ export default {
     <hr class="m-0">
     <div class="container d-flex justify-content-between py-4 align-items-center">
 
-      <div class="left">© 2024 Luxor | All rights reserved</div>
-      <div class="right">Created with love by <span>Team 1</span></div>
+      <div class="left">© 2024 MalHome | All rights reserved</div>
+      <div class="right">Created with love by <span>Roberto Malone</span></div>
 
     </div>
   </footer>
@@ -89,6 +89,7 @@ export default {
 // USES
 footer {
   background-color: #EFF0F2;
+
 
   span {
     font-weight: bold;
