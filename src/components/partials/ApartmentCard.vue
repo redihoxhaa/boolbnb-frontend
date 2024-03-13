@@ -33,7 +33,7 @@ export default {
 
 <template>
     <div class="apartment-card">
-        <div class="apartment-image-container">
+        <div class="apartment-image-container m-0">
             <div class="apartment-icon">
                 <div class="icon-sponsor">
                     <div v-if="apartment.sponsorships && apartment.sponsorships.length">

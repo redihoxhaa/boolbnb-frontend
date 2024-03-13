@@ -56,7 +56,7 @@ export default {
           <h5>Contact Info</h5>
           <ul class="list-footer">
             <li><a class="nav-link" href="#">Phone: 1234567890</a></li>
-            <li><a class="nav-link" href="#">Email: company@email.com</a></li>
+            <li><a class="nav-link text-wrap" href="#">Email: bnb@email.com</a></li>
             <li><a class="nav-link" href="#">Location: 100 Smart Street, LA, USA</a></li>
           </ul>
           <ul class="d-flex gap-4 list-footer">
