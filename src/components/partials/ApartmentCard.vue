@@ -90,11 +90,14 @@ export default {
         margin: 10px;
 
         div {
-            display: inline;
-            background-color: #CEF27F;
-            padding: 8px 8px;
-            font-size: 12px;
-            border-radius: 100px;
+
+            div {
+                display: inline;
+                background-color: #CEF27F;
+                padding: 8px 8px;
+                font-size: 12px;
+                border-radius: 100px;
+            }
         }
     }
 
