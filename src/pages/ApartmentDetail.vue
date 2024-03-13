@@ -2,7 +2,26 @@
 // IMPORTS
 import { store } from "../store";
 import axios from "axios";
+import tt from "@tomtom-international/web-sdk-maps";
+import "@tomtom-international/web-sdk-maps";
 // /IMPORTS
+
+// Importa TomTom Maps SDK
+import tt from '@tomtom-international/web-sdk';
+
+export default {
+  mounted() {
+    // Inizializza la mappa TomTom
+    const map = tt.map({
+      key: 'YOUR_TOMTOM_API_KEY',
+      container: 'map', // L'ID del tuo elemento HTML dove verrà visualizzata la mappa
+      center: [YOUR_LONGITUDE, YOUR_LATITUDE], // Coordinate iniziali della mappa
+      zoom: 12 // Livello di zoom iniziale
+    });
+
+    // Aggiungi eventuali marker, linee, poligoni, ecc. alla mappa secondo le tue esigenze
+  }
+}
 </script>
 
 <template>
@@ -16,24 +35,7 @@ import axios from "axios";
             <div class="col-8">
                 <h3>Appartamento bello grande di Andrea Gulino</h3>
                 <h5>Castellammare di Stabia</h5>
-                <div class="d flex">
-                    <div class="bg-body-secondary rounded text-center">
-                        <div>icona letto</div>
-                        <div>numero Bedrooms</div>
-                    </div>
-                    <div class="bg-body-secondary rounded text-center">
-                        <div>icona bagno</div>
-                        <div>numero Bathrooms</div>
-                    </div>
-                    <div class="bg-body-secondary rounded text-center">
-                        <div>icona macchina/bici</div>
-                        <div>Cars/bikes</div>
-                    </div>
-                    <div class="bg-body-secondary rounded text-center">
-                        <div>icona animali</div>
-                        <div>Pet allowed</div>
-                    </div>
-                </div>
+                
                 <div>
                     <h4>Apartment Description</h4>
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis praesentium accusamus

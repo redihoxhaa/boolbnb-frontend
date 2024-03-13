@@ -3,6 +3,8 @@
 import { store } from "../store";
 import axios from "axios";
 import MessageSender from "../components/partials/MessageSender.vue";
+import tt from "@tomtom-international/web-sdk-maps";
+import "@tomtom-international/web-sdk-maps";
 
 // /IMPORTS
 
