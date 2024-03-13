@@ -82,7 +82,7 @@ export default {
     <div class="row">
       <!-- Dettagli dell'appartamento -->
       <div class="col-md-8 mb-4 flex-grow-1">
-        <div class="card">
+        <div class="card b-none">
           <div class="card-body">
             <h5 class="card-title">{{ apartment.title }}</h5>
             <div class="d-flex gap-3 p-5">
@@ -113,7 +113,7 @@ export default {
             </div>
             <h5>Apartment Description</h5>
             <p class="card-text">{{ apartment.description }}</p>
-            <ul class="list-group list-group-flush mt-3">
+            <ul class="mt-3 p-0">
               <!-- <li class="list-group-item">Rooms: {{ apartment.rooms }}</li>
               <li class="list-group-item">Beds: {{ apartment.beds }}</li>
               <li class="list-group-item">Bathrooms: {{ apartment.bathrooms }}</li>
@@ -125,14 +125,15 @@ export default {
                 {{ apartment.sponsorships[apartment.sponsorships.length - 1].package_name }}</li>
               <li v-if="apartment.services && apartment.services.length > 0" class="list-group-item">Services:
                 <div class="mini-container">
-                  <ul class="d-flex flex wrap justify-content-between gap-5 row">
-                    <li v-for="service in apartment.services" :key="service.name" class="w-mx">
+                  <ul class="d-flex flex wrap justify-content-between text-center gap-8 row p-0">
+                    <li v-for="service in apartment.services" :key="service.name" class="w-mx mt-2 p-2">
                       {{ service.name }}
                     </li>
                   </ul>
                 </div>
               </li>
             </ul>
+            <h5>Location</h5>
           </div>
         </div>
       </div>
@@ -159,14 +160,15 @@ export default {
   max-width: 400px;
 }
 
-.services-list{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-gap: 30px;
+.b-none{
+  border-style: none;
 }
 
+
+
 .w-mx{
-  max-width: 100px;
+  max-width: 200px;
+  list-style: none;
 }
 
 img {
