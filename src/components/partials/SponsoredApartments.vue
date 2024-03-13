@@ -26,6 +26,7 @@ export default {
         visitApartment(apartmentID) {
             this.$router.push({ name: "single-apartment", params: { id: apartmentID } });
         },
+
     },
     mounted() {
         this.getSponsoredApartments();
@@ -70,11 +71,22 @@ export default {
         scroll-snap-align: start;
     }
 
-    ::-webkit-scrollbar {
-        width: 0px;
-        height: 0px;
-    }
+}
 
+::-webkit-scrollbar {
+    width: 7px;
+    height: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: radial-gradient(circle, rgba(40, 40, 40, 0.1) 50%, rgba(252, 176, 69, 0) 100%);
+    border-radius: 10px;
 }
 
 // Small devices (landscape phones, 576px and up)

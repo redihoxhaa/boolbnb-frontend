@@ -28,7 +28,8 @@ export default {
 <template>
   <a class="button" :class="buttonClass, textColorBS" :href="buttonRedirect">
     <i v-if="buttonIcon" class="icon"> {{ buttonIcon }}</i>
-    {{ buttonText }}
+    <span class="p-0 m-0">{{ buttonText }}</span>
+
   </a>
 </template>
 

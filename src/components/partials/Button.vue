@@ -28,7 +28,7 @@ export default {
 <template>
   <router-link class="button" :class='buttonClass, textColorBS' :to="{ name: buttonRedirect }">
     <i v-if="buttonIcon" class="icon"> {{ buttonIcon }}</i>
-    {{ buttonText }}
+    <span class="p-0 m-0">{{ buttonText }}</span>
   </router-link>
 </template>
 
