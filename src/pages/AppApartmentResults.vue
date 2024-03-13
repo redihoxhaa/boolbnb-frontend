@@ -93,44 +93,54 @@ export default {
   </div>
 
   <div class="content" v-else>
-    <div class="container" v-if="apartmentResults.length && loaderStatus === false">
-      <h1 class="page-title">Apartment Results</h1>
-      <div class="apartment-list">
-        <div v-for="apartment in apartmentResults" :key="apartment.id" class="apartment-card">
-          <ApartmentCard :apartment="apartment" />
-
-          <!-- <div class="card-header">
-            <img :src="this.store.imagesAPI + apartment.images.split(',')[0]" class="card-image" alt="Apartment Image"
-              v-if="apartment.images" />
-            <img
-              src="https://plus.unsplash.com/premium_photo-1674676471104-3c4017645e6f?q=80&w=1940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              class="card-image" alt="Apartment Image" v-else>
+    <div class="container-fluid my-5" v-if="apartmentResults.length && loaderStatus === false">
+      <div class="row m-0">
+        <div class="col-lg-6">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4>{{ apartmentResults.length }} Results found</h4>
+            <button class="button-filters d-flex align-items-center gap-2"><img src="/src/assets/img/instant_mix.svg"
+                alt="" /> Filters</button>
           </div>
-          <div class="card-content">
-            <h2 class="title">{{ apartment.title }}</h2>
-            <p class="description">{{ apartment.description }}</p>
-            <div class="details">
-              <div class="detail"><strong>Rooms:</strong> {{ apartment.rooms }}</div>
-              <div class="detail"><strong>Beds:</strong> {{ apartment.beds }}</div>
-              <div class="detail">
-                <strong>Bathrooms:</strong> {{ apartment.bathrooms }}
-              </div>
-              <div class="detail">
-                <strong>Square Meters:</strong> {{ apartment.square_meters }}
+          <div class="d-flex mt-4 justify-content-between">
+            <div>
+              <div class="d-flex gap-5">
+                <div>
+                  <h5>Location</h5>
+                  <div class="d-flex align-items-center gap-2"><img src="/src/assets/img/distance.svg" alt="" />
+                    Indirizzo
+                  </div>
+                  <span class="small">Change address</span>
+                </div>
+                <div>
+                  <h5>Filters</h5>
+                  <ul class="d-flex list-unstyled gap-3 flex-wrap">
+                    <li>Wi-fi <button class="cancel-button">X</button></li>
+                    <li>Wi-fi <button class="cancel-button">X</button></li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <button @click="visitApartment(apartment.id)" class="detail-button">
-              View Details
-            </button>
-          </div> -->
-
+            <div class="d-flex justify-content-end align-items-center search-button-container"><button
+                class="button-search" @click="goToResults" @keyup.enter="goToResults">
+                <img src="/src/assets/img/search-icon.svg" alt="" />
+              </button>
+            </div>
+          </div>
+          <div class="row m-0 g-3">
+            <div v-for="apartment in apartmentResults" :key="apartment.id" class="apartment-card col-lg-4 col-md-6">
+              <ApartmentCard :apartment="apartment" />
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="d-none d-lg-block">Mappa</div>
         </div>
       </div>
     </div>
     <h4 class="text-center" v-else>No apartment was found</h4>
   </div>
-
 </template>
+
 
 <style lang="scss" scoped>
 .container {
@@ -139,18 +149,53 @@ export default {
   padding: 20px;
 }
 
-.page-title {
-  font-size: 36px;
-  margin-bottom: 20px;
-  color: #333;
-  text-align: center;
+.search-button-container {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+
+  .button-search {
+    background-color: #bfe373;
+    border: none;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    width: 50px;
+    height: 50px;
+
+    &:hover {
+      background-color: #bfe373;
+      transition: background-color 0.2s ease-in-out;
+    }
+  }
 }
 
-.apartment-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 20px;
+.cancel-button {
+  all: unset;
+  padding-left: 12px;
+  font-weight: 900;
 }
+
+h5 {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+li {
+  background-color: #D0D0D0;
+  padding: 8px 30px;
+  border-radius: 30px;
+
+}
+
+.button-filters {
+  all: unset;
+  border-radius: 15px;
+  border: 1px solid #8D8D8D;
+  padding: 8px 15px;
+}
+
+
+
 
 // .apartment-card {
 //   border-radius: 12px;
