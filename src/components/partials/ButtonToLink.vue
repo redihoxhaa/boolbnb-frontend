@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "Button",
+  name: "ButtonToLink",
   props: {
     buttonRedirect: {
       default: "",
@@ -26,10 +26,10 @@ export default {
 </script>
 
 <template>
-  <router-link class="button" :class='buttonClass, textColorBS' :to="{ name: buttonRedirect }">
+  <a class="button" :class="buttonClass, textColorBS" :href="buttonRedirect">
     <i v-if="buttonIcon" class="icon"> {{ buttonIcon }}</i>
     {{ buttonText }}
-  </router-link>
+  </a>
 </template>
 
 <style lang="scss" scoped>

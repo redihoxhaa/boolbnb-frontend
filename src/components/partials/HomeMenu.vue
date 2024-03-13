@@ -1,79 +1,100 @@
 <script>
-import Button from "./Button.vue";
+
+import ButtonToLink from "./ButtonToLink.vue";
 export default {
   name: "HomeMenu",
-  components: { Button },
+  components: { ButtonToLink },
 };
 </script>
 
 <template>
-  <div class="menu-container">
-    <nav>
-      <div class="brand">
-        <a href="#">
-          <img src="/src/assets/img/boolean-logo.png" alt="" />
-        </a>
-      </div>
-      <ul class="menu-list">
-        <router-link class="link-item" :to="{ name: '' }">Home</router-link>
-        <router-link class="link-item" :to="{ name: 'all-apartments' }">Apartments</router-link>
-        <router-link class="link-item" :to="{ name: '' }">About Us</router-link>
-        <router-link class="link-item" :to="{ name: '' }">Contacts</router-link>
+
+  <nav class="navbar navbar-expand-lg navbar-dark d-flex gap-4">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="navbarSupportedContent">
+      <ul class="link-list d-flex gap-4 gap-sm-5 m-0 p-0">
+        <li class="nav-item">
+          <router-link class="link-item" :to="{ name: 'all-apartments' }">Apartments</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="link-item " :to="{ name: '' }">About Us</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="link-item " :to="{ name: '' }">Contacts</router-link>
+        </li>
+
+
       </ul>
-    </nav>
-    <div class="cta">
-      <Button :buttonText="'Login'" :buttonClass="'outline'" />
-      <Button :buttonText="'Register'" />
+      <div class="buttons d-flex gap-3">
+        <ButtonToLink :buttonText="'Login'" textColorBS="text-white" :buttonClass="'outline'"
+          buttonRedirect="http://127.0.0.1:8000/login" />
+        <ButtonToLink :buttonText="'Register'" buttonRedirect="http://127.0.0.1:8000/register" />
+      </div>
+
     </div>
-  </div>
+
+  </nav>
+
 </template>
 
 <style lang="scss" scoped>
-.menu-container {
-  margin: 0 auto;
-  width: fit-content;
-  background-color: #fff;
-  padding: 6px;
-  border-radius: 50px;
-  display: flex;
-  gap: 40px;
-  align-items: center;
+img {
+  width: 100%;
+  object-fit: contain;
+}
 
-  nav {
-    display: flex;
-    align-items: center;
+.link-list {
+  list-style-type: none;
 
-    .brand {
-      width: 45px;
-      padding: 8px;
-
-      img {
-        width: 100%;
-        object-fit: contain;
-      }
-    }
-
-    .menu-list {
-      display: flex;
-      list-style: none;
-      gap: 20px;
-      align-items: center;
-      margin: 0;
-      font-size: 14px;
-
-      li {
-        height: 100%;
-      }
-    }
-
-    .link-item {
-      text-decoration: none;
-      color: black;
-    }
-  }
-
-  .cta>*:not(:last-child) {
-    margin-right: 10px;
+  .link-item {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 300;
   }
 }
+
+.navbar-toggler {
+  border: none;
+  box-shadow: none;
+
+}
+
+.show,
+.collapsing {
+  display: flex;
+}
+
+// X-Small devices (portrait phones, less than 576px)
+@media only screen and (max-width: 575.98px) {
+  .link-list {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .buttons {
+    margin-top: 20px;
+  }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media only screen and (max-width: 767.98px) {
+
+  .show,
+  .collapsing {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+
+
+// Medium devices (tablets, less than 992px)
+@media only screen and (max-width: 991.98px) {}
 </style>
