@@ -25,7 +25,7 @@ export default {
   <header class="p-4 p-sm-0">
     <div class="container d-flex flex-column justify-content-between ">
       <div class="home-top">
-        <HomeMenu class="z-2" />
+        <HomeMenu />
       </div>
       <div class="home-bottom">
         <h1 class="main-title col-12 col-sm-8 col-md-9 col-lg-6">Redefining <span>tourist</span> lifestyles through our
@@ -62,7 +62,6 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  overflow-x: hidden;
 
   .container {
     margin: 0 auto;
@@ -72,7 +71,7 @@ header {
 
   .main-title {
     color: #fff;
-    font-size: 4vw;
+    font-size: 65px;
     line-height: 110%;
     margin-top: 105px;
     font-weight: 400;
@@ -85,7 +84,7 @@ header {
 
   .call-to-action {
     color: white;
-    margin-top: 140px;
+    margin-top: 160px;
   }
 }
 
@@ -102,44 +101,20 @@ header {
   margin-top: 50px;
 }
 
-// // X-Small devices (portrait phones, less than 576px)
-// @media only screen and (max-width: 515.98px) {
-//   .bosco-verticale {
-//     position: absolute;
-//     background-color: red;
-//   }
-
-//   .main-title {
-//     font-size: 10px;
-//   }
-// }
+// X-Small devices (portrait phones, less than 576px)
+@media only screen and (max-width: 515.98px) {
+  .bosco-verticale {
+    display: none;
+  }
+}
 
 
-// // X-Small devices (portrait phones, less than 576px)
-// @media only screen and (max-width: 575.98px) {
-//   .bosco-verticale {
-//     height: 700px;
-//     left: 380px;
+// X-Small devices (portrait phones, less than 576px)
+@media only screen and (max-width: 575.98px) {
+  .bosco-verticale {
+    height: 700px;
+    left: 380px !important;
 
-//   }
-// }
-
-// Small devices (landscape phones, less than 768px)
-@media only screen and (max-width: 500px) {
-  header {
-    .container {
-      margin: 0 10px !important;
-
-      .main-title {
-        font-size: 32px !important;
-        width: 60%;
-      }
-
-      .call-to-action {
-        margin-top: 40px;
-        width: 50%;
-      }
-    }
   }
 }
 
@@ -147,20 +122,22 @@ header {
 @media only screen and (max-width: 767.98px) {
   header {
     .container {
-      margin: 0 20px;
-
       .main-title {
-        font-size: 40px;
-        width: 60%;
+        font-size: 50px;
         margin-top: 50px;
       }
 
       .bosco-verticale {
         height: 800px;
-        left: 50%;
+        left: 410px;
+
       }
     }
+
+
   }
+
+
 }
 
 
