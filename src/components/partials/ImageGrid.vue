@@ -30,95 +30,95 @@ export default {
         <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
 
-                <img :src="`${this.store.imagesAPI}${images[modalIndex]}`" alt="Image">
+                <img :src="`${this.store.imagesAPI}${images[modalIndex]}`" alt="Apartment image">
 
             </div>
         </div>
 
 
         <div v-if="images.length === 1" class="with-1-foto">
-            <img :src="`${this.store.imagesAPI}${images[0]}`" alt="Image" class="w-100 center" data-bs-toggle="modal"
-                data-bs-target="#modal1" @click="openModal(0)">
+            <img :src="`${this.store.imagesAPI}${images[0]}`" alt="Apartment image" class="w-100 center"
+                data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(0)">
 
         </div>
         <div v-else-if="images.length === 2" class="with-2-foto d-flex gap-4">
             <div class="w-50-custom">
-                <img :src="`${this.store.imagesAPI}${images[0]}`" alt="Image" data-bs-toggle="modal"
+                <img :src="`${this.store.imagesAPI}${images[0]}`" alt="Apartment image" data-bs-toggle="modal"
                     data-bs-target="#modal1" @click="openModal(0)">
             </div>
             <div class="w-50-custom">
-                <img :src="`${this.store.imagesAPI}${images[1]}`" alt="Image" data-bs-toggle="modal"
+                <img :src="`${this.store.imagesAPI}${images[1]}`" alt="Apartment image" data-bs-toggle="modal"
                     data-bs-target="#modal1" @click="openModal(1)">
             </div>
         </div>
         <div v-else-if="images.length === 3" class="with-3-foto d-flex gap-4">
             <div class="w-50-custom">
-                <img :src="`${this.store.imagesAPI}${images[0]}`" alt="Image" data-bs-toggle="modal"
+                <img :src="`${this.store.imagesAPI}${images[0]}`" alt="Apartment image" data-bs-toggle="modal"
                     data-bs-target="#modal1" @click="openModal(0)">
             </div>
             <div class="w-50 d-flex gap-4">
-                <div class="w-50"><img :src="`${this.store.imagesAPI}${images[1]}`" alt="Image" data-bs-toggle="modal"
-                        data-bs-target="#modal1" @click="openModal(1)"></div>
-                <div class="w-50"><img :src="`${this.store.imagesAPI}${images[2]}`" alt="Image" data-bs-toggle="modal"
-                        data-bs-target="#modal1" @click="openModal(2)"></div>
+                <div class="w-50"><img :src="`${this.store.imagesAPI}${images[1]}`" alt="Apartment image"
+                        data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(1)"></div>
+                <div class="w-50"><img :src="`${this.store.imagesAPI}${images[2]}`" alt="Apartment image"
+                        data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(2)"></div>
             </div>
         </div>
         <div v-else-if="images.length === 4" class="with-4-foto d-flex gap-4">
             <div class="w-50-custom">
-                <img :src="`${this.store.imagesAPI}${images[0]}`" alt="Image" data-bs-toggle="modal"
+                <img :src="`${this.store.imagesAPI}${images[0]}`" alt="Apartment image" data-bs-toggle="modal"
                     data-bs-target="#modal1" @click="openModal(0)">
             </div>
             <div class="w-50 d-flex flex-column gap-4">
                 <div class="h-50-custom d-flex gap-4">
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[1]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[1]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(2)"></div>
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[2]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[2]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(2)"></div>
                 </div>
                 <div class="h-50-custom">
-                    <div class="w-100-custom"><img :src="`${this.store.imagesAPI}${images[3]}`" alt="Image"
+                    <div class="w-100-custom"><img :src="`${this.store.imagesAPI}${images[3]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(3)"></div>
                 </div>
             </div>
         </div>
         <div v-else-if="images.length === 5" class="with-5-foto d-flex gap-4">
             <div class="w-50-custom">
-                <img :src="`${this.store.imagesAPI}${images[0]}`" alt="Image" data-bs-toggle="modal"
+                <img :src="`${this.store.imagesAPI}${images[0]}`" alt="Apartment image" data-bs-toggle="modal"
                     data-bs-target="#modal1" @click="openModal(0)">
             </div>
             <div class="w-50 d-flex flex-column gap-4">
                 <div class="h-50-custom d-flex gap-4">
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[1]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[1]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(1)"></div>
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[2]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[2]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(2)"></div>
                 </div>
                 <div class="h-50-custom d-flex gap-4">
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[3]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[3]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(3)"></div>
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[4]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[4]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(4)"></div>
                 </div>
             </div>
         </div>
         <div v-else-if="images.length === 6" class="with-6-foto d-flex gap-4">
             <div class="w-50-custom d-flex flex-column gap-4">
-                <div class="h-50-custom"><img :src="`${this.store.imagesAPI}${images[1]}`" alt="Image"
+                <div class="h-50-custom"><img :src="`${this.store.imagesAPI}${images[1]}`" alt="Apartment image"
                         data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(1)"></div>
-                <div class="h-50-custom"><img :src="`${this.store.imagesAPI}${images[0]}`" alt="Image"
+                <div class="h-50-custom"><img :src="`${this.store.imagesAPI}${images[0]}`" alt="Apartment image"
                         data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(0)"></div>
             </div>
             <div class="w-50 d-flex flex-column gap-4">
                 <div class="h-50-custom d-flex gap-4">
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[2]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[2]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(2)"></div>
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[3]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[3]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(3)"></div>
                 </div>
                 <div class="h-50-custom d-flex gap-4">
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[4]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[4]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(4)"></div>
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[5]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[5]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(5)"></div>
                 </div>
             </div>
@@ -126,25 +126,25 @@ export default {
         <div v-else-if="images.length === 7" class="with-7-foto d-flex gap-4">
             <div class="w-50-custom d-flex flex-column gap-4">
                 <div class="h-50-custom d-flex gap-4">
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[1]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[1]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(1)"></div>
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[2]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[2]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(2)"></div>
                 </div>
-                <div class="h-50-custom"><img :src="`${this.store.imagesAPI}${images[0]}`" alt="Image"
+                <div class="h-50-custom"><img :src="`${this.store.imagesAPI}${images[0]}`" alt="Apartment image"
                         data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(0)"></div>
             </div>
             <div class="w-50 d-flex flex-column gap-4">
                 <div class="h-50-custom d-flex gap-4">
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[3]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[3]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(3)"></div>
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[4]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[4]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(4)"></div>
                 </div>
                 <div class="h-50-custom d-flex gap-4">
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[5]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[5]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(5)"></div>
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[6]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[6]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(6)"></div>
                 </div>
             </div>
@@ -152,29 +152,29 @@ export default {
         <div v-else-if="images.length === 8" class="with-8-foto d-flex gap-4">
             <div class="w-50-custom d-flex flex-column gap-4">
                 <div class="h-50-custom d-flex gap-4">
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[2]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[2]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(2)"></div>
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[3]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[3]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(3)"></div>
                 </div>
                 <div class="h-50-custom d-flex gap-4">
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[0]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[0]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(0)"></div>
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[1]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[1]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(1)"></div>
                 </div>
             </div>
             <div class="w-50 d-flex flex-column gap-4">
                 <div class="h-50-custom d-flex gap-4">
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[4]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[4]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(4)"></div>
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[5]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[5]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(5)"></div>
                 </div>
                 <div class="h-50-custom d-flex gap-4">
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[6]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[6]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(6)"></div>
-                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[7]}`" alt="Image"
+                    <div class="w-50"><img :src="`${this.store.imagesAPI}${images[7]}`" alt="Apartment image"
                             data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(7)"></div>
                 </div>
             </div>
@@ -194,10 +194,10 @@ export default {
 .image-gallery {
     height: 500px;
     overflow: hidden;
-    border-radius: 30px;
+    border-radius: 16px;
 
     div {
-        border-radius: 30px;
+        border-radius: 16px;
 
     }
 }
@@ -227,7 +227,7 @@ img {
 .w-50,
 .h-25,
 .h-50-custom {
-    border-radius: 30px;
+    border-radius: 16px;
     overflow: hidden;
     padding: 0;
     margin: 0;
@@ -252,7 +252,7 @@ img {
 .w-50-custom {
     height: 500px;
     width: 50%;
-    border-radius: 30px;
+    border-radius: 16px;
     overflow: hidden;
     padding: 0;
     margin: 0;
@@ -261,7 +261,7 @@ img {
 .w-100-custom {
     height: 238px;
     width: 100%;
-    border-radius: 30px;
+    border-radius: 16px;
     overflow: hidden;
     padding: 0;
     margin: 0;

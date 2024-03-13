@@ -38,7 +38,7 @@ export default {
 
 <template>
   <div class="container">
-    <HomeMenu linkColorBS="text-black" logoPath="src\assets\img\logo-black.svg" navColor="navbar-light" />
+    <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
     <AdvancedSearch />
   </div>
 
@@ -62,8 +62,6 @@ export default {
 
 <style scoped>
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 20px;
 }
 

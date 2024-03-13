@@ -174,18 +174,27 @@ export default {
 
           <div class="select-group">
             <label for="rooms">Rooms</label>
-            <input type="number" min="0" v-model="this.roomsCounter" id="rooms" />
+            <div class="d-flex justify-content-start">
+              <input type="number" min="0" v-model="this.roomsCounter" id="rooms" />
+              <span>+</span>
+            </div>
           </div>
 
 
           <div class="select-group">
             <label for="beds">Beds</label>
-            <input type="number" min="0" v-model="this.bedsCounter" id="beds" />
+            <div class="d-flex justify-content-start">
+              <input type="number" min="0" v-model="this.bedsCounter" id="beds" />
+              <span>+</span>
+            </div>
           </div>
 
           <div class="select-group">
             <label for="beds">Bathrooms</label>
-            <input type="number" min="0" v-model="this.bathroomsCounter" id="bathrooms" />
+            <div class="d-flex justify-content-start">
+              <input type="number" min="0" v-model="this.bathroomsCounter" id="bathrooms" />
+              <span>+</span>
+            </div>
           </div>
 
 
@@ -470,8 +479,22 @@ input[type="range"]::-webkit-slider-thumb {
   /* Nascondi il controllo predefinito di WebKit */
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type=number] {
+  width: 16px !important;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 

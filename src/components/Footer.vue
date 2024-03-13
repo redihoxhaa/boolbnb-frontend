@@ -19,8 +19,8 @@ export default {
 </script>
 
 <template>
-  <footer>
-    <div class="a container pt-5">
+  <footer class="pt-5">
+    <div class="a container py-5">
       <div class="row m-0 gap-5 justify-content-between">
         <div class="col-md-3">
           <img class="logo" src="../assets/img/logo-black" alt="Logo">
@@ -62,7 +62,7 @@ export default {
           <h5>Contact Info</h5>
           <ul class="list-footer">
             <li><a class="nav-link" href="#">Phone: 02 456 9581</a></li>
-            <li><a class="nav-link text-wrap" href="#">Email: info@luxor.com</a></li>
+            <li><a class="nav-link text-wrap" href="#">Email: info@malhome.com</a></li>
             <li><a class="nav-link" href="#">Location: Via Torino 45, Milan, Italy</a></li>
           </ul>
           <ul class="d-flex gap-4 align-items-center list-footer">
@@ -75,7 +75,7 @@ export default {
       </div>
     </div>
     <hr class="m-0">
-    <div class="container d-flex justify-content-between py-4 align-items-center">
+    <div class="container d-flex justify-content-between py-5 align-items-center">
 
       <div class="left">© 2024 MalHome | All rights reserved</div>
       <div class="right">Created with love by <span>Roberto Malone</span></div>

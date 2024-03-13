@@ -12,7 +12,10 @@ export default {
 
 
   <nav class="navbar navbar-expand-lg d-flex gap-4" :class="navColor">
-    <a class="navbar-brand" href="#"><img :src="logoPath" alt="Luxor logo" class="logo"></a>
+    <a class="navbar-brand" href="#">
+      <img :src="logoPath" alt="Luxor logo" class="logo" v-if="logoPath">
+      <img src="../../assets/img/logo-black.svg" alt="Luxor logo" class="logo" v-else>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -52,7 +55,7 @@ img {
 }
 
 .logo {
-  width: 180px;
+  width: 40px;
 }
 
 .link-list {

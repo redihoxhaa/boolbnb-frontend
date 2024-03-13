@@ -37,8 +37,8 @@ export default {
             <div class="apartment-icon">
                 <div class="icon-sponsor">
                     <div v-if="apartment.sponsorships && apartment.sponsorships.length" class="p-1">
-                        <div
-                            v-if="showSponsoredTag(apartment.sponsorships[apartment.sponsorships.length - 1].pivot.end_date)">
+                        <div v-if="showSponsoredTag(apartment.sponsorships[apartment.sponsorships.length - 1].pivot.end_date)"
+                            class="px-5">
                             Sponsored
                         </div>
                     </div>

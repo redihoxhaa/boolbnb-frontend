@@ -4,12 +4,15 @@ import { store } from "../store";
 import axios from "axios";
 import MessageSender from "../components/partials/MessageSender.vue";
 import ImageGrid from "../components/partials/ImageGrid.vue";
+import Carosello from "../components/partials/Carosello.vue";
+import HomeMenu from "../components/partials/HomeMenu.vue";
+import AdvancedSearch from "../components/partials/AdvancedSearch.vue";
 
 // /IMPORTS
 
 export default {
   props: [],
-  components: { MessageSender, ImageGrid },
+  components: { MessageSender, ImageGrid, Carosello, HomeMenu, AdvancedSearch },
   data() {
     return {
       store,
@@ -55,12 +58,24 @@ export default {
 </script>
 
 <template>
+
+  <div class="container">
+    <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
+    <AdvancedSearch />
+  </div>
+
   <div class="container mt-4" v-if="apartment">
     <!-- Immagini dell'appartamento -->
-    <div class="mb-3">
+    <div class="mb-5 pb-5">
       <div v-if="apartment.images">
+        <div class="d-none d-md-block">
 
-        <ImageGrid :images="apartment.images.split(',')" />
+          <ImageGrid :images="apartment.images.split(',')" />
+        </div>
+
+        <div class="d-block d-md-none">
+          <Carosello :images="apartment.images.split(',')" />
+        </div>
 
       </div>
       <div class="pic-container" v-else>
@@ -140,6 +155,11 @@ export default {
 
 
 <style lang="scss" scoped>
+.container {
+  padding: 20px;
+}
+
+
 .center {
   position: relative;
   top: 50%;
@@ -177,6 +197,6 @@ img {
 .pic-container {
   height: 500px;
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: 16px;
 }
-</style>
+</style>../components/partials/Carosello.vue
