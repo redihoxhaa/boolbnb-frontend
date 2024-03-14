@@ -7,6 +7,7 @@ import ImageGrid from "../components/partials/ImageGrid.vue";
 import Carosello from "../components/partials/Carosello.vue";
 import HomeMenu from "../components/partials/HomeMenu.vue";
 import Map from "../components/partials/Map.vue";
+import { DateTime } from 'luxon';
 
 // /IMPORTS
 
@@ -55,6 +56,14 @@ export default {
         }).then(response => {
           this.user = response.data;
         })
+    },
+    showSponsoredTag(endDate) {
+      const currentDate = DateTime.now();
+      if (endDate > currentDate.toISODate()) {
+        return true
+      } else {
+        return false
+      }
     },
 
   },
@@ -252,7 +261,8 @@ export default {
           <MessageSender :apartmentID="apartment.id" />
 
           <!-- Sponsor -->
-          <div class="sponsor-alert" v-if="apartment.sponsorships && apartment.sponsorships.length > 0">
+          <div class="sponsor-alert"
+            v-if="apartment.sponsorships && apartment.sponsorships.length > 0 && showSponsoredTag(apartment.sponsorships[apartment.sponsorships.length - 1].pivot.end_date)">
             <div class="sponsor-alert-image">
               <img src="../assets/img/diamond_sponsored_icon.svg" alt="">
             </div>
