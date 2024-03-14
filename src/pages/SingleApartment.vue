@@ -113,6 +113,8 @@ export default {
 
     <!-- Dettagli dell'appartamento -->
     <div class="row">
+
+      <!-- Informazioni appartmaneto -->
       <div class="col-md-8 mb-4 flex-grow-1">
         <div class="card b-none">
 
@@ -123,7 +125,7 @@ export default {
           <span class="card-address">{{ apartment.address }}</span>
 
           <!-- Icon Main Info -->
-          <div class="d-flex gap-3 my-8">
+          <div class="d-flex gap-3 mt-6">
 
             <!-- Rooms -->
             <div class="bg-body-secondary rounded text-center box-sz">
@@ -192,11 +194,48 @@ export default {
           </div>
 
           <!-- Description -->
-          <p class="card-text me-10">{{ apartment.description }}</p>
+          <div>
+            <h5 class="info-section-title">Description</h5>
+            <p class="card-text me-10">{{ apartment.description }}</p>
+          </div>
+
+          <!-- Servizi -->
+          <li v-if="apartment.services && apartment.services.length > 0" class="list-group-item">
+            <h5 class="info-section-title">Services</h5>
+            <div>
+              <ul class="list-service">
+                <li v-for="service in apartment.services">
+                  <img v-if="service.id == '1'" class="service-icon" src="../assets/img/bathrooms_icon.svg" alt="">
+                  <img v-if="service.id == '2'" class="service-icon" src="../assets/img/wifi_icon.svg" alt="">
+                  <img v-if="service.id == '3'" class="service-icon" src="../assets/img/parking_icon.svg" alt="">
+                  <img v-if="service.id == '4'" class="service-icon" src="../assets/img/breakfast_icon.svg" alt="">
+                  <img v-if="service.id == '5'" class="service-icon" src="../assets/img/swimmingpool_icon.svg" alt="">
+                  <img v-if="service.id == '6'" class="service-icon" src="../assets/img/tv_icon.svg" alt="">
+                  <img v-if="service.id == '7'" class="service-icon" src="../assets/img/air_conditioning_icon.svg"
+                    alt="">
+                  <img v-if="service.id == '8'" class="service-icon" src="../assets/img/heating_icon.svg" alt="">
+                  <img v-if="service.id == '9'" class="service-icon" src="../assets/img/gym_icon.svg" alt="">
+                  <img v-if="service.id == '10'" class="service-icon" src="../assets/img/pets_icon.svg" alt="">
+                  <img v-if="service.id == '11'" class="service-icon" src="../assets/img/room_service_icon.svg" alt="">
+                  <img v-if="service.id == '12'" class="service-icon" src="../assets/img/laundry_icon.svg" alt="">
+                  <img v-if="service.id == '13'" class="service-icon" src="../assets/img/concierge_icon.svg" alt="">
+                  <img v-if="service.id == '14'" class="service-icon" src="../assets/img/meeting_icon.svg" alt="">
+                  <img v-if="service.id == '15'" class="service-icon" src="../assets/img/airport_shuttle_icon.svg"
+                    alt="">
+                  <img v-if="service.id == '16'" class="service-icon" src="../assets/img/front_desk_icon.svg" alt="">
+                  <img v-if="service.id == '17'" class="service-icon" src="../assets/img/restaurant_icon.svg" alt="">
+                  <img v-if="service.id == '18'" class="service-icon" src="../assets/img/bar_icon.svg" alt="">
+                  <img v-if="service.id == '19'" class="service-icon" src="../assets/img/business_icon.svg" alt="">
+                  <img v-if="service.id == '20'" class="service-icon" src="../assets/img/childcare_icon.svg" alt="">
+                  <span>{{ service.name }}</span>
+                </li>
+              </ul>
+            </div>
+          </li>
 
           <!-- Location -->
           <div>
-            <h5>Location</h5>
+            <h5 class="info-section-title">Location</h5>
             <Map :apartment="apartment" />
           </div>
 
@@ -204,38 +243,28 @@ export default {
 
       </div>
 
-      <!-- Form per inviare un messaggio -->
-      <div class="col-md-4">
+      <!-- Form contatti -->
+      <div class="col-md-4 sticky-container">
 
-        <!-- Form -->
-        <MessageSender :apartmentID="apartment.id" />
+        <div class="form-sticky">
 
-        <!-- Sponsor -->
-        <ul class="mt-3 p-0">
-          <!-- <li class="list-group-item">Rooms: {{ apartment.rooms }}</li>
-              <li class="list-group-item">Beds: {{ apartment.beds }}</li>
-              <li class="list-group-item">Bathrooms: {{ apartment.bathrooms }}</li>
-              <li class="list-group-item">Square Meters: {{ apartment.square_meters }}</li>
-              <li class="list-group-item">Address: {{ apartment.address }}</li> -->
-          <!-- SPONSORIZZAZIONE -->
-          <li v-if="apartment.sponsorships && apartment.sponsorships.length > 0"
-            class="list-group-item bg-info text-white">Sponsorship Package:
-            {{ apartment.sponsorships[apartment.sponsorships.length - 1].package_name }}</li>
-          <li v-if="apartment.services && apartment.services.length > 0" class="list-group-item">Services:
-            <div class="mini-container">
-              <ul class="d-flex flex wrap justify-content-between text-center gap-8 row p-0">
-                <li v-for="service in apartment.services" :key="service.name" class="w-mx mt-2 p-2">
-                  {{ service.name }}
-                </li>
-              </ul>
+          <!-- Form -->
+          <MessageSender :apartmentID="apartment.id" />
+
+          <!-- Sponsor -->
+          <div class="sponsor-alert" v-if="apartment.sponsorships && apartment.sponsorships.length > 0">
+            <div class="sponsor-alert-image">
+              <img src="../assets/img/diamond_sponsored_icon.svg" alt="">
             </div>
-          </li>
-        </ul>
+            <div class="sponsor-alert-text">
+              <h6>Sponsored Apartment</h6>
+              <p>the apartment appeared among the first results because it was sponsored.</p>
+            </div>
+          </div>
+
+        </div>
 
       </div>
-
-
-
 
     </div>
 
@@ -260,10 +289,6 @@ export default {
 
 .apartment-card {
   margin-top: 20px;
-}
-
-.mini-container {
-  max-width: 400px;
 }
 
 .b-none {
@@ -341,6 +366,70 @@ img {
     width: 100%;
     height: 100%;
   }
+}
+
+.list-service {
+  list-style: none;
+  padding: 0;
+  font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  row-gap: 20px;
+  padding-right: 40px;
+
+  span {
+    vertical-align: middle;
+  }
+}
+
+.service-icon {
+  width: 20px;
+  margin-right: 6px;
+}
+
+.info-section-title {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.sponsor-alert {
+  margin-top: 20px;
+  border: 1px solid #dddddd;
+  border-radius: 16px;
+  display: flex;
+  padding: 20px 20px 10px 10px;
+
+  .sponsor-alert-image {
+    margin-right: 14px;
+  }
+
+  img {
+    width: 40px;
+    padding: 2px;
+  }
+
+  .sponsor-alert-text {
+
+    h6 {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 11px;
+    }
+  }
+
+}
+
+.sticky-container {
+  position: relative;
+}
+
+.form-sticky {
+  position: sticky;
+  top: 20px;
 }
 
 // Small devices (landscape phones, 576px and up)
