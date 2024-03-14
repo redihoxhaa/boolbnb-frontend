@@ -117,6 +117,11 @@ export default {
     },
 };
 </script>
+<template>
+    <div class="map-container mb-5">
+        <div ref="map" style="width: 100%; height: 570px;" class="map"></div>
+    </div>
+</template>
 
 <style scoped>
 .map-container {
