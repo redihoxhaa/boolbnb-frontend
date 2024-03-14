@@ -6,14 +6,13 @@ import MessageSender from "../components/partials/MessageSender.vue";
 import ImageGrid from "../components/partials/ImageGrid.vue";
 import Carosello from "../components/partials/Carosello.vue";
 import HomeMenu from "../components/partials/HomeMenu.vue";
-import AdvancedSearch from "../components/partials/AdvancedSearch.vue";
 import Map from "../components/partials/Map.vue";
 
 // /IMPORTS
 
 export default {
   props: [],
-  components: { MessageSender, ImageGrid, Carosello, HomeMenu, AdvancedSearch, Map },
+  components: { MessageSender, ImageGrid, Carosello, HomeMenu, Map },
   data() {
     return {
       store,
@@ -76,10 +75,10 @@ export default {
 
   <div class="container">
     <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
-    <AdvancedSearch />
   </div>
 
-  <div class="container mt-4" v-if="apartment">
+  <div class="container" v-if="apartment">
+
     <!-- Immagini dell'appartamento -->
     <div class="mb-5 pb-5 images-grid">
       <div v-if="apartment.images">
@@ -92,13 +91,15 @@ export default {
           <Carosello :images="apartment.images.split(',')" />
         </div>
       </div>
+
       <div class="pic-container" v-else>
         <img src="../assets/img/apartment-default.webp" class="center" alt="Apartment Image" />
       </div>
 
+      <!-- Host Info -->
       <div class="user-info">
         <div class="user-pic">
-          <img src="../assets/img/cielo.webp" alt="User Pic" v-if="!user.user_photo">
+          <img src="../assets/img/profile_default.jpg" alt="User Pic" v-if="!user.user_photo">
           <img :src="this.store.imagesAPI + user.user_photo" alt="User Pic" v-else>
         </div>
         <div class="user-name">
@@ -107,13 +108,20 @@ export default {
         </div>
       </div>
     </div>
+
+    <!-- Dettagli dell'appartamento -->
     <div class="row">
-      <!-- Dettagli dell'appartamento -->
       <div class="col-md-8 mb-4 flex-grow-1">
         <div class="card b-none">
           <div>
+
+            <!-- Title -->
             <h5 class="card-title">{{ apartment.title }}</h5>
+
+            <!-- Address -->
             <span class="card-address">{{ apartment.address }}</span>
+
+            <!-- Icon Main Info -->
             <div class="d-flex gap-3 my-8">
 
               <!-- Rooms -->
@@ -182,7 +190,10 @@ export default {
 
             </div>
 
+            <!-- Description -->
             <p class="card-text me-10">{{ apartment.description }}</p>
+
+
             <ul class="mt-3 p-0">
               <!-- <li class="list-group-item">Rooms: {{ apartment.rooms }}</li>
               <li class="list-group-item">Beds: {{ apartment.beds }}</li>
@@ -203,22 +214,29 @@ export default {
                 </div>
               </li>
             </ul>
-            <h5>Location</h5>
-            <Map :apartment="apartment" />
+
+            <!-- Location -->
+            <div>
+              <h5>Location</h5>
+              <Map :apartment="apartment" />
+            </div>
+
           </div>
+
         </div>
+
       </div>
+
       <!-- Form per inviare un messaggio -->
       <div class="col-md-4">
-
         <MessageSender :apartmentID="apartment.id" />
-
       </div>
+
     </div>
+
   </div>
+
 </template>
-
-
 
 <style lang="scss" scoped>
 @use '../assets/scss/partials/variables' as *;
