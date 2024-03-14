@@ -88,6 +88,11 @@ export default {
     border-radius: 10px;
 }
 
+#sponsored-apartments {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {}
 
@@ -102,6 +107,11 @@ export default {
         .house-card {
             width: 220px;
         }
+    }
+
+    #sponsored-apartments {
+        margin-top: 100px !important;
+        margin-bottom: 100px !important;
     }
 
 }

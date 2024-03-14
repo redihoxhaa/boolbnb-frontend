@@ -35,7 +35,7 @@ export default {
         <div class="home-search">
           <HomeSearch />
         </div>
-        <div class="call-to-action fw-light pb-2 fs-5 col-9 col-md-7 col-lg-5 col-xl-4">Are you interested in
+        <div class="call-to-action pb-2 fs-5 col-9 col-md-7 col-lg-5 col-xl-4">Are you interested in
           listing your
           apartment
           to
@@ -43,7 +43,7 @@ export default {
           bookings?
         </div>
         <div class="mt-3 mb-5 pb-3">
-          <ButtonToLink :buttonText="'List your apartment'"
+          <ButtonToLink class="list-cta" :buttonText="'List your apartment'"
             :buttonRedirect="'http://127.0.0.1:8000/admin/apartments/create'" />
 
         </div>
@@ -84,7 +84,12 @@ header {
   .call-to-action {
     color: white;
     margin-top: 160px;
+    font-weight: 400;
   }
+}
+
+.list-cta {
+  padding: 12px 28px;
 }
 
 .bosco-verticale {
@@ -100,20 +105,34 @@ header {
   margin-top: 50px;
 }
 
-// X-Small devices (portrait phones, less than 576px)
-@media only screen and (max-width: 515.98px) {
+// Large devices (desktops, less than 1200px)
+@media only screen and (max-width: 1199.98px) {
   .bosco-verticale {
-    display: none;
+    max-height: 600px;
+    right: -180px;
+
+  }
+
+  .main-title {
+    font-size: 40px !important;
+  }
+
+  .call-to-action {
+    margin-top: 100px !important;
   }
 }
 
-
-// X-Small devices (portrait phones, less than 576px)
-@media only screen and (max-width: 575.98px) {
+// Medium devices (tablets, less than 992px)
+@media only screen and (max-width: 991.98px) {
   .bosco-verticale {
-    height: 700px;
-    left: 380px !important;
+    height: 800px;
+    left: 630px;
+    right: 0;
+  }
 
+  .main-title {
+    font-size: 30px !important;
+    margin-top: 40px;
   }
 }
 
@@ -122,42 +141,52 @@ header {
   header {
     .container {
       .main-title {
-        font-size: 50px;
-        margin-top: 50px;
+        font-size: 36px;
+        margin-top: 40px;
       }
 
       .bosco-verticale {
-        height: 800px;
+        height: 500px;
         left: 410px;
 
       }
     }
 
+    .call-to-action {
+      margin-top: 80px !important;
+    }
 
   }
-
-
 }
 
-
-
-// Medium devices (tablets, less than 992px)
-@media only screen and (max-width: 991.98px) {
+// X-Small devices (portrait phones, less than 576px)
+@media only screen and (max-width: 575.98px) {
   .bosco-verticale {
-    height: 900px;
-    left: 530px;
-    right: 0;
+    height: 700px;
+    left: 380px !important;
+
+  }
+
+  .main-title {
+    font-size: 30px !important;
+    width: 70%;
+  }
+
+  .call-to-action {
+    margin-top: 80px !important;
   }
 }
 
-// Large devices (desktops, less than 1200px)
-@media only screen and (max-width: 1199.98px) {
-  .bosco-verticale {
-    max-height: 950px;
-    right: -300px;
-
+// X-Small devices (portrait phones, less than 515px)
+@media only screen and (max-width: 515.98px) {
+  .main-title {
+    font-size: 25px !important;
   }
 }
+
+
+
+
 
 // X-Large devices (large desktops, less than 1400px)
 @media only screen and (max-width: 1399.98px) {}

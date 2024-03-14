@@ -75,7 +75,7 @@ img {
 }
 
 .custom-font {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .show,

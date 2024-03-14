@@ -63,6 +63,7 @@ export default {
     transition: all 0.2s ease-in-out;
     background-color: $acid-yellow-hover;
     border: 1px solid $acid-yellow-hover;
+    color: #222222 !important;
   }
 }
 
