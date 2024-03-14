@@ -3,7 +3,6 @@ import AppHome from "./pages/AppHome.vue";
 import AppApartmentResults from "./pages/AppApartmentResults.vue";
 import SingleApartment from "./pages/SingleApartment.vue";
 import AllApartments from "./pages/AllApartments.vue";
-import ApartmentDetail from "./pages/ApartmentDetail.vue";
 import AboutUs from "./pages/AboutUs.vue";
 
 const router = createRouter({
@@ -28,11 +27,6 @@ const router = createRouter({
       path: "/single-apartments/results/:id",
       name: "single-apartment",
       component: SingleApartment,
-    },
-    {
-      path: "/apartments/details",
-      name: "apartmentDetail",
-      component: ApartmentDetail,
     },
     {
       path: "/aboutus",

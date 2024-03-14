@@ -64,8 +64,8 @@ export default {
 
 
 <template>
-    <div>
-        <h2>Send a Message</h2>
+    <div class="message-board">
+        <h5 class="text-center p-4">Contact the <span class="highlight">HOST</span></h5>
         <!-- Messaggio di errore generale -->
         <div v-if="showError" class="alert alert-danger" role="alert">
             Error, please fill in all fields correctly and try again
@@ -88,24 +88,71 @@ export default {
             <!-- Input per il messaggio -->
             <div class="mb-3">
                 <!-- <label for="message_text" class="form-label">Message</label> -->
-                <textarea class="form-control" placeholder="Message" id="message_text" rows="4" v-model="message_text"></textarea>
+                <textarea class="form-control" placeholder="Message" id="message_text" rows="4"
+                    v-model="message_text"></textarea>
                 <!-- Messaggio di errore specifico -->
                 <div v-if="errors.message_text" class="text-danger">{{ errors.message_text }}</div>
             </div>
             <!-- Bottone di invio -->
-            <button type="submit" class="btn btn-primary">Send Message</button>
+            <button type="submit" class="btn custom-btn mb-5 mt-4 w-100">Send</button>
         </form>
         <!-- Messaggio di conferma -->
-        <div v-if="messageSent" class="alert alert-success mt-3" role="alert">
-            Message sent successfully
+        <div v-if="messageSent" class="alert custom-alert mt-3 text-center" role="alert">
+            Message sent successfully!
         </div>
     </div>
 </template>
 
 
 <style lang="scss" scoped>
+@use '../../assets/scss/partials/variables' as *;
+
+.message-board {
+    background-color: rgb(252, 252, 252);
+    padding: 20px 40px;
+    border-radius: 16px;
+    box-shadow: 0px 0px 25px rgba($color: #000000, $alpha: 0.10)
+}
+
 .text-danger {
     color: red;
     font-size: 14px; // 14px
+}
+
+.highlight {
+    font-weight: bold;
+    color: $acid-yellow;
+}
+
+.custom-btn {
+    background-color: $acid-yellow;
+    font-weight: 500;
+
+    &:hover {
+        background-color: $acid-yellow-hover;
+    }
+}
+
+.custom-alert {
+    border: 2px solid $acid-yellow;
+    border-radius: 16px;
+    background-color: white;
+    color: black;
+}
+
+input,
+textarea {
+
+    &:focus {
+        box-shadow: none;
+        outline: none;
+        border-color: $acid-yellow-hover;
+    }
+
+    &::placeholder {
+        color: $placeholder;
+    }
+
+
 }
 </style>
