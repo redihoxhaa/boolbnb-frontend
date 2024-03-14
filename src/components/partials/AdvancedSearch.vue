@@ -242,8 +242,12 @@ export default {
 
           </div>
 
-        </div>
 
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <a class="button-filters d-flex align-items-center gap-2" data-bs-toggle="collapse"
+            href="#collapseExample"><img src="/src/assets/img/instant_mix.svg" alt="" /> Filters</a>
+        </div>
       </div>
 
       <!-- Search button -->
@@ -254,12 +258,18 @@ export default {
       </div>
     </div>
 
-    <h5 class="text-center">Services</h5>
-    <ul class="services container d-flex gap-3 text-center">
-      <li class="service text-nowrap" :class="{ 'selected': selectedServices.includes(service.id) }" v-for=" service in
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        <h5 class="text-center">Services</h5>
+        <ul class="services container d-flex gap-3 text-center">
+          <li class="service text-nowrap" :class="{ 'selected': selectedServices.includes(service.id) }" v-for=" service in
         services" @click="addService(service.id)">{{ service.name }}
-      </li>
-    </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
 
   </div>
 </template>
@@ -269,6 +279,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid black;
 }
 
 .search-container {
@@ -511,5 +522,12 @@ input::-webkit-inner-spin-button {
 /* Hide scrollbar for Chrome, Safari and Opera */
 ::-webkit-scrollbar {
   display: none;
+}
+
+.button-filters {
+  all: unset;
+  border-radius: 15px;
+  border: 1px solid #8D8D8D;
+  padding: 8px 15px;
 }
 </style>

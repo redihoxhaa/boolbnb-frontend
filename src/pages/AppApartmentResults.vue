@@ -88,10 +88,11 @@ export default {
 
 <template>
 
-  <div class="container">
+  <div class="container-fluid sticky-top">
     <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
     <AdvancedSearch :addressProp="this.$route.params.address" />
   </div>
+
 
 
   <div class="d-flex justify-content-center mb-5 pb-5" v-if="loaderStatus">
@@ -101,47 +102,18 @@ export default {
   </div>
 
   <div class="content" v-else>
-    <div class="container-fluid my-5" v-if="apartmentResults.length && loaderStatus === false">
+    <div class="container-fluid custom" v-if="apartmentResults.length && loaderStatus === false">
       <div class="row m-0">
         <div class="col-lg-6">
-          <div class="d-flex justify-content-between align-items-center">
-            <h4>{{ apartmentResults.length }} Results found</h4>
-            <button class="button-filters d-flex align-items-center gap-2"><img src="/src/assets/img/instant_mix.svg"
-                alt="" /> Filters</button>
-          </div>
-          <div class="d-flex mt-4 justify-content-between">
-            <div>
-              <div class="d-flex gap-5">
-                <div>
-                  <h5>Location</h5>
-                  <div class="d-flex align-items-center gap-2"><img src="/src/assets/img/distance.svg" alt="" />
-                    Indirizzo
-                  </div>
-                  <span class="small">Change address</span>
-                </div>
-                <div>
-                  <h5>Filters</h5>
-                  <ul class="d-flex list-unstyled gap-3 flex-wrap">
-                    <li>Wi-fi <button class="cancel-button">X</button></li>
-                    <li>Wi-fi <button class="cancel-button">X</button></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-end align-items-center search-button-container"><button
-                class="button-search" @click="goToResults" @keyup.enter="goToResults">
-                <img src="/src/assets/img/search-icon.svg" alt="" />
-              </button>
-            </div>
-          </div>
           <div class="row m-0 g-3">
+            <h5 class="fw-bold">{{ apartmentResults.length }} Results found</h5>
             <div v-for="apartment in apartmentResults" :key="apartment.id" class="apartment-card col-lg-4 col-md-6">
               <ApartmentCard :apartment="apartment" />
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="d-none d-lg-block">
+        <div class="col-6 map-div">
+          <div class="my-map">
             <MapReasearch :apartments="apartmentResults" :center="center" />
           </div>
         </div>
@@ -153,129 +125,25 @@ export default {
 
 
 <style lang="scss" scoped>
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+.container-fluid {
+  padding: 10px 5%;
 }
 
-.search-button-container {
-  display: flex;
-  align-items: center;
-  padding-left: 5px;
+.container-fluid.custom {
+  padding: 0 5%;
 
-  .button-search {
-    background-color: #bfe373;
-    border: none;
-    border-radius: 50%;
-    aspect-ratio: 1;
-    width: 50px;
-    height: 50px;
+}
 
-    &:hover {
-      background-color: #bfe373;
-      transition: background-color 0.2s ease-in-out;
-    }
+.map-div {
+  position: relative;
+
+  .my-map {
+    position: sticky;
+    top: 207px
   }
 }
 
-.cancel-button {
-  all: unset;
-  padding-left: 12px;
-  font-weight: 900;
+.sticky-top {
+  background-color: white;
 }
-
-h5 {
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-li {
-  background-color: #D0D0D0;
-  padding: 8px 30px;
-  border-radius: 30px;
-
-}
-
-.button-filters {
-  all: unset;
-  border-radius: 15px;
-  border: 1px solid #8D8D8D;
-  padding: 8px 15px;
-}
-
-
-
-
-// .apartment-card {
-//   border-radius: 12px;
-//   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-//   overflow: hidden;
-//   background-color: #fff;
-//   transition: transform 0.3s ease;
-// }
-
-// .apartment-card:hover {
-//   transform: translateY(-5px);
-// }
-
-// .card-header {
-//   height: 200px;
-//   overflow: hidden;
-// }
-
-// .card-image {
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
-
-// .card-content {
-//   padding: 20px;
-// }
-
-// .title {
-//   font-size: 24px;
-//   margin-bottom: 10px;
-//   color: #333;
-// }
-
-// .description {
-//   font-size: 16px;
-//   margin-bottom: 15px;
-//   color: #555;
-// }
-
-// .details {
-//   display: flex;
-//   flex-wrap: wrap;
-//   margin-bottom: 10px;
-// }
-
-// .detail {
-//   margin-right: 20px;
-//   font-size: 14px;
-//   color: #666;
-// }
-
-// .detail strong {
-//   font-weight: bold;
-// }
-
-// .detail-button {
-//   background-color: #ff8c00;
-//   color: white;
-//   border: none;
-//   padding: 10px 20px;
-//   text-align: center;
-//   text-decoration: none;
-//   display: inline-block;
-//   font-size: 14px;
-//   border-radius: 6px;
-//   cursor: pointer;
-//   transition: background-color 0.3s ease;
-// }
-
-// .detail-button:hover {
-//   background-color: #ff6b00;
-// }</style>
+</style>

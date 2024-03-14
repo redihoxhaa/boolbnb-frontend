@@ -28,8 +28,6 @@ export default {
             map.addControl(new tt.FullscreenControl());
             map.addControl(new tt.NavigationControl());
 
-
-
             // Attendi che lo stile della mappa sia completamente caricato
             await new Promise((resolve) => {
                 map.on('load', resolve);
@@ -128,13 +126,18 @@ export default {
 </script>
 <template>
     <div class="map-container mb-5">
-        <div ref="map" style="width: 100%; height: 570px;" class="map"></div>
+        <div ref="map" class="map"></div>
     </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .map-container {
     height: 100%;
     width: 100%;
+}
+
+.map {
+    width: calc(50vw - 12px);
+    height: 100vh;
 }
 </style>
