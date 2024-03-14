@@ -39,7 +39,6 @@ export default {
 <template>
   <div class="container">
     <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
-    <AdvancedSearch />
   </div>
 
 

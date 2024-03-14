@@ -42,7 +42,7 @@ export default {
         dragging(event) {
             if (!this.isDragging) return;
             const x = event.pageX - this.$refs.scrollContainer.offsetLeft;
-            const walk = (x - this.startX) * 3; // Adjust scrolling speed
+            const walk = (x - this.startX) * 2; // Adjust scrolling speed
             this.$refs.scrollContainer.scrollLeft = this.scrollLeft - walk;
         }
 
@@ -67,7 +67,7 @@ export default {
             </div>
             <div class="scrolling-container mb-5 pb-4 d-flex gap-4 user-select-none" ref="scrollContainer"
                 @mousedown="startDragging" @mouseup="stopDragging" @mousemove="dragging">
-                <ApartmentCard v-for="apartment in apartments" :apartment="apartment" class="house-card" />
+                <ApartmentCard v-for="apartment in apartments" :apartment="apartment" class="house-card " />
             </div>
 
         </div>

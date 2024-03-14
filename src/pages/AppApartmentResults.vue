@@ -6,16 +6,20 @@ import axios from "axios";
 import ApartmentCard from "../components/partials/ApartmentCard.vue";
 import HomeMenu from "../components/partials/HomeMenu.vue";
 import MapReasearch from "../components/partials/MapReasearch.vue";
+import MapReasearchMobile from "../components/partials/MapReasearchMobile.vue";
 // /IMPORTS
 
 export default {
-  components: { AdvancedSearch, ApartmentCard, HomeMenu, MapReasearch },
+  components: { AdvancedSearch, ApartmentCard, HomeMenu, MapReasearch, MapReasearchMobile },
   data() {
     return {
       store,
       apartmentResults: [],
       loaderStatus: true,
       center: null,
+      isDragging: false,
+      startX: 0,
+      scrollLeft: 0
     };
   },
   watch: {
@@ -78,6 +82,23 @@ export default {
     visitApartment(apartmentID) {
       this.$router.push({ name: "single-apartment", params: { id: apartmentID } });
     },
+
+    startDragging(event) {
+      this.isDragging = true;
+      this.startX = event.pageX - this.$refs.scrollContainer.offsetLeft;
+      this.scrollLeft = this.$refs.scrollContainer.scrollLeft;
+    },
+
+    stopDragging() {
+      this.isDragging = false;
+    },
+
+    dragging(event) {
+      if (!this.isDragging) return;
+      const x = event.pageX - this.$refs.scrollContainer.offsetLeft;
+      const walk = (x - this.startX) * 2; // Adjust scrolling speed
+      this.$refs.scrollContainer.scrollLeft = this.scrollLeft - walk;
+    }
   },
   mounted() {
 
@@ -90,10 +111,11 @@ export default {
 
   <div class="container-fluid sticky-top">
     <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
-    <AdvancedSearch :addressProp="this.$route.params.address" />
   </div>
+  <div class="col-6 advanced-searchbar d-flex justify-content-end">
+    <AdvancedSearch :addressProp="this.$route.params.address" />
 
-
+  </div>
 
   <div class="d-flex justify-content-center mb-5 pb-5" v-if="loaderStatus">
     <div class="spinner-border" role="status">
@@ -104,17 +126,28 @@ export default {
   <div class="content" v-else>
     <div class="container-fluid custom" v-if="apartmentResults.length && loaderStatus === false">
       <div class="row m-0">
-        <div class="col-lg-6">
-          <div class="row m-0 g-3">
-            <h5 class="fw-bold">{{ apartmentResults.length }} Results found</h5>
-            <div v-for="apartment in apartmentResults" :key="apartment.id" class="apartment-card col-lg-4 col-md-6">
+        <div class="col-12 col-lg-6">
+          <h5 class="fw-bold mt-5 mt-md-0">{{ apartmentResults.length }} Results found</h5>
+
+          <div class="row apartments-list flex-nowrap m-0 g-3 user-select-none" ref="scrollContainer"
+            @mousedown="startDragging" @mouseup="stopDragging" @mousemove="dragging">
+            <div v-for="apartment in apartmentResults" :key="apartment.id"
+              class="apartment-card col-12 col-md-6 col-xxl-4 ">
               <ApartmentCard :apartment="apartment" />
             </div>
           </div>
         </div>
-        <div class="col-6 map-div">
+        <!-- Mappa desktop -->
+        <div class="col-6 map-div d-none d-md-block">
           <div class="my-map">
             <MapReasearch :apartments="apartmentResults" :center="center" />
+          </div>
+        </div>
+
+        <!-- Mappa mobile -->
+        <div class="col-12 d-block d-md-none mt-5 mb-5">
+          <div class="mobile-map">
+            <MapReasearchMobile :apartments="apartmentResults" :center="center" />
           </div>
         </div>
       </div>
@@ -134,16 +167,49 @@ export default {
 
 }
 
+.apartments-list {
+  overflow-x: scroll;
+}
+
+.mobile-map {
+  width: 100%;
+}
+
+
 .map-div {
   position: relative;
 
   .my-map {
     position: sticky;
-    top: 207px
+    top: 85px;
+    margin-top: -122px;
   }
 }
 
 .sticky-top {
   background-color: white;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: radial-gradient(circle, rgba(40, 40, 40, 0.1) 50%, rgba(252, 176, 69, 0) 100%);
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 992px) {
+  .apartments-list {
+    flex-wrap: wrap !important;
+    overflow-x: unset;
+  }
 }
 </style>
