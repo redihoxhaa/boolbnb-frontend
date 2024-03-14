@@ -75,7 +75,12 @@ export default {
                 // Calcola la distanza in pixel in base alla larghezza della mappa
                 const pixelsPerMeter = 256 / mapWidth;
                 const radiusInMeters = this.center.radius * 1000; // Converti il raggio in metri
-                const radiusInPixels = radiusInMeters * pixelsPerMeter;
+
+                // Calcola la distanza angolare in radianti
+                const radiusInRadians = radiusInMeters / 6371000; // Raggio medio della Terra in metri
+
+                // Calcola il raggio in gradi di longitudine (che è approssimativamente uguale in latitudine)
+                const radiusInDegrees = (180 / Math.PI) * radiusInRadians;
 
                 this.searchCircleLayer = map.addLayer({
                     id: 'searchCircle',
@@ -89,12 +94,15 @@ export default {
                                 coordinates: [this.center.longitude, this.center.latitude],
                             },
                             properties: {
-                                radius: radiusInPixels,
+                                radius: radiusInDegrees,
                             },
                         },
                     },
                     paint: {
-                        'circle-radius': radiusInPixels,
+                        'circle-radius': {
+                            stops: [[0, 0], [20, pixelsPerMeter * radiusInMeters]],
+                            base: 2
+                        },
                         'circle-color': 'rgba(0, 128, 0, 0.2)',
                         'circle-stroke-color': 'rgba(0, 128, 0, 0.4)',
                         'circle-stroke-width': 2,
@@ -102,6 +110,7 @@ export default {
                 });
             }
         },
+
 
         updateSearchCircleRadius(map) {
             const zoom = map.getZoom();
@@ -127,10 +136,5 @@ export default {
 .map-container {
     height: 100%;
     width: 100%;
-}
-
-.map {
-    height: 100% !important;
-    width: 100% !important;
 }
 </style>
