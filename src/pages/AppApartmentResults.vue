@@ -5,15 +5,17 @@ import { store } from "../store";
 import axios from "axios";
 import ApartmentCard from "../components/partials/ApartmentCard.vue";
 import HomeMenu from "../components/partials/HomeMenu.vue";
+import MapReasearch from "../components/partials/MapReasearch.vue";
 // /IMPORTS
 
 export default {
-  components: { AdvancedSearch, ApartmentCard, HomeMenu },
+  components: { AdvancedSearch, ApartmentCard, HomeMenu, MapReasearch },
   data() {
     return {
       store,
       apartmentResults: [],
       loaderStatus: true,
+      center: null,
     };
   },
   watch: {
@@ -64,8 +66,8 @@ export default {
         .get(this.store.allApartmentsAPI + this.store.searchApartmentsURI, { params })
         .then((response) => {
           // console.log("chiamata effettuata");
-          this.apartmentResults = response.data;
-          // console.log(this.apartmentResults);
+          this.apartmentResults = response.data.apartments;
+          this.center = response.data.center;
         }).finally(() => {
           this.loaderStatus = false;
           // console.log('metto lo status a true'); 
@@ -139,7 +141,9 @@ export default {
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="d-none d-lg-block">Mappa</div>
+          <div class="d-none d-lg-block">
+            <MapReasearch :apartments="apartmentResults" :center="center" />
+          </div>
         </div>
       </div>
     </div>
