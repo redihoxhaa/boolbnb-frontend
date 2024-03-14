@@ -86,16 +86,19 @@ export default {
       <!-- Dettagli dell'appartamento -->
       <div class="col-md-8 mb-4 flex-grow-1">
         <div class="card b-none">
-          <div class="card-body">
+          <div>
             <h5 class="card-title">{{ apartment.title }}</h5>
-            <div class="d-flex gap-3 p-5">
+            <span class="card-address">{{ apartment.address }}</span>
+            <div class="d-flex gap-3 my-8">
+
+              <!--  -->
               <div class="bg-body-secondary rounded text-center box-sz">
                 <div class="mt-5">
                   <div>icona letto</div>
                   <span>{{ apartment.rooms }} Rooms</span>
                 </div>
               </div>
-              <div class="bg-body-secondary rounded text-center box-sz">
+              <!-- <div class="bg-body-secondary rounded text-center box-sz">
                 <div class="mt-5">
                   <div>icona letto</div>
                   <span>{{ apartment.beds }} Beds</span>
@@ -112,7 +115,7 @@ export default {
                   <div>icona letto</div>
                   <span>{{ apartment.square_meters }} Square Meters</span>
                 </div>
-              </div>
+              </div> -->
             </div>
             <h5>Apartment Description</h5>
             <p class="card-text">{{ apartment.description }}</p>
@@ -142,11 +145,9 @@ export default {
       </div>
       <!-- Form per inviare un messaggio -->
       <div class="col-md-4">
-        <div class="card">
-          <div class="card-body">
-            <MessageSender :apartmentID="apartment.id" />
-          </div>
-        </div>
+
+        <MessageSender :apartmentID="apartment.id" />
+
       </div>
     </div>
   </div>
@@ -198,5 +199,15 @@ img {
   height: 500px;
   overflow: hidden;
   border-radius: 16px;
+}
+
+.card-title {
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.card-address {
+  font-size: 16px;
+  font-weight: 400;
 }
 </style>../components/partials/Carosello.vue
