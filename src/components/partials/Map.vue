@@ -25,16 +25,6 @@ export default {
                 anchor: 'bottom'
             }).setLngLat(center);
 
-            // Aggiungi il popup al marker quando viene cliccato
-            marker.setPopup(new tt.Popup({ offset: 50 }).setHTML(`
-                <div class="popup-content">
-                    
-                    <h5 style="margin: 0; color: #000">${this.apartment.title}</h5>
-
-                    
-                </div>
-            `));
-
             marker.addTo(map);
         });
     },
