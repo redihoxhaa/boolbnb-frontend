@@ -11,6 +11,9 @@ export default {
         return {
             store,
             apartments: null,
+            isDragging: false,
+            startX: 0,
+            scrollLeft: 0
         };
     },
     methods: {
@@ -26,6 +29,22 @@ export default {
         visitApartment(apartmentID) {
             this.$router.push({ name: "single-apartment", params: { id: apartmentID } });
         },
+        startDragging(event) {
+            this.isDragging = true;
+            this.startX = event.pageX - this.$refs.scrollContainer.offsetLeft;
+            this.scrollLeft = this.$refs.scrollContainer.scrollLeft;
+        },
+
+        stopDragging() {
+            this.isDragging = false;
+        },
+
+        dragging(event) {
+            if (!this.isDragging) return;
+            const x = event.pageX - this.$refs.scrollContainer.offsetLeft;
+            const walk = (x - this.startX) * 3; // Adjust scrolling speed
+            this.$refs.scrollContainer.scrollLeft = this.scrollLeft - walk;
+        }
 
     },
     mounted() {
@@ -46,8 +65,9 @@ export default {
                     <Button :buttonText="'Explore All'" buttonRedirect="all-apartments" />
                 </div>
             </div>
-            <div class="scrolling-container mb-5 pb-4 d-flex gap-4">
-                <ApartmentCard v-for="apartment in apartments" :apartment="apartment" class="scroll-snap house-card" />
+            <div class="scrolling-container mb-5 pb-4 d-flex gap-4 user-select-none" ref="scrollContainer"
+                @mousedown="startDragging" @mouseup="stopDragging" @mousemove="dragging">
+                <ApartmentCard v-for="apartment in apartments" :apartment="apartment" class="house-card" />
             </div>
 
         </div>
