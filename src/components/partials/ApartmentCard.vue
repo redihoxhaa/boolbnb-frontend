@@ -12,12 +12,14 @@ export default {
         }
     },
     methods: {
-        showSponsoredTag(endDate) {
+        showSponsoredTag(endDateStr) {
             const currentDate = DateTime.now();
-            if (endDate > currentDate.toISODate()) {
-                return true
+            const endDate = DateTime.fromFormat(endDateStr, 'yyyy-MM-dd HH:mm:ss');
+
+            if (endDate > currentDate) {
+                return true;
             } else {
-                return false
+                return false;
             }
         },
         // Funzione per visitare l'appartamento
