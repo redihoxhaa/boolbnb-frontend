@@ -1,12 +1,12 @@
 <script>
-import { store } from "../../store";
-import axios from "axios";
+import { store } from '../../store';
+import axios from 'axios';
 
 export default {
-  name: "HomeSearch",
+  name: 'HomeSearch',
   data() {
     return {
-      address: "",
+      address: '',
       roomsCounter: 0,
       bedsCounter: 0,
       radiusCounter: 0,
@@ -19,8 +19,9 @@ export default {
   },
   methods: {
     // Funzione per ottenere gli indirizzi suggeriti
+
     getAddresses() {
-      if (this.address.trim() !== "") {
+      if (this.address.trim() !== '') {
         axios
           .get(
             `https://api.tomtom.com/search/2/search/${encodeURIComponent(
@@ -29,27 +30,31 @@ export default {
           )
           .then((response) => {
             if (!response.data) {
-              throw new Error("The research was unsuccessful");
+              throw new Error('The research was unsuccessful');
             }
             this.closeSuggestion = false;
-            this.suggestions = response.data.results ? response.data.results : [];
+            this.suggestions = response.data.results
+              ? response.data.results
+              : [];
           })
-          .catch((error) => console.error("Error:", error));
+          .catch((error) => console.error('Error:', error));
       } else {
         this.suggestions = [];
       }
     },
 
     // Funzione per selezionare l'indirizzo suggerito
+
     selectAddress(suggestion) {
       this.address = suggestion.address.freeformAddress;
       this.suggestions = [];
     },
 
     // Funzione per ricercare gli appartamenti
+
     goToResults() {
       this.$router.push({
-        name: "apartments-results",
+        name: 'apartments-results',
         params: {
           address: this.address,
           // rooms: this.roomsCounter,
@@ -60,11 +65,13 @@ export default {
     },
 
     // Funzione per incrementare contatore letti, camere e raggio
+
     increaseValue(counter) {
       this[counter]++;
     },
 
     // Funzione per decrementare contatore letti, camere, e raggio
+
     decreaseValue(counter) {
       if (this[counter] > 0) {
         this[counter]--;
@@ -72,26 +79,29 @@ export default {
     },
 
     // Funzione per mostrare il dropdown
+
     toggleDropdown() {
       this.isDropdownOpen = true;
     },
 
     //Funzione per chiudere il dropdown
+
     closeDropdown() {
       this.isDropdownOpen = false;
       this.closeSuggestion = true;
     },
 
     // Funzione per evitare il click attraverso il dropdown
+
     preventClose(event) {
       event.stopPropagation();
     },
   },
   mounted() {
-    document.addEventListener("click", this.closeDropdown);
+    document.addEventListener('click', this.closeDropdown);
   },
   beforeDestroy() {
-    document.removeEventListener("click", this.closeDropdown);
+    document.removeEventListener('click', this.closeDropdown);
   },
 };
 </script>
@@ -105,10 +115,23 @@ export default {
       <!-- Address group -->
       <div class="address-group">
         <label for="address" class="">Location</label>
-        <input type="text" id="address" v-model="address" placeholder="What are you dreaming of?"
-          @input="getAddresses" />
-        <ul id="suggestionsMenu" class="suggestions-menu" :class="{ 'd-none': !suggestions.length || closeSuggestion }">
-          <li v-for="suggestion in suggestions" :key="suggestion.id" @click="selectAddress(suggestion)">
+        <input
+          type="text"
+          id="address"
+          v-model="address"
+          placeholder="What are you dreaming of?"
+          @input="getAddresses"
+        />
+        <ul
+          id="suggestionsMenu"
+          class="suggestions-menu"
+          :class="{ 'd-none': !suggestions.length || closeSuggestion }"
+        >
+          <li
+            v-for="suggestion in suggestions"
+            :key="suggestion.id"
+            @click="selectAddress(suggestion)"
+          >
             {{ suggestion.address.freeformAddress }}
           </li>
         </ul>
@@ -122,12 +145,10 @@ export default {
       </button>
     </div>
   </div>
-
 </template>
 
 <style lang="scss" scoped>
 @use '../../assets/scss/partials/variables' as *;
-
 
 .search-container {
   z-index: 5;
@@ -200,7 +221,7 @@ export default {
       z-index: 5;
       top: 68px;
 
-      &>*:not(:last-child) {
+      & > *:not(:last-child) {
         border-bottom: 1px solid #dddddd;
       }
 
@@ -300,31 +321,36 @@ export default {
   }
 }
 
-input[type="range"] {
+input[type='range'] {
   width: 100% !important;
   display: flex;
-
 }
 
-input[type="range"]::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
   background-color: var(--thumb-color, $acid-yellow);
   /* Colore del pallino */
+
   width: var(--thumb-size, 16px);
   /* Dimensioni del pallino */
+
   height: var(--thumb-size, 16px);
   /* Dimensioni del pallino */
+
   border: none;
   /* Rimuovi il bordo */
+
   border-radius: 50%;
   /* Imposta il bordo a forma di cerchio */
+
   -webkit-appearance: none;
   /* Nascondi il controllo predefinito di WebKit */
+
   appearance: none;
   /* Nascondi il controllo predefinito di WebKit */
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
@@ -335,10 +361,10 @@ input[type="number"]::-webkit-outer-spin-button {
   justify-content: end;
   margin-top: -8px;
   padding-right: 9px;
-
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
+
 ::-webkit-scrollbar {
   display: none;
 }
