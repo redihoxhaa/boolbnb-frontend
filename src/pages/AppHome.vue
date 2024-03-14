@@ -42,7 +42,7 @@ export default {
           increase
           bookings?
         </div>
-        <div class="mt-3 mb-5">
+        <div class="mt-3 mb-5 pb-3">
           <ButtonToLink :buttonText="'List your apartment'"
             :buttonRedirect="'http://127.0.0.1:8000/admin/apartments/create'" />
 
