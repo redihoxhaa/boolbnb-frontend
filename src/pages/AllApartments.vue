@@ -52,7 +52,7 @@ export default {
   <div class="container" v-else>
     <h1 class="page-title">All Apartments</h1>
     <div class="apartment-list row g-5">
-      <div v-for="apartment in apartments" class="col-4">
+      <div v-for="apartment in apartments" class="col-lg-3 col-md-4 col-sm-6">
         <ApartmentCard :apartment="apartment" />
       </div>
 
