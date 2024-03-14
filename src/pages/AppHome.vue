@@ -65,9 +65,7 @@ header {
   overflow-x: hidden;
 
   .container {
-    margin: 0 auto;
-    padding-top: 10px;
-    padding: 20px 0;
+    padding: 20px;
   }
 
   .main-title {
@@ -94,7 +92,7 @@ header {
   right: -100px;
   bottom: 0;
   z-index: 1;
-  max-height: 830px;
+  max-height: 800px;
   pointer-events: none
 }
 

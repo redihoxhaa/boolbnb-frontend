@@ -12,10 +12,10 @@ export default {
 
 
   <nav class="navbar navbar-expand-lg d-flex gap-4" :class="navColor">
-    <a class="navbar-brand" href="#">
+    <router-link class="navbar-brand" :to="{ name: 'home' }">
       <img :src="logoPath" alt="Luxor logo" class="logo" v-if="logoPath">
       <img src="../../assets/img/logo-black.svg" alt="Luxor logo" class="logo" v-else>
-    </a>
+    </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -36,9 +36,9 @@ export default {
 
       </ul>
       <div class="buttons d-flex gap-3">
-        <ButtonToLink :buttonText="'Login'" :textColorBS="textColorBSProp" :buttonClass="'outline'"
+        <ButtonToLink class="custom-font" :buttonText="'Login'" :textColorBS="textColorBSProp" :buttonClass="'outline'"
           buttonRedirect="http://127.0.0.1:8000/login" />
-        <ButtonToLink :buttonText="'Register'" buttonRedirect="http://127.0.0.1:8000/register"
+        <ButtonToLink class="custom-font" :buttonText="'Register'" buttonRedirect="http://127.0.0.1:8000/register"
           textColorBS="d-flex align-items-center" />
       </div>
 
@@ -63,8 +63,8 @@ img {
 
   .link-item {
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 300;
+    font-size: 16px;
+    font-weight: 400;
   }
 }
 
@@ -72,6 +72,10 @@ img {
   border: none;
   box-shadow: none;
 
+}
+
+.custom-font {
+  font-size: 16px;
 }
 
 .show,
