@@ -1,12 +1,12 @@
 <script>
-import { store } from "../../store";
-import axios from "axios";
+import { store } from '../../store';
+import axios from 'axios';
 
 export default {
   props: ['addressProp'],
   data() {
     return {
-      address: "",
+      address: '',
       roomsCounter: 0,
       bedsCounter: 0,
       bathroomsCounter: 0,
@@ -26,7 +26,7 @@ export default {
   methods: {
     // Funzione per ottenere gli indirizzi suggeriti
     getAddresses() {
-      if (this.address.trim() !== "") {
+      if (this.address.trim() !== '') {
         axios
           .get(
             `https://api.tomtom.com/search/2/search/${encodeURIComponent(
@@ -35,12 +35,14 @@ export default {
           )
           .then((response) => {
             if (!response.data) {
-              throw new Error("The research was unsuccessful");
+              throw new Error('The research was unsuccessful');
             }
             this.closeSuggestion = false;
-            this.suggestions = response.data.results ? response.data.results : [];
+            this.suggestions = response.data.results
+              ? response.data.results
+              : [];
           })
-          .catch((error) => console.error("Error:", error));
+          .catch((error) => console.error('Error:', error));
       } else {
         this.suggestions = [];
       }
@@ -59,7 +61,7 @@ export default {
         rooms: this.roomsCounter || 0, // Se non è selezionato alcun numero di stanze, impostalo a 0
         beds: this.bedsCounter || 0, // Se non è selezionato alcun numero di letti, impostalo a 0
         bathrooms: this.bathroomsCounter || 0, // Se non è selezionato alcun numero di bagni, impostalo a 0
-        radius: this.radiusCounter || 5
+        radius: this.radiusCounter || 5,
       };
 
       if (this.roomsCounter) {
@@ -85,20 +87,18 @@ export default {
       }
 
       this.$router.push({
-        name: "apartments-results",
+        name: 'apartments-results',
         params,
       });
     },
 
     // Funzione per ottenere i servizi
     getServices() {
-      axios.get(this.store.allServicesAPI).then(response => {
+      axios.get(this.store.allServicesAPI).then((response) => {
         this.services = response.data;
         // console.log(this.services)
-      }
-      )
+      });
     },
-
 
     // Funzione per incrementare contatore letti, camere e raggio
     increaseValue(counter) {
@@ -138,14 +138,14 @@ export default {
           this.selectedServices.splice(index, 1);
         }
       }
-    }
+    },
   },
   mounted() {
     this.address = this.addressProp;
-    document.addEventListener("click", this.closeDropdown);
+    document.addEventListener('click', this.closeDropdown);
   },
   beforeDestroy() {
-    document.removeEventListener("click", this.closeDropdown);
+    document.removeEventListener('click', this.closeDropdown);
   },
 };
 </script>
@@ -159,11 +159,23 @@ export default {
         <!-- Address group -->
         <div class="address-group">
           <label for="address" class="">Location</label>
-          <input type="text" id="address" v-model="address" placeholder="What are you dreaming of?"
-            @input="getAddresses" />
-          <ul id="suggestionsMenu" class="suggestions-menu"
-            :class="{ 'd-none': !suggestions.length || closeSuggestion }">
-            <li v-for="suggestion in suggestions" :key="suggestion.id" @click="selectAddress(suggestion)">
+          <input
+            type="text"
+            id="address"
+            v-model="address"
+            placeholder="What are you dreaming of?"
+            @input="getAddresses"
+          />
+          <ul
+            id="suggestionsMenu"
+            class="suggestions-menu"
+            :class="{ 'd-none': !suggestions.length || closeSuggestion }"
+          >
+            <li
+              v-for="suggestion in suggestions"
+              :key="suggestion.id"
+              @click="selectAddress(suggestion)"
+            >
               {{ suggestion.address.freeformAddress }}
             </li>
           </ul>
@@ -171,20 +183,28 @@ export default {
 
         <!-- Input group -->
         <div class="select-section" @click="toggleDropdown">
-
           <div class="select-group">
             <label for="rooms">Rooms</label>
             <div class="d-flex justify-content-start">
-              <input type="number" min="0" v-model="this.roomsCounter" id="rooms" />
+              <input
+                type="number"
+                min="0"
+                v-model="this.roomsCounter"
+                id="rooms"
+              />
               <span>+</span>
             </div>
           </div>
 
-
           <div class="select-group">
             <label for="beds">Beds</label>
             <div class="d-flex justify-content-start">
-              <input type="number" min="0" v-model="this.bedsCounter" id="beds" />
+              <input
+                type="number"
+                min="0"
+                v-model="this.bedsCounter"
+                id="beds"
+              />
               <span>+</span>
             </div>
           </div>
@@ -192,26 +212,46 @@ export default {
           <div class="select-group">
             <label for="beds">Bathrooms</label>
             <div class="d-flex justify-content-start">
-              <input type="number" min="0" v-model="this.bathroomsCounter" id="bathrooms" />
+              <input
+                type="number"
+                min="0"
+                v-model="this.bathroomsCounter"
+                id="bathrooms"
+              />
               <span>+</span>
             </div>
           </div>
 
-
           <div class="select-group">
             <label for="radius">Radius</label>
             <div class="d-flex justify-content-start">
-              <input type="number" min="0" max="50" step="5" v-model="this.radiusCounter" id="radius" />
+              <input
+                type="number"
+                min="0"
+                max="50"
+                step="5"
+                v-model="this.radiusCounter"
+                id="radius"
+              />
               <span>km</span>
             </div>
           </div>
 
-          <div class="dropdown-content" v-if="isDropdownOpen" @click="preventClose">
+          <div
+            class="dropdown-content"
+            v-if="isDropdownOpen"
+            @click="preventClose"
+          >
             <div class="dropdown-group">
               <span>Rooms</span>
               <div class="dropdown-input-group">
                 <button @click.stop="decreaseValue('roomsCounter')">-</button>
-                <input type="text" v-model="this.roomsCounter" id="rooms" class="dropdown-input" />
+                <input
+                  type="text"
+                  v-model="this.roomsCounter"
+                  id="rooms"
+                  class="dropdown-input"
+                />
                 <button @click.stop="increaseValue('roomsCounter')">+</button>
               </div>
             </div>
@@ -219,34 +259,57 @@ export default {
               <span>Beds</span>
               <div class="dropdown-input-group">
                 <button @click.stop="decreaseValue('bedsCounter')">-</button>
-                <input type="text" v-model="this.bedsCounter" id="beds" class="dropdown-input" />
+                <input
+                  type="text"
+                  v-model="this.bedsCounter"
+                  id="beds"
+                  class="dropdown-input"
+                />
                 <button @click.stop="increaseValue('bedsCounter')">+</button>
               </div>
             </div>
             <div class="dropdown-group">
               <span>Bathrooms</span>
               <div class="dropdown-input-group">
-                <button @click.stop="decreaseValue('bathroomsCounter')">-</button>
-                <input type="text" v-model="this.bathroomsCounter" id="bathrooms" class="dropdown-input" />
-                <button @click.stop="increaseValue('bathroomsCounter')">+</button>
+                <button @click.stop="decreaseValue('bathroomsCounter')">
+                  -
+                </button>
+                <input
+                  type="text"
+                  v-model="this.bathroomsCounter"
+                  id="bathrooms"
+                  class="dropdown-input"
+                />
+                <button @click.stop="increaseValue('bathroomsCounter')">
+                  +
+                </button>
               </div>
             </div>
             <div class="dropdown-group border-bottom-0">
               <span>Radius</span>
               <div class="dropdown-input-group">
-                <input type="range" class="form-range dropdown-input" min="0" max="50" step="1" id="radius"
-                  v-model="this.radiusCounter" />
+                <input
+                  type="range"
+                  class="form-range dropdown-input"
+                  min="0"
+                  max="50"
+                  step="1"
+                  id="radius"
+                  v-model="this.radiusCounter"
+                />
               </div>
             </div>
             <span class="range-disclaimer">Max range is 50km</span>
-
           </div>
-
-
         </div>
         <div class="d-flex justify-content-between align-items-center">
-          <button class="button-filters d-flex align-items-center gap-2" data-bs-toggle="modal"
-            data-bs-target="#servicesModal"><img src="/src/assets/img/instant_mix.svg" alt="" /> Filters</button>
+          <button
+            class="button-filters d-flex align-items-center gap-2"
+            data-bs-toggle="modal"
+            data-bs-target="#servicesModal"
+          >
+            <img src="/src/assets/img/instant_mix.svg" alt="" /> Filters
+          </button>
         </div>
       </div>
 
@@ -258,23 +321,31 @@ export default {
       </div>
     </div>
 
-
-
     <!-- Modal -->
-    <div class="modal fade" id="servicesModal" tabindex="-1" role="dialog" aria-labelledby="servicesModalLabel"
-      aria-hidden="true">
+    <div
+      class="modal fade"
+      id="servicesModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="servicesModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <h5 class="text-center">Services</h5>
           <ul class="services container d-flex gap-3 text-center">
-            <li class="service text-nowrap" :class="{ 'selected': selectedServices.includes(service.id) }" v-for=" service in
-        services" @click="addService(service.id)">{{ service.name }}
+            <li
+              class="service text-nowrap"
+              :class="{ selected: selectedServices.includes(service.id) }"
+              v-for="service in services"
+              @click="addService(service.id)"
+            >
+              {{ service.name }}
             </li>
           </ul>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -354,7 +425,7 @@ export default {
       z-index: 1;
       top: 68px;
 
-      &>*:not(:last-child) {
+      & > *:not(:last-child) {
         border-bottom: 1px solid #dddddd;
       }
 
@@ -470,13 +541,12 @@ export default {
   }
 }
 
-input[type="range"] {
+input[type='range'] {
   width: 100% !important;
   display: flex;
-
 }
 
-input[type="range"]::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
   background-color: var(--thumb-color, #bfe373);
   /* Colore del pallino */
   width: var(--thumb-size, 16px);
@@ -493,17 +563,17 @@ input[type="range"]::-webkit-slider-thumb {
   /* Nascondi il controllo predefinito di WebKit */
 }
 
-input[type=number] {
+input[type='number'] {
   width: 16px !important;
 }
 
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
@@ -519,7 +589,6 @@ input::-webkit-inner-spin-button {
   justify-content: end;
   margin-top: -8px;
   padding-right: 9px;
-
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -530,7 +599,7 @@ input::-webkit-inner-spin-button {
 .button-filters {
   all: unset;
   border-radius: 15px;
-  border: 1px solid #8D8D8D;
+  border: 1px solid #8d8d8d;
   padding: 8px 15px;
 }
 </style>
