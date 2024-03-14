@@ -2,13 +2,14 @@
 import HomeMenu from "../components/partials/HomeMenu.vue";
 import HomeSearch from "../components/partials/HomeSearch.vue";
 import SponsoredApartments from "../components/partials/SponsoredApartments.vue";
+import ExperienceTouristComfort from "../components/partials/ExperienceTouristComfort.vue";
 import { store } from "../store";
 import ButtonToLink from "../components/partials/ButtonToLink.vue";
 
 export default {
   name: "AppHome",
   props: [],
-  components: { HomeMenu, HomeSearch, SponsoredApartments, ButtonToLink },
+  components: { HomeMenu, HomeSearch, ButtonToLink, SponsoredApartments, ExperienceTouristComfort },
   data() {
     return {
       store,
@@ -21,37 +22,56 @@ export default {
 </script>
 
 <template>
+
+  <!-- Header -->
   <header class="p-4 p-sm-0">
     <div class="container d-flex flex-column justify-content-between ">
       <div class="home-top">
         <HomeMenu :textColorBSProp="'text-white'" linkColorBS="text-white" logoPath="src\assets\img\logo-white.svg"
           navColor="navbar-dark" />
       </div>
+
+      <!-- Above -->
       <div class="home-bottom">
+
+        <!-- Main title -->
         <h1 class="main-title col-12 col-sm-8 col-md-9 col-lg-6">Redefining <span>tourist</span> lifestyles through our
-          premium
-          apartments
+          premium apartments
         </h1>
+
+        <!-- Home Search -->
         <div class="home-search">
           <HomeSearch />
         </div>
-        <div class="call-to-action pb-2 fs-5 col-9 col-md-7 col-lg-5 col-xl-4">Are you interested in
-          listing your
-          apartment
-          to
-          increase
-          bookings?
+
+        <!-- Cta text-->
+        <div class="call-to-action pb-2 fs-5 col-9 col-md-7 col-lg-5 col-xl-4">
+          <span>
+            Are you interested in listing your apartment to increase bookings?
+          </span>
         </div>
+
+        <!-- Cta Button -->
         <div class="mt-3 mb-5 pb-3">
           <ButtonToLink class="list-cta" :buttonText="'List your apartment'"
             :buttonRedirect="'http://127.0.0.1:8000/admin/apartments/create'" />
-
         </div>
+
+        <!-- Background Image -->
         <img class="bosco-verticale" src="../assets/img/bosco-verticale.webp" alt="">
+
       </div>
+
     </div>
+
   </header>
+
+  <!-- Sponsored Apartments -->
   <SponsoredApartments />
+
+  <!-- Experience Tourist Comfort -->
+  <ExperienceTouristComfort />
+
 </template>
 
 <style lang="scss" scoped>
