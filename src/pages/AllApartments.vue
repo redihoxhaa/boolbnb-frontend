@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       store,
-      apartments: [],
+      apartments: null,
       loaderStatus: true,
     };
   },
@@ -43,7 +43,7 @@ export default {
   </div>
 
 
-  <div class="d-flex justify-content-center" v-if="loaderStatus && !apartments">
+  <div class="d-flex justify-content-center mb-5 pb-5" v-if="loaderStatus && !apartments">
     <div class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>

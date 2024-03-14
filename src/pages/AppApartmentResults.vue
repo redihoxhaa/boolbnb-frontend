@@ -4,10 +4,11 @@ import AdvancedSearch from "../components/partials/AdvancedSearch.vue";
 import { store } from "../store";
 import axios from "axios";
 import ApartmentCard from "../components/partials/ApartmentCard.vue";
+import HomeMenu from "../components/partials/HomeMenu.vue";
 // /IMPORTS
 
 export default {
-  components: { AdvancedSearch, ApartmentCard },
+  components: { AdvancedSearch, ApartmentCard, HomeMenu },
   data() {
     return {
       store,
@@ -84,9 +85,14 @@ export default {
 </script>
 
 <template>
-  <AdvancedSearch :addressProp="this.$route.params.address" />
 
-  <div class="d-flex justify-content-center" v-if="loaderStatus">
+  <div class="container">
+    <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
+    <AdvancedSearch :addressProp="this.$route.params.address" />
+  </div>
+
+
+  <div class="d-flex justify-content-center mb-5 pb-5" v-if="loaderStatus">
     <div class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>

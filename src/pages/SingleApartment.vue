@@ -7,12 +7,13 @@ import ImageGrid from "../components/partials/ImageGrid.vue";
 import Carosello from "../components/partials/Carosello.vue";
 import HomeMenu from "../components/partials/HomeMenu.vue";
 import AdvancedSearch from "../components/partials/AdvancedSearch.vue";
+import Map from "../components/partials/Map.vue";
 
 // /IMPORTS
 
 export default {
   props: [],
-  components: { MessageSender, ImageGrid, Carosello, HomeMenu, AdvancedSearch },
+  components: { MessageSender, ImageGrid, Carosello, HomeMenu, AdvancedSearch, Map },
   data() {
     return {
       store,
@@ -179,6 +180,7 @@ export default {
               </li>
             </ul>
             <h5>Location</h5>
+            <Map />
           </div>
         </div>
       </div>
