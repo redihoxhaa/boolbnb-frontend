@@ -180,7 +180,7 @@ export default {
               </li>
             </ul>
             <h5>Location</h5>
-            <Map />
+            <Map :apartment="apartment" />
           </div>
         </div>
       </div>
