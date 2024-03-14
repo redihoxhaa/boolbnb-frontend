@@ -232,6 +232,8 @@ export default {
   position: relative;
   top: 50%;
   transform: translate(0, -50%);
+  height: 100%;
+  object-fit: cover;
 }
 
 .apartment-card {
