@@ -97,10 +97,13 @@ export default {
             <button type="submit" class="btn custom-btn mb-5 mt-4 w-100">Send</button>
         </form>
         <!-- Messaggio di conferma -->
-        <div v-if="messageSent" class="mt-3 text-center d-flex flex-column" role="alert">
-            <img src="../../assets/img/message-sent.svg" alt="Sent icon">
-            <div>Message sent correctly</div>
-            <div>The host will receive an alert, and you will be contacted in the email you entered.</div>
+        <div v-if="messageSent" class="mt-5 text-center d-flex flex-column align-items-center justify-content-center"
+            role="alert">
+            <img class="sent-icon pb-5" src="../../assets/img/message-sent.svg" alt="Sent icon">
+            <h4 class="pt-5 mt-3 pb-5">Message sent correctly</h4>
+            <div class="pt-5 w-75 pb-5 mb-5">The host will receive an alert, and you will be contacted in the email you
+                entered.
+            </div>
         </div>
     </div>
 </template>
@@ -135,11 +138,10 @@ export default {
     }
 }
 
-.custom-alert {
-    border: 2px solid $acid-yellow;
-    border-radius: 16px;
-    background-color: white;
-    color: black;
+
+.sent-icon {
+    width: 100px;
+
 }
 
 input,
