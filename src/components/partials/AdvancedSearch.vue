@@ -291,7 +291,6 @@ export default {
   background-color: #fff;
   padding: 10px 20px;
   border-radius: 14px;
-  max-width: 800px;
   display: flex;
   margin-bottom: 50px;
 

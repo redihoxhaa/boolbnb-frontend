@@ -112,9 +112,10 @@ export default {
   <div class="container-fluid sticky-top">
     <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
   </div>
-  <div class="col-6 advanced-searchbar d-flex justify-content-end">
-    <AdvancedSearch :addressProp="this.$route.params.address" />
-
+  <div class="container-fluid py-0">
+    <div class="advanced-searchbar d-flex justify-content-center">
+      <AdvancedSearch :addressProp="this.$route.params.address" />
+    </div>
   </div>
 
   <div class="d-flex justify-content-center mb-5 pb-5" v-if="loaderStatus">
@@ -126,8 +127,8 @@ export default {
   <div class="content" v-else>
     <div class="container-fluid custom" v-if="apartmentResults.length && loaderStatus === false">
       <div class="row m-0">
-        <div class="col-12 col-lg-6">
-          <h5 class="fw-bold mt-5 mt-md-0">{{ apartmentResults.length }} Results found</h5>
+        <div class="col-12 col-lg-6 px-0">
+          <h5 class="results mt-5 mt-md-0">{{ apartmentResults.length }} Results found</h5>
 
           <div class="row apartments-list flex-nowrap m-0 g-3 user-select-none" ref="scrollContainer"
             @mousedown="startDragging" @mouseup="stopDragging" @mousemove="dragging">
@@ -175,6 +176,9 @@ export default {
   width: 100%;
 }
 
+.results {
+  font-weight: 600;
+}
 
 .map-div {
   position: relative;
@@ -211,8 +215,11 @@ export default {
   .apartments-list {
     flex-wrap: wrap !important;
     overflow-x: unset;
+  }
 
-
+  .advanced-searchbar {
+    width: 50%;
+    justify-content: start;
   }
 
   .mobile-map {
