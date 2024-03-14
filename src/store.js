@@ -4,6 +4,7 @@ export const store = reactive({
     searchApartmentsURI: '/search',
     singleApartmentURI: '/show',
     sponsoredApartmentsURI: '/sponsored',
+    userInfoAPI: 'http://127.0.0.1:8000/api/userinfo',
     allApartmentsAPI: 'http://127.0.0.1:8000/api/apartments',
     allServicesAPI: 'http://127.0.0.1:8000/api/services',
     sendMessageAPI: 'http://127.0.0.1:8000/api/guest/messages',

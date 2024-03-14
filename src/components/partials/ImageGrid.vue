@@ -187,8 +187,11 @@ export default {
 <style lang="scss" scoped>
 .center {
     position: relative;
-    top: 50%;
-    transform: translate(0, -40%);
+    transform: translate(0, -20%);
+
+    &:hover {
+        transform: scale(1.02) translate(0, -20%);
+    }
 }
 
 .image-gallery {
@@ -208,6 +211,12 @@ img {
     width: 100%;
     height: 100%;
     /* Or 'pixelated' */
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.02);
+    }
 
 }
 

@@ -18,6 +18,7 @@ export default {
     return {
       store,
       apartment: null,
+      user: null,
     };
   },
   methods: {
@@ -30,6 +31,7 @@ export default {
         })
         .then((response) => {
           this.apartment = response.data;
+          this.getUser(response.data.user_id);
         });
     },
     registerVisit() {
@@ -44,8 +46,20 @@ export default {
         .catch(error => {
           console.error(error);
         });
-    }
+    },
+    getUser(id) {
+      axios
+        .get(this.store.userInfoAPI, {
+          params: {
+            user_id: id,
+          },
+        }).then(response => {
+          this.user = response.data;
+        })
+    },
+
   },
+
   created() {
     this.getApartment();
   },
@@ -67,7 +81,7 @@ export default {
 
   <div class="container mt-4" v-if="apartment">
     <!-- Immagini dell'appartamento -->
-    <div class="mb-5 pb-5">
+    <div class="mb-5 pb-5 images-grid">
       <div v-if="apartment.images">
         <div class="d-none d-md-block">
 
@@ -77,10 +91,20 @@ export default {
         <div class="d-block d-md-none">
           <Carosello :images="apartment.images.split(',')" />
         </div>
-
       </div>
       <div class="pic-container" v-else>
         <img src="../assets/img/apartment-default.webp" class="center" alt="Apartment Image" />
+      </div>
+
+      <div class="user-info">
+        <div class="user-pic">
+          <img src="../assets/img/cielo.webp" alt="User Pic" v-if="!user.user_photo">
+          <img :src="this.store.imagesAPI + user.user_photo" alt="User Pic" v-else>
+        </div>
+        <div class="user-name">
+          <div class="user-tag">Host</div>
+          <div>{{ user.name ? user.name : 'Nome Cognome' }}</div>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -197,6 +221,8 @@ export default {
 
 
 <style lang="scss" scoped>
+@use '../assets/scss/partials/variables' as *;
+
 .container {
   padding: 20px;
 }
@@ -253,8 +279,94 @@ img {
 }
 
 .apartment-icon {
-
-
   width: 20px;
 }
-</style>../components/partials/Carosello.vue
+
+.images-grid {
+  position: relative;
+}
+
+.user-info {
+  position: absolute;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  left: 30px;
+  bottom: 70px;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.432);
+
+  .user-tag {
+    font-size: 16px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.432);
+    font-weight: 500;
+  }
+}
+
+.user-pic {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 70px;
+  height: 70px;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.432);
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .user-info {
+    left: 30px;
+    bottom: 55px;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 960px) {
+  .user-info {
+    position: unset;
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    color: $our-black;
+    font-weight: 600;
+    font-size: 18px;
+    text-shadow: unset;
+
+    .user-tag {
+      font-size: 16px;
+      text-shadow: unset;
+      font-weight: 500;
+    }
+  }
+
+  .user-pic {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 70px;
+    height: 70px;
+
+    box-shadow: unset;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {}
+</style>
