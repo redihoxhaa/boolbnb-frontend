@@ -125,6 +125,8 @@ export default {
         justify-content: end;
 
 
+
+
         .arrow-icon {
             width: 40px;
             height: 40px;
@@ -134,6 +136,11 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
+
+            &:hover {
+                background-color: #f4f4f4;
+                transition: background-color 0.1s ease-in-out;
+            }
         }
     }
 }
