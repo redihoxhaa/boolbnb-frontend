@@ -27,9 +27,6 @@ export default {
           <router-link class="link-item" :class="linkColorBS" :to="{ name: 'all-apartments' }">Apartments</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="link-item" :class="linkColorBS" :to="{ name: '' }">About Us</router-link>
-        </li>
-        <li class="nav-item">
           <router-link class="link-item" :class="linkColorBS" :to="{ name: '' }">Contacts</router-link>
         </li>
 

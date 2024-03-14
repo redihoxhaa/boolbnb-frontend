@@ -80,7 +80,7 @@ export default {
     <hr class="m-0">
     <div class="container d-flex justify-content-between py-5 align-items-center">
 
-      <div class="left">© 2024 MalHome | All rights reserved</div>
+      <div class="left">© 2024 MalHome</div>
       <div class="right">Created with love by <span>Roberto Malone</span></div>
 
     </div>

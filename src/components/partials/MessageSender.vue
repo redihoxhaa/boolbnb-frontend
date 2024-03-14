@@ -65,7 +65,7 @@ export default {
 
 <template>
     <div class="message-board">
-        <h5 class="text-center p-4">Contact the <span class="highlight">HOST</span></h5>
+        <h5 class="text-center p-4" v-if="!messageSent">Contact the <span class="highlight">HOST</span></h5>
         <!-- Messaggio di errore generale -->
         <div v-if="showError" class="alert alert-danger" role="alert">
             Error, please fill in all fields correctly and try again
@@ -97,8 +97,10 @@ export default {
             <button type="submit" class="btn custom-btn mb-5 mt-4 w-100">Send</button>
         </form>
         <!-- Messaggio di conferma -->
-        <div v-if="messageSent" class="alert custom-alert mt-3 text-center" role="alert">
-            Message sent successfully!
+        <div v-if="messageSent" class="mt-3 text-center d-flex flex-column" role="alert">
+            <img src="../../assets/img/message-sent.svg" alt="Sent icon">
+            <div>Message sent correctly</div>
+            <div>The host will receive an alert, and you will be contacted in the email you entered.</div>
         </div>
     </div>
 </template>
