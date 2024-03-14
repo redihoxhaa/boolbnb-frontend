@@ -23,7 +23,10 @@ export default {
     <div class="a container py-5">
       <div class="row m-0 gap-5 justify-content-between">
         <div class="col-md-3">
-          <img class="logo" src="../assets/img/logo-black" alt="Logo">
+          <div class="d-flex align-items-center gap-3">
+            <img class="logo" src="../assets/img/logo-footer.svg" alt="Logo">
+            <img class="logo-text" src="../assets/img/malhome.svg" alt="Logo">
+          </div>
           <p class="p-font my-4">At MalHome, we specialize in curating exquisite, luxury apartments for
             short-term rentals. Our mission is to provide discerning travelers with exceptional accommodations that
             combine elegance, comfort, and convenience. From stunning city penthouses to secluded beachfront villas, we
@@ -135,7 +138,13 @@ footer {
     }
   }
 
+  .logo {
+    width: 40px;
+  }
 
+  .logo-text {
+    width: 120px;
+  }
 
   .custom-btn {
     background-color: #E0E2E6;
