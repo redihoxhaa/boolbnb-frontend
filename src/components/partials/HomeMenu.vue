@@ -24,6 +24,9 @@ export default {
     <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="navbarSupportedContent">
       <ul class="link-list d-flex gap-4 gap-sm-5 m-0 p-0">
         <li class="nav-item">
+          <router-link class="link-item" :class="linkColorBS" :to="{ name: 'home' }">Home</router-link>
+        </li>
+        <li class="nav-item">
           <router-link class="link-item" :class="linkColorBS" :to="{ name: 'all-apartments' }">Apartments</router-link>
         </li>
         <li class="nav-item">
