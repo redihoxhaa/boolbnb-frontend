@@ -68,7 +68,7 @@ export default {
                 <li class="d-flex gap-2 align-items-center"><img src="../../assets/img/beds_icon.svg" alt="beds"> {{
         apartment.beds }}</li>
                 <li class="d-flex gap-2 align-items-center"><img class="bathroom-icon"
-                        src="../../assets/img/baathrooms_icon.svg" alt="bathrooms">
+                        src="../../assets/img/bathrooms_icon.svg" alt="bathrooms">
                     {{
                     apartment.bathrooms }}</li>
             </ul>

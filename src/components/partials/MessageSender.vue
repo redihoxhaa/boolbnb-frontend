@@ -65,7 +65,7 @@ export default {
 
 <template>
     <div class="message-board">
-        <h5 class="text-center p-4" v-if="!messageSent">Contact the <span class="highlight">HOST</span></h5>
+        <h5 class="text-left py-3" v-if="!messageSent">Request information</h5>
         <!-- Messaggio di errore generale -->
         <div v-if="showError" class="alert alert-danger" role="alert">
             Error, please fill in all fields correctly and try again
@@ -94,7 +94,7 @@ export default {
                 <div v-if="errors.message_text" class="text-danger">{{ errors.message_text }}</div>
             </div>
             <!-- Bottone di invio -->
-            <button type="submit" class="btn custom-btn mb-5 mt-4 w-100">Send</button>
+            <button type="submit" class="btn custom-btn mb-2 mt-2 w-100">Send</button>
         </form>
         <!-- Messaggio di conferma -->
         <div v-if="messageSent" class="mt-5 text-center d-flex flex-column align-items-center justify-content-center"
@@ -114,7 +114,7 @@ export default {
 
 .message-board {
     background-color: rgb(252, 252, 252);
-    padding: 20px 40px;
+    padding: 20px 30px;
     border-radius: 16px;
     box-shadow: 0px 0px 25px rgba($color: #000000, $alpha: 0.10)
 }
