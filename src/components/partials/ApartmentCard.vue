@@ -57,8 +57,10 @@ export default {
             </div>
         </div>
         <div class="apartment-info">
-            <h3>{{ apartment.title }}</h3>
-            <span class="truncate"> {{ apartment.address }}</span>
+            <div>
+                <h3>{{ apartment.title }}</h3>
+                <span class="truncate"> {{ apartment.address }}</span>
+            </div>
             <ul class="d-flex mt-3 gap-4 list-unstyled align-items-center">
                 <li class="d-flex gap-2 align-items-center"><img src="../../assets/img/rooms_icon.svg" alt="rooms"> {{
         apartment.rooms }}</li>
@@ -81,6 +83,9 @@ export default {
     flex-shrink: 0;
     position: relative;
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .apartment-image-container {
@@ -146,6 +151,10 @@ export default {
 .apartment-info {
     margin-top: 10px;
     width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     h3 {
         font-size: 20px;
@@ -165,7 +174,6 @@ export default {
         /* Imposta la larghezza massima dello span per evitare che superi il contenitore */
         white-space: nowrap;
     }
-
 
 }
 </style>
