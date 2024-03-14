@@ -21,9 +21,10 @@ export default {
 <template>
   <footer class="pt-5">
     <div class="a container py-5">
-      <div class="row m-0 gap-5 justify-content-between">
-        <div class="col-md-3">
-          <div class="d-flex align-items-center gap-3">
+      <div
+        class="row g-5 flex-column align-items-center text-center text-sm-start justify-content-center align-items-sm-start flex-sm-row justify-content-sm-between">
+        <div class="col-md-4 col-lg-3">
+          <div class="d-flex align-items-center justify-content-center justify-content-sm-start gap-3">
             <img class="logo" src="../assets/img/logo-footer.svg" alt="Logo">
             <img class="logo-text" src="../assets/img/malhome.svg" alt="Logo">
           </div>
@@ -32,16 +33,17 @@ export default {
             combine elegance, comfort, and convenience. From stunning city penthouses to secluded beachfront villas, we
             strive to exceed our guests' expectations and create unforgettable experiences. Welcome to a world of luxury
             living with MalHome.</p>
-          <div class="buttons d-flex gap-3 mb-5">
+          <div class="buttons d-flex gap-3 mb-5 mt-5 justify-content-center justify-content-sm-start">
 
 
             <a class="btn custom-btn d-flex align-items-center gap-3" href="#"><img
-                src="../assets/img/ion_logo-google-playstore.svg" alt="Playstore logo"><span>PlayStore</span></a>
+                src="../assets/img/ion_logo-google-playstore.svg" alt="Playstore logo"><span
+                class="d-none">PlayStore</span></a>
             <a class="btn custom-btn d-flex align-items-center gap-3" href="#"><img src="../assets/img/vector.svg"
-                alt="App Store Logo"><span>AppleStore</span> </a>
+                alt="App Store Logo"><span class="d-none">AppleStore</span> </a>
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3 col-lg-3">
           <h5>Company </h5>
           <ul class="list-footer">
             <li><a class="nav-link" href="#">About us</a></li>
@@ -51,7 +53,7 @@ export default {
           </ul>
 
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3 col-lg-3">
           <h5>Help Center</h5>
           <ul class="list-footer">
             <li><a class="nav-link" href="#">Find a Property</a></li>
@@ -61,14 +63,14 @@ export default {
             <li><a class="nav-link" href="#">Rental Guides</a></li>
           </ul>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-12 text-center text-md-start col-lg-3">
           <h5>Contact Info</h5>
-          <ul class="list-footer">
+          <ul class="list-footer mb-5 pb-1">
             <li><a class="nav-link" href="#">Phone: 02 456 9581</a></li>
             <li><a class="nav-link text-wrap" href="#">Email: info@malhome.com</a></li>
             <li><a class="nav-link" href="#">Location: Via Torino 45, Milan, Italy</a></li>
           </ul>
-          <ul class="d-flex gap-4 align-items-center list-footer">
+          <ul class="d-flex gap-4 justify-content-center justify-content-lg-start align-items-center list-footer">
             <li><a class="nav-link" href="#"><img src="../assets/img/fb_icon.svg" alt="Facebook Logo"> </a></li>
             <li><a class="nav-link" href="#"><img src="../assets/img/twitter_icon.svg" alt="Twitter Logo"> </a></li>
             <li><a class="nav-link" href="#"><img src="../assets/img/insta_icon.svg" alt="Instagram Logo"> </a></li>
@@ -78,7 +80,8 @@ export default {
       </div>
     </div>
     <hr class="m-0">
-    <div class="container d-flex justify-content-between py-5 align-items-center">
+    <div
+      class="container d-flex gap-3 text-center text-sm-start flex-column flex-sm-row justify-content-between py-5 align-items-center">
 
       <div class="left">© 2024 MalHome</div>
       <div class="right">Created with love by <span>Roberto Malone</span></div>

@@ -138,14 +138,14 @@ export default {
           </div>
         </div>
         <!-- Mappa desktop -->
-        <div class="col-6 map-div d-none d-md-block">
+        <div class="col-6 map-div">
           <div class="my-map">
             <MapReasearch :apartments="apartmentResults" :center="center" />
           </div>
         </div>
 
         <!-- Mappa mobile -->
-        <div class="col-12 d-block d-md-none mt-5 mb-5">
+        <div class="col-12 mt-5 mb-5">
           <div class="mobile-map">
             <MapReasearchMobile :apartments="apartmentResults" :center="center" />
           </div>
@@ -178,6 +178,7 @@ export default {
 
 .map-div {
   position: relative;
+  display: none;
 
   .my-map {
     position: sticky;
@@ -210,6 +211,16 @@ export default {
   .apartments-list {
     flex-wrap: wrap !important;
     overflow-x: unset;
+
+
+  }
+
+  .mobile-map {
+    display: none;
+  }
+
+  .map-div {
+    display: block;
   }
 }
 </style>
