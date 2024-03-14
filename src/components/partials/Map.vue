@@ -24,6 +24,17 @@ export default {
                 element: this.createCustomMarkerElement(),
                 anchor: 'bottom'
             }).setLngLat(center);
+
+            // Aggiungi il popup al marker quando viene cliccato
+            marker.setPopup(new tt.Popup({ offset: 50 }).setHTML(`
+                <div class="popup-content">
+                    
+                    <h5 style="margin: 0; color: #000">${this.apartment.title}</h5>
+
+                    
+                </div>
+            `));
+
             marker.addTo(map);
         });
     },
@@ -32,7 +43,7 @@ export default {
             // Crea un elemento immagine per l'icona del marker personalizzato
             const markerElement = document.createElement('img');
             markerElement.src = ApartmentImage; // Utilizza l'immagine importata
-            markerElement.style.width = '52x'; // Imposta la larghezza desiderata
+            markerElement.style.width = '52px'; // Imposta la larghezza desiderata
             markerElement.style.height = '52px'; // Imposta l'altezza desiderata
             return markerElement;
         }

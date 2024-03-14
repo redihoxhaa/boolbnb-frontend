@@ -58,7 +58,17 @@ export default {
         </div>
         <div class="apartment-info">
             <h3>{{ apartment.title }}</h3>
-            <span> {{ apartment.address }}</span>
+            <span class="truncate"> {{ apartment.address }}</span>
+            <ul class="d-flex mt-3 gap-4 list-unstyled align-items-center">
+                <li class="d-flex gap-2 align-items-center"><img src="../../assets/img/rooms_icon.svg" alt="rooms"> {{
+        apartment.rooms }}</li>
+                <li class="d-flex gap-2 align-items-center"><img src="../../assets/img/beds_icon.svg" alt="beds"> {{
+        apartment.beds }}</li>
+                <li class="d-flex gap-2 align-items-center"><img src="../../assets/img/baathrooms_icon.svg"
+                        alt="bathrooms">
+                    {{
+                    apartment.bathrooms }}</li>
+            </ul>
         </div>
     </div>
 </template>
@@ -134,8 +144,8 @@ export default {
 }
 
 .apartment-info {
-
     margin-top: 10px;
+    width: 100%;
 
     h3 {
         font-size: 20px;
@@ -147,6 +157,15 @@ export default {
         font-size: 15px;
         font-weight: 300;
         color: $placeholder;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        /* Assicura che lo span rispetti la larghezza specificata */
+        max-width: 100%;
+        /* Imposta la larghezza massima dello span per evitare che superi il contenitore */
+        white-space: nowrap;
     }
+
+
 }
 </style>
