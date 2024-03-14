@@ -1,9 +1,3 @@
-<template>
-    <div class="map-container mb-5">
-        <div ref="map" style="width: 100%; height: 570px;" class="map"></div>
-    </div>
-</template>
-
 <script>
 import tt from '@tomtom-international/web-sdk-maps';
 import ApartmentImage from '../../assets/img/Risorsa+1.svg'; // Assicurati che il percorso sia corretto
@@ -126,8 +120,12 @@ export default {
 
 <style scoped>
 .map-container {
-    height: 500px;
-    overflow: hidden;
-    border-radius: 16px;
+    height: 100%;
+    width: 100%;
+}
+
+.map {
+    height: 100% !important;
+    width: 100% !important;
 }
 </style>
