@@ -13,14 +13,12 @@ export default {
     },
     methods: {
         showSponsoredTag(endDateStr) {
+            if (!endDateStr) return false; // Gestisci il caso in cui endDateStr è vuota
+
             const currentDate = DateTime.now();
             const endDate = DateTime.fromFormat(endDateStr, 'yyyy-MM-dd HH:mm:ss');
 
-            if (endDate > currentDate) {
-                return true;
-            } else {
-                return false;
-            }
+            return endDate > currentDate;
         },
         // Funzione per visitare l'appartamento
         visitApartment(apartmentID) {
