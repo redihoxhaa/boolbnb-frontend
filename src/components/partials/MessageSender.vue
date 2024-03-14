@@ -70,7 +70,7 @@ export default {
         <div v-if="showError" class="alert alert-danger" role="alert">
             Error, please fill in all fields correctly and try again
         </div>
-        <form @submit.prevent="sendMessage">
+        <form @submit.prevent="sendMessage" v-if="!messageSent">
             <!-- Input per il nome -->
             <div class="mb-3">
                 <!-- <label for="sender_name" class="form-label">Name</label> -->
