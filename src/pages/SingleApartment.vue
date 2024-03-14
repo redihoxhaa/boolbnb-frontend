@@ -242,7 +242,7 @@ export default {
 @use '../assets/scss/partials/variables' as *;
 
 .container {
-  padding: 20px;
+  padding: 8px 20px;
 }
 
 
