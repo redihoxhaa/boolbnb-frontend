@@ -72,31 +72,18 @@ export default {
             .addTo(map);
           let popupContent = document.createElement('div');
           popupContent.innerHTML = `
-                <style>
+            <style>
 
                     * {
                          font-family: "Montserrat";
                     }
 
-                    .apartment-card2 {
-                        flex-shrink: 0;
-                        position: relative;
-                        width: 200px;
-                        height: 200px;
-                        display: flex;
-                        flex-direction: column;
-                    }
-
-                    .apartment-image2-container2 {
-                        width: 100%;
-                        height: 500px;
-                        border-radius: 16px;
-                        overflow: hidden;
-                    }
-
                     .mapboxgl-popup-content {
-                        width: fit-content;
-                        border-radius: 16px;
+                        width: 150px;
+                        height: 100px;
+                        border-radius: 12px;
+                        padding: 0;
+                        margin: 0;
                         overflow: hidden;
                     }
 
@@ -104,18 +91,22 @@ export default {
                         display: none;
                     }
 
+                    .mapboxgl-popup-tip {
+                        display: none;
+                    }
                     .icon-redirect2 {
                         margin: 10px;
+                        margin-top: 10px;
                         display: flex;
                         justify-content: end;
                         position: absolute;
                         right: 0;
-                        top: 62px;
+                        top: 105px;
                     }
 
                     .arrow-icon2 {
-                        width: 30px;
-                        height: 30px;
+                        width: 25px;
+                        height: 25px;
                         text-align: center;
                         border-radius: 50%;
                         background-color: #CEF27F;
@@ -129,53 +120,35 @@ export default {
                         transition: background-color 0.1s ease-in-out;
                     }
 
-                    .apartment-icon2 {
-                        position: absolute;
-                        width: 100%;
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
-                    }
+                  
 
-                    .apartment-image2 {
-                        width: 100%;
-                        height: 100%;
-                    }
-
-                    .apartment-image2 img {
+                    .image-inside {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
+                        transform: translate(0, 28%);
                     }
 
                     .apartment-info2 {
-                        margin-top: 10px;
-                        width: 100%;
-                        flex-grow: 1;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
+                    padding: 8px 14px;
                     }
 
                     .titolo-appartamento {
-                        font-size: 12px;
-                        font-weight: 400;
-                        line-height: 16px;
-                        margin: 0;
-                        padding: 0;
-                    }
-
-                    .indirizzo-appartamento {
                         font-size: 11px;
-                        font-weight: 300;
-                        color: #878b91;
-                        display: inline-block;
+                        position: absolute;
+                        color: white;
+                        text-shadow: 0 0 2px rgba(0, 0, 0, 1);
+                        font-weight: 600;
+                      
+                        margin: 0;
+                        padding: 0 7px;
+                        
+                        left: 0;
+                        bottom: -70px;
+
                     }
 
-                    .distanza-appartamento {
-                        font-size: 10px;
-                    }
+               
 
                     .rooms-icon2 {
                         padding-bottom: 2px;
@@ -184,47 +157,63 @@ export default {
                     .bathroom-icon2 {
                         padding-bottom: 2px;
                     }
+
+                    .apartment-image-container-2 {
+                        height: 150px;
+                    }
+
+                    .hint {
+                       animation: moveUpDown 0.3s ease-in-out infinite alternate;
+                       position: relative;
+                    }
+
+                    .arrow-container {
+                      width: 10px;
+                    }
+                    .arrow-mobile-icon {
+                      width: 100%;
+                    }
+
+                    @keyframes moveUpDown {
+        0% {
+            margin-top: 0;
+        }
+        100% {
+            margin-top: 5px;
+
+        }
+    }
                 </style>
 
-                <div class="apartment-card2">
-                    <div class="apartment-image2-container2 m-0">
-                        <div class="apartment-icon2">
+
+                <div class="row m-0 p-0 g-0">
+                    <div class="col-12 apartment-image-container-2 m-0">
+                            ${apartment.images ?
+              `<img src="${this.store.imagesAPI + apartment.images.split(',')[0]}" alt="Apartment Image" class="image-inside">` :
+              `<img src="https://victorsandbox.myshopify.com/cdn/shop/products/property-placeholder_grande.jpg?v=1482778691" alt="Apartment Image" class="image-inside">`}
+                        </div>
+
+            
+                      
+                            <h3 class="titolo-appartamento">${apartment.title}</h3>
+                           
+                   
+
+                    
                             <div class="icon-redirect2">
-                                <a class="arrow-icon2" role="button" href="http://localhost:5173/single-apartments/results/${
-                                  apartment.id
-                                }">
-                                    <img src="https://svgur.com/i/14Mx.svg" alt="">
+                                <a class="arrow-icon2" role="button" href="http://localhost:5173/single-apartments/results/${apartment.id}">
+                                  <div class="arrow-container">
+                                    <img src="https://svgur.com/i/14Mx.svg" class="arrow-mobile-icon" alt="">
+                                    </div>
                                 </a>
                             </div>
-                        </div>
-                        <div class="apartment-image2">
-                            ${
-                              apartment.images
-                                ? `<img src="${
-                                    this.store.imagesAPI +
-                                    apartment.images.split(',')[0]
-                                  }" alt="Apartment Image">`
-                                : `<img src="https://victorsandbox.myshopify.com/cdn/shop/products/property-placeholder_grande.jpg?v=1482778691" alt="Apartment Image" class="card-image">`
-                            }
-                        </div>
+                       
                     </div>
-                    <div class="apartment-info2">
-                        <div>
-                            <h3 class="titolo-appartamento">${
-                              apartment.title
-                            }</h3>
-                            <span class="indirizzo-appartamento mt-1">${
-                              apartment.address
-                            }</span>
-                   <div class="distanza-appartamento text-end mt-1">${
-                     apartment.distance
-                   } away</div>
-                        </div>
-                    </div>
-                </div>
+
+                
             `;
 
-          let markerPopup = new tt.Popup().setDOMContent(popupContent);
+          let markerPopup = new tt.Popup({ offset: 60 }).setDOMContent(popupContent);
           marker.setPopup(markerPopup);
         } catch (error) {
           console.error('Error fetching coordinates:', error);
