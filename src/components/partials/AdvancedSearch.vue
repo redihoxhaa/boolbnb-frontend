@@ -125,6 +125,7 @@ export default {
     // Funzione per mostrare il dropdown
     toggleDropdown() {
       this.isDropdownOpen = true;
+      this.closeSuggestion = true;
     },
 
     //Funzione per chiudere il dropdown
@@ -162,9 +163,18 @@ export default {
 
 <template>
   <div
-    class="wrapper d-flex justify-content-between flex-column flex-sm-row gap-4 gap-md align-items-end align-items-md-start">
+    class="wrapper d-flex justify-content-between flex-column flex-sm-row gap-4 gap-md align-items-start align-items-md-start">
     <!-- Container -->
     <div class="search-container m-0 d-flex">
+
+      <div class="dropdown-content" v-if="isDropdownOpen" @click="preventClose">
+        <div class="dropdown-input-group">
+          <input type="range" class="form-range dropdown-input" min="0" max="50" step="1" id="radius"
+            v-model="this.radiusCounter" />
+        </div>
+      </div>
+
+
       <!-- Input container -->
       <div class="input-container" @click="preventClose">
         <!-- Address group -->
@@ -174,7 +184,7 @@ export default {
             <label for="address" class="pb-1">Location</label>
             <div class="d-flex">
               <input type="text" id="address" v-model="address" placeholder="What are you dreaming of?"
-                @input="getAddresses" />
+                @input="getAddresses" @click="closeDropdown" />
             </div>
             <ul id="suggestionsMenu" class="suggestions-menu"
               :class="{ 'd-none': !suggestions.length || closeSuggestion }">
@@ -190,19 +200,17 @@ export default {
           </div>
         </div>
 
-        <div class="ps-3 m-0 dropdown-group d-flex flex-column justify-content-center border-bottom-0">
-          <label class="pb-1">Radius</label>
+        <div class="ps-3 m-0 dropdown-group d-flex flex-column justify-content-center border-bottom-0"
+          @click="toggleDropdown">
+          <label class=" pb-1">Radius</label>
           <div class="radius-group">
 
             <input type="number" min="0" max="50" id="radius" v-model="this.radiusCounter" />
             <span class="km-indicator">km</span>
+
           </div>
         </div>
 
-        <!-- <div class="dropdown-input-group">
-          <input type="range" class="form-range dropdown-input" min="0" max="50" step="1" id="radius"
-            v-model="this.radiusCounter" />
-        </div> -->
 
 
 
@@ -223,7 +231,7 @@ export default {
           <div class="modal-content">
 
             <!-- Input group -->
-            <div class="select-section" @click="toggleDropdown">
+            <div class="select-section">
               <div class="select-group">
                 <label for="rooms">Rooms</label>
                 <div class="d-flex justify-content-start">
@@ -256,38 +264,7 @@ export default {
                 </div>
               </div>
 
-              <div class="dropdown-content" v-if="isDropdownOpen" @click="preventClose">
-                <div class="dropdown-group">
-                  <span>Rooms</span>
-                  <div class="dropdown-input-group">
-                    <button @click.stop="decreaseValue('roomsCounter')">-</button>
-                    <input type="text" v-model="this.roomsCounter" id="rooms" class="dropdown-input" />
-                    <button @click.stop="increaseValue('roomsCounter')">+</button>
-                  </div>
-                </div>
-                <div class="dropdown-group">
-                  <span>Beds</span>
-                  <div class="dropdown-input-group">
-                    <button @click.stop="decreaseValue('bedsCounter')">-</button>
-                    <input type="text" v-model="this.bedsCounter" id="beds" class="dropdown-input" />
-                    <button @click.stop="increaseValue('bedsCounter')">+</button>
-                  </div>
-                </div>
-                <div class="dropdown-group">
-                  <span>Bathrooms</span>
-                  <div class="dropdown-input-group">
-                    <button @click.stop="decreaseValue('bathroomsCounter')">
-                      -
-                    </button>
-                    <input type="text" v-model="this.bathroomsCounter" id="bathrooms" class="dropdown-input" />
-                    <button @click.stop="increaseValue('bathroomsCounter')">
-                      +
-                    </button>
-                  </div>
-                </div>
 
-
-              </div>
             </div>
 
             <h5 class="text-center">Services</h5>
@@ -404,56 +381,59 @@ export default {
       }
     }
 
-    .dropdown-content {
-      position: absolute;
-      background-color: #ffff;
-      min-width: 280px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      padding: 16px 26px 12px;
-      border-radius: 20px;
-      z-index: 1;
-      top: 68px;
+  }
 
-      &>*:not(:last-child) {
-        border-bottom: 1px solid #dddddd;
+  .dropdown-content {
+    position: absolute;
+    background-color: #ffff;
+    width: 40%;
+    right: 0;
+    box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
+    padding: 8px 26px;
+    border-radius: 10px;
+    z-index: 200;
+    top: 85px;
+
+
+    left-0 &>*:not(:last-child) {
+      border-bottom: 1px solid #dddddd;
+    }
+
+    .dropdown-group {
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+
+      span {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
       }
 
-      .dropdown-group {
-        font-size: 14px;
-        display: flex;
-        justify-content: space-between;
-
-        span {
-          display: flex;
-          align-items: center;
-          font-size: 12px;
+      .dropdown-input-group {
+        .dropdown-input {
+          width: 60px;
+          background: none;
+          padding: 4px 0;
+          text-align: center;
+          border-radius: 4px;
+          margin: 16px 10px;
         }
 
-        .dropdown-input-group {
-          .dropdown-input {
-            width: 60px;
-            background: none;
-            padding: 4px 0;
-            text-align: center;
-            border-radius: 4px;
-            margin: 16px 10px;
-          }
+        button {
+          border: 1px solid $acid-yellow;
+          background: none;
+          padding: 6px;
+          display: inline-block;
+          width: 28px;
+          aspect-ratio: 1;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 50%;
 
-          button {
-            border: 1px solid $acid-yellow;
-            background: none;
-            padding: 6px;
-            display: inline-block;
-            width: 28px;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 50%;
-
-            &:hover {
-              background-color: $acid-yellow;
-              transition: background-color 0.2s ease-in-out;
-            }
+          &:hover {
+            background-color: $acid-yellow;
+            transition: background-color 0.2s ease-in-out;
           }
         }
       }
@@ -537,7 +517,7 @@ input[type='range'] {
 }
 
 input[type='range']::-webkit-slider-thumb {
-  background-color: var(--thumb-color, $acid-yellow);
+  background-color: $acid-yellow;
   /* Colore del pallino */
   width: var(--thumb-size, 16px);
   /* Dimensioni del pallino */
@@ -594,6 +574,7 @@ input::-webkit-inner-spin-button {
   padding: 12px 30px;
   font-size: 12px;
   order: 0;
+  margin-top: -11px;
 
 
 }
@@ -624,8 +605,10 @@ input::-webkit-inner-spin-button {
     padding: 27px 25px;
     font-size: 12px;
     order: 0;
-
+    margin-top: 0;
   }
+
+
 }
 
 @media only screen and (min-width: 992px) {
