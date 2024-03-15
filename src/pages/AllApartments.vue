@@ -75,11 +75,11 @@ export default {
 
 .apartment-card {
 
-  transition: transform 0.3s ease;
+  /* transition: transform 0.3s ease; */
 }
 
 .apartment-card:hover {
-  transform: translateY(-5px);
+  /* transform: translateY(-5px); */
 }
 
 .card-header {
