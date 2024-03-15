@@ -45,7 +45,9 @@ export default {
         },
     },
     created() {
-        this.apartment.distance = this.convertDistance(this.apartment.distance)
+        if (this.apartment.distance) {
+            this.apartment.distance = this.convertDistance(this.apartment.distance)
+        }
     },
     mounted() {
         this.showSponsoredTag();
@@ -59,11 +61,8 @@ export default {
             <div class="apartment-icon">
                 <div class="icon-sponsor">
                     <div v-if="apartment.sponsorships && apartment.sponsorships.length" class="p-1">
-                        <div v-if="showSponsoredTag(
-        apartment.sponsorships[apartment.sponsorships.length - 1]
-            .pivot.end_date
-    )
-        " class="px-5">
+                        <div v-if="showSponsoredTag(apartment.sponsorships[apartment.sponsorships.length - 1].pivot.end_date)"
+                            class="px-5">
                             Sponsored
                         </div>
                     </div>
@@ -134,6 +133,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    z-index: 150;
 
     .icon-sponsor {
         margin: 13px 9px;
@@ -175,11 +175,13 @@ export default {
 .apartment-image {
     width: 100%;
     height: 100%;
+    transition: all 0.8s ease-in-out;
 
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+
     }
 }
 
@@ -231,5 +233,12 @@ export default {
 
 .bathroom-icon {
     padding-bottom: 2px;
+}
+
+.apartment-image-container:hover .apartment-image {
+
+    transform: scale(1.05);
+
+
 }
 </style>

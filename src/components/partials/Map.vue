@@ -1,7 +1,7 @@
 <script>
 // IMPORTS
 import tt from '@tomtom-international/web-sdk-maps';
-import ApartmentImage from '../../assets/img/Risorsa+1.svg'; // Assicurati che il percorso sia corretto
+import ApartmentImage from '../../assets/img/Risorsa+2.svg'; // Assicurati che il percorso sia corretto
 
 export default {
     props: ['apartment'],
