@@ -18,6 +18,12 @@ export default {
       apartmentResults: [],
       selectedServices: [],
       closeSuggestion: false,
+      selections: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10+'],
+      selectedIndices: {
+        rooms: 0,
+        beds: 0,
+        bathrooms: 0
+      },
     };
   },
   created() {
@@ -105,17 +111,18 @@ export default {
       });
     },
 
-    // Funzione per incrementare contatore letti, camere e raggio
-    increaseValue(counter) {
-      this[counter]++;
+    setCounter(value, counter) {
+      if (counter === 'rooms') {
+        this.roomsCounter = value + 1;
+      } else if (counter === 'beds') {
+        this.bedsCounter = value + 1;
+      } else if (counter === 'bathrooms') {
+        this.bathroomsCounter = value + 1;
+      }
+
+      this.selectedIndices[counter] = value;
     },
 
-    // Funzione per decrementare contatore letti, camere, e raggio
-    decreaseValue(counter) {
-      if (this[counter] > 0) {
-        this[counter]--;
-      }
-    },
 
     dumpAddress() {
       this.address = "";
@@ -168,9 +175,13 @@ export default {
     <div class="search-container m-0 d-flex">
 
       <div class="dropdown-content" v-if="isDropdownOpen" @click="preventClose">
-        <div class="dropdown-input-group">
+        <div class="dropdown-input-group d-flex flex-column">
           <input type="range" class="form-range dropdown-input" min="0" max="50" step="1" id="radius"
             v-model="this.radiusCounter" />
+          <div class="km-infos d-flex justify-content-between">
+            <div>0 km</div>
+            <div>50 km</div>
+          </div>
         </div>
       </div>
 
@@ -217,8 +228,8 @@ export default {
 
         <!-- Search button -->
         <div class="search-button-container">
-          <button @click="goToResults" @keyup.enter="goToResults">
-            <img src="/src/assets/img/search-icon.svg" alt="" />
+          <button @click="goToResults" @keyup.enter="goToResults" :disabled="this.address === ''">
+            <img src="/src/assets/img/search-icon.svg" alt="search icon" />
           </button>
         </div>
       </div>
@@ -228,53 +239,73 @@ export default {
       <div class="modal fade" id="servicesModal" tabindex="-1" role="dialog" aria-labelledby="servicesModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
+          <div class="modal-content d-flex flex-column align-items-center">
 
-            <!-- Input group -->
-            <div class="select-section">
-              <div class="select-group">
-                <label for="rooms">Rooms</label>
-                <div class="d-flex justify-content-start">
-                  <input type="number" min="0" v-model="this.roomsCounter" id="rooms" />
-                  <span>+</span>
-                </div>
-              </div>
+            <div
+              class="pic-service-container-2 d-flex align-items-center justify-content-center gap-2 py-3 fw-bold border-bottom w-100 ">
 
-              <div class="select-group">
-                <label for="beds">Beds</label>
-                <div class="d-flex justify-content-start">
-                  <input type="number" min="0" v-model="this.bedsCounter" id="beds" />
-                  <span>+</span>
-                </div>
-              </div>
-
-              <div class="select-group">
-                <label for="beds">Bathrooms</label>
-                <div class="d-flex justify-content-start">
-                  <input type="number" min="0" v-model="this.bathroomsCounter" id="bathrooms" />
-                  <span>+</span>
-                </div>
-              </div>
-
-              <div class="select-group">
-                <label for="radius">Radius</label>
-                <div class="d-flex justify-content-start">
-                  <input type="number" min="0" max="50" step="5" v-model="this.radiusCounter" id="radius" />
-                  <span>km</span>
-                </div>
-              </div>
-
-
+              <img src="/src/assets/img/instant_mix.svg" class="" alt="filters icon" />
+              <span>Filters</span>
             </div>
 
-            <h5 class="text-center">Services</h5>
-            <ul class="services container d-flex gap-3 text-center">
-              <li class="service text-nowrap" :class="{ selected: selectedServices.includes(service.id) }"
-                v-for="service in services" @click="addService(service.id)">
-                {{ service.name }}
-              </li>
-            </ul>
+            <div class="d-flex flex-column mt-3 gap-4 list-unstyled w-100 px-5">
+
+              <div class="d-flex gap-2 align-items-center">
+                <img class="rooms-icon" src="../../assets/img/rooms_icon.svg" alt="rooms" />
+                <span class="fw-bold">Rooms</span>
+              </div>
+              <div class="room-selection d-flex gap-2 justify-content-center">
+                <div v-for="(number, index) in selections" class="selection-element"
+                  :class="{ 'selected': index === selectedIndices['rooms'] }" @click="setCounter(index, 'rooms')">{{
+        number }}</div>
+              </div>
+
+              <div class="d-flex gap-2 align-items-center">
+                <img class="beds-icon" src="../../assets/img/beds_icon.svg" alt="beds" />
+                <span class="fw-bold">Beds</span>
+              </div>
+              <div class="beds-selection d-flex gap-2 justify-content-center">
+                <div v-for="(number, index) in selections" class="selection-element"
+                  :class="{ 'selected': index === selectedIndices['beds'] }" @click="setCounter(index, 'beds')">
+                  {{
+        number }}</div>
+              </div>
+
+              <div class="d-flex gap-2 align-items-center">
+                <img class="bathroom-icon" src="../../assets/img/bathrooms_icon.svg" alt="bathrooms" />
+                <span class="fw-bold">Bathrooms</span>
+              </div>
+              <div class="bathrooms-selection d-flex gap-2 justify-content-center">
+                <div v-for="(number, index) in selections" class="selection-element"
+                  :class="{ 'selected': index === selectedIndices['bathrooms'] }"
+                  @click="setCounter(index, 'bathrooms')">{{
+        number }}</div>
+              </div>
+
+              <div class="d-flex gap-2 align-items-center">
+                <img class="service-icon" src="../../assets/img/services_icon.svg" alt="services" />
+                <span class="fw-bold">Services</span>
+              </div>
+              <div class="services-selection services d-flex gap-2 justify-content-center">
+                <div class="service" :class="{ selected: selectedServices.includes(service.id) }"
+                  v-for="service in services" @click="addService(service.id)">{{ service.name }}</div>
+
+              </div>
+            </div>
+
+
+
+
+
+            <!-- Search button -->
+            <div class="search-button-container-2 ms-auto py-5 px-5">
+              <button @click="goToResults" @keyup.enter="goToResults" :disabled="this.address === ''">
+                <img src="/src/assets/img/search-icon.svg" alt="search icon" />
+              </button>
+            </div>
           </div>
+
+
         </div>
 
       </div>
@@ -282,8 +313,8 @@ export default {
     </div>
 
     <!-- Filtri -->
-    <div class="d-flex justify-content-between align-items-center h-100">
-      <button class="button-filters d-flex align-items-center h-100 gap-2 " data-bs-toggle="modal"
+    <div class="d-flex justify-content-between align-items-center h-100" role="button">
+      <button class="button-filters d-flex align-items-center h-100 gap-2" data-bs-toggle="modal"
         data-bs-target="#servicesModal">
         <div class="pic-service-container">
 
@@ -301,7 +332,24 @@ export default {
 <style lang="scss" scoped>
 @use '../../assets/scss/partials/variables' as *;
 
-.wrapper {}
+.selected {
+  background-color: $our-black;
+  color: white;
+}
+
+
+.selection-element {
+  padding: 2px 14px;
+  border: 1px solid $placeholder;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.service-icon {
+  width: 16px;
+  margin-bottom: 2px;
+}
 
 .search-container {
   position: relative;
@@ -346,7 +394,7 @@ export default {
 
     .km-indicator {
       position: absolute;
-      right: -5px;
+      left: 20px;
       bottom: 0px;
 
     }
@@ -383,13 +431,19 @@ export default {
 
   }
 
+
+  .dropdown-group {
+    flex-grow: 1;
+    cursor: pointer;
+  }
+
   .dropdown-content {
     position: absolute;
     background-color: #ffff;
     width: 40%;
     right: 0;
     box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
-    padding: 8px 26px;
+    padding: 24px 26px 18px;
     border-radius: 10px;
     z-index: 200;
     top: 85px;
@@ -399,52 +453,21 @@ export default {
       border-bottom: 1px solid #dddddd;
     }
 
-    .dropdown-group {
-      font-size: 14px;
-      display: flex;
-      justify-content: space-between;
 
-      span {
-        display: flex;
-        align-items: center;
-        font-size: 12px;
-      }
+  }
 
-      .dropdown-input-group {
-        .dropdown-input {
-          width: 60px;
-          background: none;
-          padding: 4px 0;
-          text-align: center;
-          border-radius: 4px;
-          margin: 16px 10px;
-        }
-
-        button {
-          border: 1px solid $acid-yellow;
-          background: none;
-          padding: 6px;
-          display: inline-block;
-          width: 28px;
-          aspect-ratio: 1;
-          border-radius: 50%;
-          text-align: center;
-          line-height: 50%;
-
-          &:hover {
-            background-color: $acid-yellow;
-            transition: background-color 0.2s ease-in-out;
-          }
-        }
-      }
-    }
+  .km-infos {
+    color: $our-black;
+    font-size: 10px;
+    padding-top: 5px;
   }
 
   .search-button-container {
     display: flex;
     align-items: center;
     padding-left: 5px;
-    margin-left: auto;
+    position: absolute;
+    right: 10px;
 
     button {
       background-color: $acid-yellow;
@@ -453,6 +476,33 @@ export default {
       aspect-ratio: 1;
       width: 50px;
       height: 50px;
+
+      &:hover {
+        background-color: $acid-yellow-hover;
+      }
+
+      img {
+        width: 40%;
+      }
+    }
+  }
+
+  .search-button-container-2 {
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+
+    button {
+      background-color: $acid-yellow;
+      border: none;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      width: 50px;
+      height: 50px;
+
+      &:hover {
+        background-color: $acid-yellow-hover;
+      }
 
       img {
         width: 40%;
@@ -531,6 +581,9 @@ input[type='range']::-webkit-slider-thumb {
   /* Nascondi il controllo predefinito di WebKit */
   appearance: none;
   /* Nascondi il controllo predefinito di WebKit */
+  outline: none;
+  box-shadow: none;
+  border: none;
 }
 
 input[type='number'] {
@@ -550,15 +603,6 @@ input[type='number'] {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-}
-
-.range-disclaimer {
-  font-size: 10px;
-  width: 100%;
-  display: flex;
-  justify-content: end;
-  margin-top: -8px;
-  padding-right: 9px;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -592,6 +636,15 @@ input::-webkit-inner-spin-button {
   }
 }
 
+.pic-service-container2 {
+  width: 12px;
+
+  img {
+    width: 100%;
+
+  }
+}
+
 @media only screen and (min-width: 600px) {
   .filters-label {
     display: none;
@@ -606,6 +659,10 @@ input::-webkit-inner-spin-button {
     font-size: 12px;
     order: 0;
     margin-top: 0;
+
+    &:hover {
+      background-color: $our-black-hover;
+    }
   }
 
 
