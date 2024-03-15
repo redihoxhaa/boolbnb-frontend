@@ -130,8 +130,11 @@ export default {
     <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
   </div>
   <div class="container-fluid py-0">
-    <div class="advanced-searchbar d-flex justify-content-center">
+    <div class="col-12 col-lg-6 py-4">
+
+
       <AdvancedSearch :addressProp="this.$route.params.address" />
+
     </div>
   </div>
 
@@ -147,7 +150,7 @@ export default {
         <div class="col-12 col-lg-6 px-0">
           <h5 class="results mt-5 mt-md-0">{{ apartmentResults.length }} Results found</h5>
 
-          <div class="row apartments-list flex-nowrap m-0 g-3 user-select-none" ref="scrollContainer"
+          <div class="row apartments-list flex-nowrap m-0 g-3 pe-5 user-select-none" ref="scrollContainer"
             @mousedown="startDragging" @mouseup="stopDragging" @mousemove="dragging">
             <div v-for="(apartment, index) in apartmentResults" :key="apartment.id"
               class="apartment-card col-12 col-md-6 col-xxl-4">
@@ -185,6 +188,7 @@ export default {
   padding: 0 5%;
 
 }
+
 
 .apartments-list {
   overflow-x: scroll;
@@ -235,10 +239,7 @@ export default {
     overflow-x: unset;
   }
 
-  .advanced-searchbar {
-    width: 50%;
-    justify-content: start;
-  }
+
 
   .mobile-map {
     display: none;

@@ -151,219 +151,164 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
+  <div
+    class="wrapper pe-5 d-flex justify-content-between flex-column flex-md-row gap-4 gap-md align-items-center align-items-md-start">
     <!-- Container -->
-    <div class="search-container d-flex">
+    <div class="search-container m-0 d-flex">
       <!-- Input container -->
       <div class="input-container" @click="preventClose">
         <!-- Address group -->
         <div class="address-group">
           <label for="address" class="">Location</label>
-          <input
-            type="text"
-            id="address"
-            v-model="address"
-            placeholder="What are you dreaming of?"
-            @input="getAddresses"
-          />
-          <ul
-            id="suggestionsMenu"
-            class="suggestions-menu"
-            :class="{ 'd-none': !suggestions.length || closeSuggestion }"
-          >
-            <li
-              v-for="suggestion in suggestions"
-              :key="suggestion.id"
-              @click="selectAddress(suggestion)"
-            >
+          <input type="text" id="address" v-model="address" placeholder="What are you dreaming of?"
+            @input="getAddresses" />
+          <ul id="suggestionsMenu" class="suggestions-menu"
+            :class="{ 'd-none': !suggestions.length || closeSuggestion }">
+            <li v-for="suggestion in suggestions" :key="suggestion.id" @click="selectAddress(suggestion)">
               {{ suggestion.address.freeformAddress }}
             </li>
           </ul>
         </div>
 
-        <!-- Input group -->
-        <div class="select-section" @click="toggleDropdown">
-          <div class="select-group">
-            <label for="rooms">Rooms</label>
-            <div class="d-flex justify-content-start">
-              <input
-                type="number"
-                min="0"
-                v-model="this.roomsCounter"
-                id="rooms"
-              />
-              <span>+</span>
-            </div>
-          </div>
-
-          <div class="select-group">
-            <label for="beds">Beds</label>
-            <div class="d-flex justify-content-start">
-              <input
-                type="number"
-                min="0"
-                v-model="this.bedsCounter"
-                id="beds"
-              />
-              <span>+</span>
-            </div>
-          </div>
-
-          <div class="select-group">
-            <label for="beds">Bathrooms</label>
-            <div class="d-flex justify-content-start">
-              <input
-                type="number"
-                min="0"
-                v-model="this.bathroomsCounter"
-                id="bathrooms"
-              />
-              <span>+</span>
-            </div>
-          </div>
-
-          <div class="select-group">
-            <label for="radius">Radius</label>
-            <div class="d-flex justify-content-start">
-              <input
-                type="number"
-                min="0"
-                max="50"
-                step="5"
-                v-model="this.radiusCounter"
-                id="radius"
-              />
-              <span>km</span>
-            </div>
-          </div>
-
-          <div
-            class="dropdown-content"
-            v-if="isDropdownOpen"
-            @click="preventClose"
-          >
-            <div class="dropdown-group">
-              <span>Rooms</span>
-              <div class="dropdown-input-group">
-                <button @click.stop="decreaseValue('roomsCounter')">-</button>
-                <input
-                  type="text"
-                  v-model="this.roomsCounter"
-                  id="rooms"
-                  class="dropdown-input"
-                />
-                <button @click.stop="increaseValue('roomsCounter')">+</button>
-              </div>
-            </div>
-            <div class="dropdown-group">
-              <span>Beds</span>
-              <div class="dropdown-input-group">
-                <button @click.stop="decreaseValue('bedsCounter')">-</button>
-                <input
-                  type="text"
-                  v-model="this.bedsCounter"
-                  id="beds"
-                  class="dropdown-input"
-                />
-                <button @click.stop="increaseValue('bedsCounter')">+</button>
-              </div>
-            </div>
-            <div class="dropdown-group">
-              <span>Bathrooms</span>
-              <div class="dropdown-input-group">
-                <button @click.stop="decreaseValue('bathroomsCounter')">
-                  -
-                </button>
-                <input
-                  type="text"
-                  v-model="this.bathroomsCounter"
-                  id="bathrooms"
-                  class="dropdown-input"
-                />
-                <button @click.stop="increaseValue('bathroomsCounter')">
-                  +
-                </button>
-              </div>
-            </div>
-            <div class="dropdown-group border-bottom-0">
-              <span>Radius</span>
-              <div class="dropdown-input-group">
-                <input
-                  type="range"
-                  class="form-range dropdown-input"
-                  min="0"
-                  max="50"
-                  step="1"
-                  id="radius"
-                  v-model="this.radiusCounter"
-                />
-              </div>
-            </div>
-            <span class="range-disclaimer">Max range is 50km</span>
+        <div class="dropdown-group border-bottom-0">
+          <span>Radius</span>
+          <div class="dropdown-input-group">
+            <input type="range" class="form-range dropdown-input" min="0" max="50" step="1" id="radius"
+              v-model="this.radiusCounter" />
           </div>
         </div>
-        <div class="d-flex justify-content-between align-items-center">
-          <button
-            class="button-filters d-flex align-items-center gap-2"
-            data-bs-toggle="modal"
-            data-bs-target="#servicesModal"
-          >
-            <img src="/src/assets/img/instant_mix.svg" alt="" /> Filters
+
+
+
+
+        <!-- Search button -->
+        <div class="search-button-container">
+          <button @click="goToResults" @keyup.enter="goToResults">
+            <img src="/src/assets/img/search-icon.svg" alt="" />
           </button>
         </div>
       </div>
 
-      <!-- Search button -->
-      <div class="search-button-container">
-        <button @click="goToResults" @keyup.enter="goToResults">
-          <img src="/src/assets/img/search-icon.svg" alt="" />
-        </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="servicesModal" tabindex="-1" role="dialog" aria-labelledby="servicesModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+            <!-- Input group -->
+            <div class="select-section" @click="toggleDropdown">
+              <div class="select-group">
+                <label for="rooms">Rooms</label>
+                <div class="d-flex justify-content-start">
+                  <input type="number" min="0" v-model="this.roomsCounter" id="rooms" />
+                  <span>+</span>
+                </div>
+              </div>
+
+              <div class="select-group">
+                <label for="beds">Beds</label>
+                <div class="d-flex justify-content-start">
+                  <input type="number" min="0" v-model="this.bedsCounter" id="beds" />
+                  <span>+</span>
+                </div>
+              </div>
+
+              <div class="select-group">
+                <label for="beds">Bathrooms</label>
+                <div class="d-flex justify-content-start">
+                  <input type="number" min="0" v-model="this.bathroomsCounter" id="bathrooms" />
+                  <span>+</span>
+                </div>
+              </div>
+
+              <div class="select-group">
+                <label for="radius">Radius</label>
+                <div class="d-flex justify-content-start">
+                  <input type="number" min="0" max="50" step="5" v-model="this.radiusCounter" id="radius" />
+                  <span>km</span>
+                </div>
+              </div>
+
+              <div class="dropdown-content" v-if="isDropdownOpen" @click="preventClose">
+                <div class="dropdown-group">
+                  <span>Rooms</span>
+                  <div class="dropdown-input-group">
+                    <button @click.stop="decreaseValue('roomsCounter')">-</button>
+                    <input type="text" v-model="this.roomsCounter" id="rooms" class="dropdown-input" />
+                    <button @click.stop="increaseValue('roomsCounter')">+</button>
+                  </div>
+                </div>
+                <div class="dropdown-group">
+                  <span>Beds</span>
+                  <div class="dropdown-input-group">
+                    <button @click.stop="decreaseValue('bedsCounter')">-</button>
+                    <input type="text" v-model="this.bedsCounter" id="beds" class="dropdown-input" />
+                    <button @click.stop="increaseValue('bedsCounter')">+</button>
+                  </div>
+                </div>
+                <div class="dropdown-group">
+                  <span>Bathrooms</span>
+                  <div class="dropdown-input-group">
+                    <button @click.stop="decreaseValue('bathroomsCounter')">
+                      -
+                    </button>
+                    <input type="text" v-model="this.bathroomsCounter" id="bathrooms" class="dropdown-input" />
+                    <button @click.stop="increaseValue('bathroomsCounter')">
+                      +
+                    </button>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+
+            <h5 class="text-center">Services</h5>
+            <ul class="services container d-flex gap-3 text-center">
+              <li class="service text-nowrap" :class="{ selected: selectedServices.includes(service.id) }"
+                v-for="service in services" @click="addService(service.id)">
+                {{ service.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
       </div>
+
     </div>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="servicesModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="servicesModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <h5 class="text-center">Services</h5>
-          <ul class="services container d-flex gap-3 text-center">
-            <li
-              class="service text-nowrap"
-              :class="{ selected: selectedServices.includes(service.id) }"
-              v-for="service in services"
-              @click="addService(service.id)"
-            >
-              {{ service.name }}
-            </li>
-          </ul>
+    <!-- Filtri -->
+    <div class="d-flex justify-content-between align-items-center">
+      <button class="button-filters d-flex align-items-center gap-2" data-bs-toggle="modal"
+        data-bs-target="#servicesModal">
+        <div class="pic-service-container">
+
+          <img src="/src/assets/img/instant_mix_white.svg" class="" alt="filters icon" />
+
         </div>
-      </div>
+        <span class="p-0 m-0">Filters</span>
+      </button>
     </div>
+
+
   </div>
 </template>
 
 <style lang="scss" scoped>
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid black;
-}
+@use '../../assets/scss/partials/variables' as *;
+
+.wrapper {}
 
 .search-container {
   position: relative;
   background-color: #fff;
   padding: 10px 20px;
-  border-radius: 14px;
+  width: 100%;
+  border-radius: 12px;
   display: flex;
   margin-bottom: 50px;
+  border: 1px solid #8d8d8d;
 
   label {
     font-size: 12px;
@@ -393,6 +338,7 @@ export default {
 
     .address-group {
       flex-grow: 1;
+      border-right: 1px solid $placeholder;
 
       input {
         width: 100%;
@@ -425,7 +371,7 @@ export default {
       z-index: 1;
       top: 68px;
 
-      & > *:not(:last-child) {
+      &>*:not(:last-child) {
         border-bottom: 1px solid #dddddd;
       }
 
@@ -451,7 +397,7 @@ export default {
           }
 
           button {
-            border: 1px solid #bfe373;
+            border: 1px solid $acid-yellow;
             background: none;
             padding: 6px;
             display: inline-block;
@@ -462,7 +408,7 @@ export default {
             line-height: 50%;
 
             &:hover {
-              background-color: #bfe373;
+              background-color: $acid-yellow;
               transition: background-color 0.2s ease-in-out;
             }
           }
@@ -477,7 +423,7 @@ export default {
     padding-left: 5px;
 
     button {
-      background-color: #bfe373;
+      background-color: $acid-yellow;
       border: none;
       border-radius: 50%;
       aspect-ratio: 1;
@@ -537,7 +483,7 @@ export default {
   }
 
   .selected {
-    background-color: #bfe373;
+    background-color: $acid-yellow;
   }
 }
 
@@ -547,7 +493,7 @@ input[type='range'] {
 }
 
 input[type='range']::-webkit-slider-thumb {
-  background-color: var(--thumb-color, #bfe373);
+  background-color: var(--thumb-color, $acid-yellow);
   /* Colore del pallino */
   width: var(--thumb-size, 16px);
   /* Dimensioni del pallino */
@@ -598,8 +544,20 @@ input::-webkit-inner-spin-button {
 
 .button-filters {
   all: unset;
-  border-radius: 15px;
-  border: 1px solid #8d8d8d;
+  border-radius: 8px;
+  background-color: $our-black;
+  color: white;
   padding: 8px 15px;
+  font-size: 12px;
+
+}
+
+.pic-service-container {
+  width: 12px;
+
+  img {
+    width: 100%;
+
+  }
 }
 </style>
