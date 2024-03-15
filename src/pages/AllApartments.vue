@@ -42,9 +42,12 @@ export default {
   </div>
 
 
-  <div class="d-flex justify-content-center mb-5 pb-5" v-if="loaderStatus && !apartments">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
+  <div class="" v-if="loaderStatus && !apartments">
+    <h1 class="page-title pb-5">All Apartments</h1>
+    <div class="spaceholder d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
   </div>
 
@@ -60,6 +63,10 @@ export default {
 </template>
 
 <style scoped>
+.spaceholder {
+  height: 80vh;
+}
+
 .container {
   padding: 20px;
 }

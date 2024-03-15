@@ -60,11 +60,11 @@ export default {
 </script>
 
 <template>
-  <section class="mt-5 p-4 pt-5 p-sm-0" id="sponsored-apartments" v-if="apartments">
+  <section class="mt-5 p-4 pt-5 p-sm-0" id="sponsored-apartments">
     <div class="container d-md-flex gap-md-5">
       <div class="header text-center text-sm-start mt-5 mb-3">
         <h6>EXPLORE OUR</h6>
-        <h2>
+        <h2 class="mb-6">
           <div class="fw-bold">Sponsored</div>
           Premium<br>Apartments
         </h2>
@@ -76,7 +76,14 @@ export default {
     </div>
     <div class="scrolling-container mb-5 pb-4 d-flex gap-4 user-select-none" ref="scrollContainer"
       @mousedown="startDragging" @mouseup="stopDragging" @mousemove="dragging">
-      <ApartmentCard v-for="apartment in apartments" :apartment="apartment" class="house-card" />
+      <ApartmentCard v-if="apartments" v-for="apartment in apartments" :apartment="apartment" class="house-card" />
+      <div v-else>
+        <div class="spaceholder">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -124,6 +131,12 @@ export default {
 #sponsored-apartments {
   margin-top: 20px !important;
   margin-bottom: 20px !important;
+}
+
+.spaceholder {
+  padding-top: 40px;
+  padding-left: 40px;
+  height: 400px;
 }
 
 // Small devices (landscape phones, 576px and up)

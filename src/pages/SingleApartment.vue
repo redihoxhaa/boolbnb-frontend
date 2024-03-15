@@ -280,10 +280,46 @@ export default {
 
   </div>
 
+  <div class="container" v-else>
+    <div class="image-holder skeleton-loader">
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 @use '../assets/scss/partials/variables' as *;
+
+.image-holder {
+  height: 400px;
+  background-color: gray;
+  border-radius: 16px;
+  margin-bottom: 100vh;
+}
+
+.skeleton-loader {
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 80%),
+    lightgray;
+  background-repeat: repeat-y;
+  background-size: 300px 500px;
+  background-position: 0 0;
+  animation: shine 1s infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 100% 0,
+      0 0;
+  }
+}
+
+.name-holder {
+  width: 20px;
+  height: 14px;
+  background-color: grey;
+}
 
 .container {
   padding: 8px 20px;
@@ -455,6 +491,29 @@ img {
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 960px) {
+  .image-holder {
+    height: 500px;
+  }
+
+  .skeleton-loader {
+    background: linear-gradient(to right,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0) 80%),
+      lightgray;
+    background-repeat: repeat-y;
+    background-size: 500px 500px;
+    background-position: 0 0;
+    animation: shine 1s infinite;
+  }
+
+  @keyframes shine {
+    to {
+      background-position: 100% 0,
+        0 0;
+    }
+  }
+
   .user-info {
     position: unset;
     margin-top: 20px;

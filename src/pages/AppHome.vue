@@ -6,6 +6,9 @@ import SponsoredApartmentsMobile from "../components/partials/SponsoredApartment
 import ExperienceTouristComfort from "../components/partials/ExperienceTouristComfort.vue";
 import { store } from "../store";
 import ButtonToLink from "../components/partials/ButtonToLink.vue";
+import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 
 export default {
   name: "AppHome",
@@ -14,9 +17,26 @@ export default {
   data() {
     return {
       store,
+      ScrollTrigger
     };
   },
   mounted() {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from('.bosco-verticale', {
+      duration: 1,
+      x: '20%',
+      y: '10%',
+      scale: 0.8,
+      ease: "power4.out",
+    });
+    const textContent = this.$refs.mainTitle;
+    gsap.from(textContent, {
+      duration: 1.5,
+      opacity: 0,
+      y: 20,
+      stagger: 0.2,
+      ease: "power3.out",
+    });
   },
   methods: {},
 };
@@ -26,17 +46,18 @@ export default {
 
   <!-- Header -->
   <header class="p-4 p-sm-0">
-    <div class="container d-flex flex-column justify-content-between ">
-      <div class="home-top">
-        <HomeMenu :textColorBSProp="'text-white'" linkColorBS="text-white" logoPath="src\assets\img\logo-white.svg"
-          navColor="navbar-dark" />
-      </div>
+    <div class="custom-container mt-4">
+      <HomeMenu :textColorBSProp="'text-white'" linkColorBS="text-white" logoPath="src\assets\img\logo-white.svg"
+        navColor="navbar-dark" />
+    </div>
+    <div class="container d-flex flex-column justify-content-between">
 
       <!-- Above -->
       <div class="home-bottom">
 
         <!-- Main title -->
-        <h1 class="main-title col-12 col-sm-8 col-md-9 col-lg-6">Redefining <span>tourist</span> lifestyles through our
+        <h1 ref="mainTitle" class="main-title col-12 col-sm-8 col-md-9 col-lg-6">Redefining <span>tourist</span>
+          lifestyles through our
           premium apartments
         </h1>
 
@@ -79,7 +100,10 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/scss/partials/variables' as *;
 
-
+.custom-container {
+  padding: 0 10vw;
+  margin-bottom: 40px;
+}
 
 header {
   background-image: url(/src/assets/img/cielo.webp);
@@ -94,7 +118,7 @@ header {
 
   .main-title {
     color: #fff;
-    font-size: 65px;
+    font-size: 55px;
     line-height: 110%;
     margin-top: 105px;
     font-weight: 400;
@@ -121,7 +145,7 @@ header {
   right: -100px;
   bottom: 0;
   z-index: 1;
-  max-height: 800px;
+  max-height: 760px;
   pointer-events: none
 }
 
@@ -148,6 +172,8 @@ header {
 
 // Medium devices (tablets, less than 992px)
 @media only screen and (max-width: 991.98px) {
+
+
   .bosco-verticale {
     height: 800px;
     left: 630px;
