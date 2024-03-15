@@ -156,29 +156,19 @@ export default {
   .scrolling-container {
     width: 70%;
 
-    .house-card {
-      width: 212px;
-    }
+
   }
 }
 
 // X-Large devices (large desktops, 1200px and up)
 
 @media (min-width: 1200px) {
-  .scrolling-container {
-    .house-card {
-      width: 200px;
-    }
-  }
+  .scrolling-container {}
 }
 
 // XX-Large devices (larger desktops, 1400px and up)
 
 @media (min-width: 1400px) {
-  .scrolling-container {
-    .house-card {
-      width: 240px;
-    }
-  }
+  .scrolling-container {}
 }
 </style>
