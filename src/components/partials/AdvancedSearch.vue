@@ -77,7 +77,12 @@ export default {
       }
 
       if (this.radiusCounter) {
-        params.radius = this.radiusCounter;
+        if (this.radiusCounter > 50) {
+          this.radiusCounter = 50;
+          params.radius = this.radiusCounter;
+        } else {
+          params.radius = this.radiusCounter;
+        }
       }
 
       // Gestione dei servizi
@@ -110,6 +115,11 @@ export default {
       if (this[counter] > 0) {
         this[counter]--;
       }
+    },
+
+    dumpAddress() {
+      this.address = "";
+      this.closeSuggestion = true;
     },
 
     // Funzione per mostrare il dropdown
@@ -152,31 +162,47 @@ export default {
 
 <template>
   <div
-    class="wrapper pe-5 d-flex justify-content-between flex-column flex-md-row gap-4 gap-md align-items-center align-items-md-start">
+    class="wrapper d-flex justify-content-between flex-column flex-sm-row gap-4 gap-md align-items-end align-items-md-start">
     <!-- Container -->
     <div class="search-container m-0 d-flex">
       <!-- Input container -->
       <div class="input-container" @click="preventClose">
         <!-- Address group -->
-        <div class="address-group">
-          <label for="address" class="">Location</label>
-          <input type="text" id="address" v-model="address" placeholder="What are you dreaming of?"
-            @input="getAddresses" />
-          <ul id="suggestionsMenu" class="suggestions-menu"
-            :class="{ 'd-none': !suggestions.length || closeSuggestion }">
-            <li v-for="suggestion in suggestions" :key="suggestion.id" @click="selectAddress(suggestion)">
-              {{ suggestion.address.freeformAddress }}
-            </li>
-          </ul>
-        </div>
+        <div class="address-group d-flex align-items-center justify-content-between">
+          <div class="left-part flex-grow-1">
 
-        <div class="dropdown-group border-bottom-0">
-          <span>Radius</span>
-          <div class="dropdown-input-group">
-            <input type="range" class="form-range dropdown-input" min="0" max="50" step="1" id="radius"
-              v-model="this.radiusCounter" />
+            <label for="address" class="pb-1">Location</label>
+            <div class="d-flex">
+              <input type="text" id="address" v-model="address" placeholder="What are you dreaming of?"
+                @input="getAddresses" />
+            </div>
+            <ul id="suggestionsMenu" class="suggestions-menu"
+              :class="{ 'd-none': !suggestions.length || closeSuggestion }">
+              <li v-for="suggestion in suggestions" :key="suggestion.id" @click="selectAddress(suggestion)">
+                {{ suggestion.address.freeformAddress }}
+              </li>
+            </ul>
+          </div>
+          <div class="right-part">
+            <button class="x-button" @click="dumpAddress">
+              <img src="../../assets/img/delete-icon.svg" alt="delete icon">
+            </button>
           </div>
         </div>
+
+        <div class="ps-3 m-0 dropdown-group d-flex flex-column justify-content-center border-bottom-0">
+          <label class="pb-1">Radius</label>
+          <div class="radius-group">
+
+            <input type="number" min="0" max="50" id="radius" v-model="this.radiusCounter" />
+            <span class="km-indicator">km</span>
+          </div>
+        </div>
+
+        <!-- <div class="dropdown-input-group">
+          <input type="range" class="form-range dropdown-input" min="0" max="50" step="1" id="radius"
+            v-model="this.radiusCounter" />
+        </div> -->
 
 
 
@@ -279,15 +305,15 @@ export default {
     </div>
 
     <!-- Filtri -->
-    <div class="d-flex justify-content-between align-items-center">
-      <button class="button-filters d-flex align-items-center gap-2" data-bs-toggle="modal"
+    <div class="d-flex justify-content-between align-items-center h-100">
+      <button class="button-filters d-flex align-items-center h-100 gap-2 " data-bs-toggle="modal"
         data-bs-target="#servicesModal">
         <div class="pic-service-container">
 
           <img src="/src/assets/img/instant_mix_white.svg" class="" alt="filters icon" />
 
         </div>
-        <span class="p-0 m-0">Filters</span>
+        <span class="p-0 m-0 filters-label">Filters</span>
       </button>
     </div>
 
@@ -303,7 +329,7 @@ export default {
 .search-container {
   position: relative;
   background-color: #fff;
-  padding: 10px 20px;
+  padding: 10px 10px 10px 20px;
   width: 100%;
   border-radius: 12px;
   display: flex;
@@ -314,6 +340,12 @@ export default {
     font-size: 12px;
     font-weight: 600;
     color: #484848;
+  }
+
+  .x-button {
+    width: 10px;
+    margin: 0 15px;
+    cursor: pointer;
   }
 
   input {
@@ -332,12 +364,23 @@ export default {
     }
   }
 
+  .radius-group {
+    position: relative;
+
+    .km-indicator {
+      position: absolute;
+      right: -5px;
+      bottom: 0px;
+
+    }
+  }
+
   .input-container {
     flex-grow: 1;
     display: flex;
 
     .address-group {
-      flex-grow: 1;
+      width: 60%;
       border-right: 1px solid $placeholder;
 
       input {
@@ -421,6 +464,7 @@ export default {
     display: flex;
     align-items: center;
     padding-left: 5px;
+    margin-left: auto;
 
     button {
       background-color: $acid-yellow;
@@ -510,7 +554,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 input[type='number'] {
-  width: 16px !important;
+  width: 18px !important;
 }
 
 input[type='number']::-webkit-outer-spin-button,
@@ -547,9 +591,15 @@ input::-webkit-inner-spin-button {
   border-radius: 8px;
   background-color: $our-black;
   color: white;
-  padding: 8px 15px;
+  padding: 12px 30px;
   font-size: 12px;
+  order: 0;
 
+
+}
+
+.filters-label {
+  display: block;
 }
 
 .pic-service-container {
@@ -559,5 +609,39 @@ input::-webkit-inner-spin-button {
     width: 100%;
 
   }
+}
+
+@media only screen and (min-width: 600px) {
+  .filters-label {
+    display: none;
+  }
+
+  .button-filters {
+    all: unset;
+    border-radius: 8px;
+    background-color: $our-black;
+    color: white;
+    padding: 27px 25px;
+    font-size: 12px;
+    order: 0;
+
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .button-filters {
+    padding: 8px 15px;
+    order: 1
+  }
+
+  .wrapper {
+    padding-right: 20px;
+  }
+
+  .filters-label {
+    display: block;
+  }
+
+
 }
 </style>
