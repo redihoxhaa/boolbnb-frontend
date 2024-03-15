@@ -2,6 +2,7 @@
 import HomeMenu from "../components/partials/HomeMenu.vue";
 import HomeSearch from "../components/partials/HomeSearch.vue";
 import SponsoredApartments from "../components/partials/SponsoredApartments.vue";
+import SponsoredApartmentsMobile from "../components/partials/SponsoredApartmentsMobile.vue";
 import ExperienceTouristComfort from "../components/partials/ExperienceTouristComfort.vue";
 import { store } from "../store";
 import ButtonToLink from "../components/partials/ButtonToLink.vue";
@@ -9,7 +10,7 @@ import ButtonToLink from "../components/partials/ButtonToLink.vue";
 export default {
   name: "AppHome",
   props: [],
-  components: { HomeMenu, HomeSearch, ButtonToLink, SponsoredApartments, ExperienceTouristComfort },
+  components: { HomeMenu, HomeSearch, ButtonToLink, SponsoredApartments, SponsoredApartmentsMobile, ExperienceTouristComfort },
   data() {
     return {
       store,
@@ -67,15 +68,18 @@ export default {
   </header>
 
   <!-- Sponsored Apartments -->
-  <SponsoredApartments />
+  <SponsoredApartments class="sponsored-desktop d-none" />
+  <SponsoredApartmentsMobile class="d-md-none" />
 
   <!-- Experience Tourist Comfort -->
-  <ExperienceTouristComfort />
+  <ExperienceTouristComfort class="pb-0 pb-md-5" />
 
 </template>
 
 <style lang="scss" scoped>
 @use '../assets/scss/partials/variables' as *;
+
+
 
 header {
   background-image: url(/src/assets/img/cielo.webp);
@@ -205,9 +209,9 @@ header {
 }
 
 
-
-
-
-// X-Large devices (large desktops, less than 1400px)
-@media only screen and (max-width: 1399.98px) {}
+@media only screen and (min-width: 768px) {
+  .sponsored-desktop {
+    display: block !important;
+  }
+}
 </style>

@@ -62,46 +62,35 @@ export default {
 <template>
   <section class="mt-5 p-4 pt-5 p-sm-0" id="sponsored-apartments" v-if="apartments">
     <div class="container d-md-flex gap-md-5">
-      <div class="header text-center text-sm-start mt-5 mb-3">
+      <div class="header text-center text-md-start mt-5 mb-3">
         <h6>EXPLORE OUR</h6>
         <h2>
           <div class="fw-bold">Sponsored</div>
-          Premium<br>Apartments
+          Premium Apartments
         </h2>
-        <div class="text-center text-sm-start mt-4 mb-5 pb-5 mt-md-5">
+        <div class="text-center text-md-start mt-4 pb-5 mb-5 mt-md-5">
           <Button :buttonText="'Explore All'" buttonRedirect="all-apartments" />
         </div>
       </div>
-
-    </div>
-    <div class="scrolling-container mb-5 pb-4 d-flex gap-4 user-select-none" ref="scrollContainer"
-      @mousedown="startDragging" @mouseup="stopDragging" @mousemove="dragging">
-      <ApartmentCard v-for="apartment in apartments" :apartment="apartment" class="house-card" />
+      <div class="scrolling-container mb-5 pb-4 d-flex gap-4 user-select-none" ref="scrollContainer"
+        @mousedown="startDragging" @mouseup="stopDragging" @mousemove="dragging">
+        <ApartmentCard v-for="apartment in apartments" :apartment="apartment" class="house-card" />
+      </div>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
-.header {
-  position: absolute;
-}
-
-.scrolling-container {
-  display: flex;
-  flex-direction: column;
-  width: 60%;
-  max-width: 1482px;
-  margin-left: auto;
-  padding-right: 24px;
-}
-
-.scroll-snap {
-  flex: 0 0 auto;
-  scroll-snap-align: start;
-}
-
 .container {
-  position: relative
+  .scrolling-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scroll-snap {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -138,7 +127,6 @@ export default {
     flex-direction: row !important;
     scroll-snap-type: x mandatory;
 
-
     .house-card {
       width: 220px;
     }
@@ -154,8 +142,6 @@ export default {
 
 @media (min-width: 992px) {
   .scrolling-container {
-    width: 70%;
-
     .house-card {
       width: 212px;
     }
@@ -167,7 +153,7 @@ export default {
 @media (min-width: 1200px) {
   .scrolling-container {
     .house-card {
-      width: 200px;
+      width: 190px;
     }
   }
 }
@@ -177,7 +163,7 @@ export default {
 @media (min-width: 1400px) {
   .scrolling-container {
     .house-card {
-      width: 240px;
+      width: 230px;
     }
   }
 }

@@ -37,7 +37,7 @@ export default {
 </script>
 
 <template>
-  <div class="container">
+  <div class="custom-container mt-4">
     <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
   </div>
 
@@ -48,10 +48,10 @@ export default {
     </div>
   </div>
 
-  <div class="container" v-else>
+  <div class="custom-container" v-else>
     <h1 class="page-title pb-5">All Apartments</h1>
     <div class="apartment-list row g-5">
-      <div v-for="apartment in apartments" class="col-lg-3 col-md-4 col-sm-6">
+      <div v-for="apartment in apartments" class="col-custom-xxl col-xl-3 col-lg-4 col-md-4 col-sm-6">
         <ApartmentCard :apartment="apartment" />
       </div>
 
@@ -69,6 +69,11 @@ export default {
   margin-bottom: 20px;
   color: #333;
   text-align: center;
+}
+
+.custom-container {
+  padding: 0 10vw;
+  margin-bottom: 40px;
 }
 
 .apartment-list {}
@@ -141,5 +146,17 @@ export default {
 
 .detail-button:hover {
   background-color: #ff6b00;
+}
+
+@media screen and (min-width: 1800px) {
+  .col-custom-xxl {
+    width: 20% !important;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .col-custom-xxl {
+    width: 16.66666667% !important;
+  }
 }
 </style>
