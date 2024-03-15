@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 
 export default {
     name: 'ApartmentCard',
-    props: ['apartment', 'colSize'],
+    props: ['apartment', 'index', 'colSize'],
     data() {
         return {
             props: [],
@@ -43,6 +43,13 @@ export default {
                 params: { id: apartmentID },
             });
         },
+
+        showHint() {
+            this.$emit('show-hint', this.index);
+        },
+        hideHint() {
+            this.$emit('hide-hint');
+        }
     },
     created() {
         if (this.apartment.distance) {
@@ -56,7 +63,7 @@ export default {
 </script>
 
 <template>
-    <div class="apartment-card" :class="colSize">
+    <div class="apartment-card" :class="colSize" :data-index="index" @mouseover="showHint" @mouseout="hideHint">
         <div class="apartment-image-container m-0">
             <div class="apartment-icon">
                 <div class="icon-sponsor">

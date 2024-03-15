@@ -19,7 +19,8 @@ export default {
       center: null,
       isDragging: false,
       startX: 0,
-      scrollLeft: 0
+      scrollLeft: 0,
+      hoveredIndex: null
     };
   },
   watch: {
@@ -98,6 +99,22 @@ export default {
       const x = event.pageX - this.$refs.scrollContainer.offsetLeft;
       const walk = (x - this.startX) * 2; // Adjust scrolling speed
       this.$refs.scrollContainer.scrollLeft = this.scrollLeft - walk;
+    },
+
+    showMarkerHint(index) {
+      const markers = document.querySelectorAll('.mapboxgl-marker');
+      markers.forEach((marker, i) => {
+        if (i === index) {
+          marker.classList.add('hint');
+        }
+      });
+    },
+
+    hideMarkerHint() {
+      const markers = document.querySelectorAll('.mapboxgl-marker');
+      markers.forEach(marker => {
+        marker.classList.remove('hint');
+      });
     }
   },
   mounted() {
@@ -132,9 +149,10 @@ export default {
 
           <div class="row apartments-list flex-nowrap m-0 g-3 user-select-none" ref="scrollContainer"
             @mousedown="startDragging" @mouseup="stopDragging" @mousemove="dragging">
-            <div v-for="apartment in apartmentResults" :key="apartment.id"
-              class="apartment-card col-12 col-md-6 col-xxl-4 ">
-              <ApartmentCard :apartment="apartment" />
+            <div v-for="(apartment, index) in apartmentResults" :key="apartment.id"
+              class="apartment-card col-12 col-md-6 col-xxl-4">
+              <ApartmentCard :apartment="apartment" :index="index" @show-hint="showMarkerHint"
+                @hide-hint="hideMarkerHint" />
             </div>
           </div>
         </div>
