@@ -61,6 +61,23 @@ export default {
             // Aggiungi cerchio di ricerca
             this.addSearchCircle(map);
 
+            // Creazione e aggiunta del popup invisibile
+            let invisiblePopup = new tt.Popup({ closeButton: false }).setLngLat([0, 0]).addTo(map);
+            invisiblePopup.setHTML(`<style>     .hint {
+                       animation: moveUpDown 0.3s ease-in-out infinite alternate;
+                       position: relative;
+                    }
+
+                    @keyframes moveUpDown {
+        0% {
+            margin-top: 0;
+        }
+        100% {
+            margin-top: 10px;
+       
+        }
+    }</style><div style="visibility: hidden;"></div>`); // Imposta il contenuto vuoto e rendilo invisibile
+
             for (let i = 0; i < this.apartments.length; i++) {
                 const apartment = this.apartments[i];
                 try {
@@ -184,7 +201,7 @@ export default {
             margin-top: 0;
         }
         100% {
-            margin-top: 5px;
+            margin-top: 10px;
        
         }
     }
