@@ -71,8 +71,8 @@ export default {
                     .apartment-card2 {
                         flex-shrink: 0;
                         position: relative;
-                        width: px;
-                        height: 250px;
+                        width: 200px;
+                        height: 200px;
                         display: flex;
                         flex-direction: column;
                     }
@@ -100,12 +100,12 @@ export default {
                         justify-content: end;
                         position: absolute;
                         right: 0;
-                        top: 85px;
+                        top: 62px;
                     }
 
                     .arrow-icon2 {
-                        width: 40px;
-                        height: 40px;
+                        width: 30px;
+                        height: 30px;
                         text-align: center;
                         border-radius: 50%;
                         background-color: #CEF27F;
@@ -149,18 +149,22 @@ export default {
                     }
 
                     .titolo-appartamento {
-                        font-size: 16px;
+                        font-size: 12px;
                         font-weight: 400;
-                        line-height: 26px;
+                        line-height: 16px;
                         margin: 0;
                         padding: 0;
                     }
 
                     .indirizzo-appartamento {
-                        font-size: 13px;
+                        font-size: 11px;
                         font-weight: 300;
                         color: #878b91;
                         display: inline-block;
+                    }
+
+                    .distanza-appartamento {
+                        font-size: 10px;
                     }
 
                     .rooms-icon2 {
@@ -190,8 +194,8 @@ export default {
                     <div class="apartment-info2">
                         <div>
                             <h3 class="titolo-appartamento">${apartment.title}</h3>
-                            <span class="indirizzo-appartamento">${apartment.address}</span>
-                            <div class="distanza-appartamento text-end">${apartment.distance.toString().slice(0, 4)} km away</div>
+                            <span class="indirizzo-appartamento mt-1">${apartment.address}</span>
+                   <div class="distanza-appartamento text-end mt-1">${apartment.distance} away</div>
                         </div>
                     </div>
                 </div>

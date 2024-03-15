@@ -133,7 +133,7 @@ export default {
                         height: 100%;
                     }
 
-                    .apartment-image2 img {
+                    .image-inside {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
@@ -183,15 +183,15 @@ export default {
                         </div>
                         <div class="apartment-image2">
                             ${apartment.images ?
-                            `<img src="${this.store.imagesAPI + apartment.images.split(',')[0]}" alt="Apartment Image">` :
-                            `<img src="https://victorsandbox.myshopify.com/cdn/shop/products/property-placeholder_grande.jpg?v=1482778691" alt="Apartment Image" class="card-image">`}
+                            `<img src="${this.store.imagesAPI + apartment.images.split(',')[0]}" alt="Apartment Image" class="image-inside">` :
+                            `<img src="https://victorsandbox.myshopify.com/cdn/shop/products/property-placeholder_grande.jpg?v=1482778691" alt="Apartment Image" class="image-inside">`}
                         </div>
                     </div>
                     <div class="apartment-info2">
                         <div>
                             <h3 class="titolo-appartamento">${apartment.title}</h3>
                             <span class="indirizzo-appartamento">${apartment.address}</span>
-                            <div class="distanza-appartamento text-end">${apartment.distance.toString().slice(0, 4)} km away</div>
+                            <div class="distanza-appartamento mt-1 text-end">${apartment.distance} away</div>
                         </div>
                     </div>
                 </div>
