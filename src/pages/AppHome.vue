@@ -67,7 +67,7 @@ export default {
         </div>
 
         <!-- Cta text-->
-        <div class="call-to-action pb-2 fs-5 col-9 col-md-7 col-lg-5 col-xl-4">
+        <div class="call-to-action pb-5 fs-5 col-9 col-md-7 col-lg-5 col-xl-4">
           <span>
             Are you interested in listing your apartment to increase bookings?
           </span>
@@ -131,7 +131,7 @@ header {
 
   .call-to-action {
     color: white;
-    margin-top: 160px;
+    margin-top: 140px;
     font-weight: 400;
   }
 }

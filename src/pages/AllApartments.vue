@@ -1,13 +1,14 @@
 <script>
 import AdvancedSearch from "../components/partials/AdvancedSearch.vue";
 import ApartmentCard from "../components/partials/ApartmentCard.vue";
+import ApartmentCardSkeletonLoader from "../components/partials/ApartmentCardSkeletonLoader.vue";
 import HomeMenu from "../components/partials/HomeMenu.vue";
 import { store } from "../store";
 import axios from "axios";
 
 export default {
   props: [],
-  components: { AdvancedSearch, HomeMenu, ApartmentCard },
+  components: { AdvancedSearch, HomeMenu, ApartmentCard, ApartmentCardSkeletonLoader },
   data() {
     return {
       store,
@@ -43,7 +44,15 @@ export default {
 
 
   <div class="" v-if="loaderStatus && !apartments">
-    <h1 class="page-title pb-5">All Apartments</h1>
+    <div class="custom-container">
+      <h1 class="page-title pb-5">All Apartments</h1>
+      <div class="apartment-list row g-5">
+        <div v-for="n in 10" class="col-custom-xxl col-xl-3 col-lg-4 col-md-4 col-sm-6">
+          <ApartmentCardSkeletonLoader />
+        </div>
+
+      </div>
+    </div>
     <div class="spaceholder d-flex justify-content-center">
       <div class="loader my-5"><img src="../assets/img/Risorsa+2.svg" alt=""></div>
     </div>

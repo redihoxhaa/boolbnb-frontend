@@ -126,25 +126,37 @@ export default {
 
 <template>
 
+  <!-- Header -->
   <div class="container-fluid sticky-top">
     <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
   </div>
+
+  <!-- Advanced Search -->
   <div class="container-fluid py-0">
     <div class="col-12 col-lg-6 padding-layer-search">
-
-
       <AdvancedSearch :addressProp="this.$route.params.address" />
-
     </div>
   </div>
 
-  <div class="d-flex justify-content-center mb-5 pb-5" v-if="loaderStatus">
-    <div class="loader my-5"><img src="../assets/img/Risorsa+2.svg" alt=""></div>
+  <!-- Loader -->
+  <div class="container-fluid d-flex mb-5 pb-5" v-if="loaderStatus">
+    <div class="content-loader col-12 col-lg-6 d-flex justify-content-center pt-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div class="map-loader col-12 col-lg-6 skeleton-loader map-div">
+    </div>
   </div>
 
+  <!-- Content -->
   <div class="content" v-else>
+
+    <!-- Apartment Results -->
     <div class="container-fluid custom" v-if="apartmentResults.length && loaderStatus === false">
       <div class="row m-0">
+
+        <!-- Title Results -->
         <div class="col-12 col-lg-6 px-0">
           <h5 class="results mt-5 mt-md-0">{{ apartmentResults.length }} Results found</h5>
 
@@ -157,6 +169,7 @@ export default {
             </div>
           </div>
         </div>
+
         <!-- Mappa desktop -->
         <div class="col-6 map-div">
           <div class="my-map">
@@ -172,12 +185,43 @@ export default {
         </div>
       </div>
     </div>
+
+    <!-- Apartment Not fount -->
     <h4 class="text-center" v-else>No apartment was found</h4>
+
   </div>
+
 </template>
 
 
 <style lang="scss" scoped>
+.map-loader {
+  background-color: red;
+  margin-top: -100px;
+  margin-left: 12px;
+  width: calc(50vw - 12px);
+  height: 100vh;
+}
+
+.skeleton-loader {
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 80%),
+    lightgray;
+  background-repeat: repeat-y;
+  background-size: 600px 500px;
+  background-position: 0 0;
+  animation: shine 1s infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 100% 0,
+      0 0;
+  }
+}
+
 .container-fluid {
   padding: 10px 5%;
 }
