@@ -269,7 +269,7 @@ export default {
 
             </div>
 
-            <div class="d-flex flex-column mt-3 gap-4 list-unstyled w-100 px-5">
+            <div class="d-flex flex-column mt-3 gap-3 list-unstyled w-100 px-5">
 
               <div class="d-flex gap-2 align-items-center">
                 <img class="rooms-icon" src="../../assets/img/rooms_icon.svg" alt="rooms" />
@@ -485,15 +485,19 @@ export default {
 }
 
 .ball {
-  width: 25px;
-  height: 25px;
+  width: 16px;
+  height: 16px;
   border: 1px solid $our-black;
   margin: 4px;
   border-radius: 50%;
 
+
   img {
-    padding: 5px;
-    width: 100%;
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    margin-bottom: 8px;
+    margin-left: 1.5px;
   }
 }
 
