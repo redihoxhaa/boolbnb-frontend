@@ -30,7 +30,7 @@ export default {
 </script>
 
 <template>
-  <div class="container mb-16">
+  <div class="container mb-16 mt-5 pt-5">
     <div class="row">
       <div class="col-6">
         <img ref="luxImage" class="image-container" src="../../assets/img/luxury-tourist-home.png" alt="" />
