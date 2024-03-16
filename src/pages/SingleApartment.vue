@@ -327,7 +327,7 @@ export default {
   height: 400px;
   background-color: gray;
   border-radius: 18px;
-  // margin-bottom: 100vh;
+  margin-bottom: 100vh;
 }
 
 .skeleton-loader {

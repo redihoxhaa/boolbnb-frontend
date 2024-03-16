@@ -191,9 +191,10 @@ export default {
     </div>
 
     <!-- Apartment Not fount -->
-    <h4 class="text-center py-5" v-else>No apartment was found</h4>
 
+    <h4 class="text-left py-5 hide-footer container-fluid" v-else>No apartment was found, retry with other filters.</h4>
   </div>
+
 
 
 </template>
@@ -204,6 +205,10 @@ export default {
 
 .custom-border {
   border-bottom: 1px solid #dddddd;
+}
+
+.hide-footer {
+  margin-bottom: 42vh;
 }
 
 .map-loader {

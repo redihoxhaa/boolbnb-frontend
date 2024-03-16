@@ -57,9 +57,7 @@ export default {
 
         </div>
       </div>
-      <div class="spaceholder d-flex justify-content-center">
-        <div class="loader my-5"><img src="../assets/img/Risorsa+2.svg" alt=""></div>
-      </div>
+
     </div>
 
     <div class="custom-container" v-else>

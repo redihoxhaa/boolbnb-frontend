@@ -46,7 +46,7 @@ export default {
 <template>
 
   <!-- Header -->
-  <header class="p-4 p-sm-0">
+  <header class="p-sm-0">
     <div class="custom-container mt-4">
       <HomeMenu :textColorBSProp="'text-white'" linkColorBS="text-white" logoPath="src\assets\img\logo-white.svg"
         navColor="navbar-dark" />

@@ -30,13 +30,13 @@ export default {
 </script>
 
 <template>
-  <div class="container mb-16 mt-5 pt-5">
+  <div class="container mb-16 pt-5">
     <div class="row">
-      <div class="col-6">
+      <div class="col-12 order-1 order-md-0 col-md-6">
         <img ref="luxImage" class="image-container" src="../../assets/img/luxury-tourist-home.png" alt="" />
       </div>
-      <div class="col-6">
-        <div ref="luxText" class="text-md-start mt-5 mb-3 d-flex flex-column justify-content-center h-100">
+      <div class="col-12 col-md-6 mb-5 pb-5">
+        <div ref="luxText" class="text-center text-md-start mb-3 d-flex flex-column justify-content-center h-100">
           <h6>DISCOVER A NEW WAY</h6>
           <h2>
             To Experience<br />
