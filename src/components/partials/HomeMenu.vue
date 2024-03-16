@@ -1,9 +1,45 @@
 <script>
+import { store } from '../../store';
+import axios from 'axios';
 import ButtonToLink from './ButtonToLink.vue';
 export default {
   name: 'HomeMenu',
   props: ['textColorBSProp', 'linkColorBS', 'logoPath', 'navColor'],
   components: { ButtonToLink },
+  data() {
+    return {
+      store,
+      username: null,
+    }
+  },
+  methods: {
+
+    // getCookie() {
+    //   const value = `; ${document.cookie}`;
+    //   const parts = value.split(`; ${name}=`);
+    //   if (parts.length === 2) return parts.pop().split(';').shift();
+
+    // },
+
+    // getUsername() {
+
+
+    //   const authToken = this.getCookie('laravel_session'); // Assicurati di sostituire 'laravel_session' con il nome corretto del cookie di sessione
+
+
+    //   axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
+
+
+    //   axios.get(this.store.loggedUserAPI).then(response => {
+    //     console.log(response);
+    //   }).catch(error => {
+    //     console.error(error);
+    //   });
+    // }
+  },
+  mounted() {
+    // this.getUsername();
+  }
 };
 </script>
 
@@ -11,66 +47,30 @@ export default {
   <nav class="navbar navbar-expand-lg d-flex gap-4" :class="navColor">
     <router-link class="navbar-brand" :to="{ name: 'home' }">
       <img :src="logoPath" alt="Luxor logo" class="logo" v-if="logoPath" />
-      <img
-        src="../../assets/img/logo-black.svg"
-        alt="Luxor logo"
-        class="logo"
-        v-else
-      />
+      <img src="../../assets/img/logo-black.svg" alt="Luxor logo" class="logo" v-else />
     </router-link>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div
-      class="collapse navbar-collapse d-lg-flex justify-content-between"
-      id="navbarSupportedContent"
-    >
+    <div class="collapse navbar-collapse d-lg-flex justify-content-between" id="navbarSupportedContent">
       <ul class="link-list d-flex gap-4 gap-sm-5 m-0 p-0">
         <li class="nav-item">
-          <router-link
-            class="link-item"
-            :class="linkColorBS"
-            :to="{ name: 'home' }"
-            >Home</router-link
-          >
+          <router-link class="link-item" :class="linkColorBS" :to="{ name: 'home' }">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link
-            class="link-item"
-            :class="linkColorBS"
-            :to="{ name: 'all-apartments' }"
-            >Apartments</router-link
-          >
+          <router-link class="link-item" :class="linkColorBS" :to="{ name: 'all-apartments' }">Apartments</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="link-item" :class="linkColorBS" :to="{ name: '' }"
-            >Contacts</router-link
-          >
+          <router-link class="link-item" :class="linkColorBS" :to="{ name: '' }">Contacts</router-link>
         </li>
       </ul>
       <div class="buttons d-flex gap-3">
-        <ButtonToLink
-          class="custom-font"
-          :buttonText="'Login'"
-          :textColorBS="textColorBSProp"
-          :buttonClass="'outline'"
-          buttonRedirect="http://127.0.0.1:8000/login"
-        />
-        <ButtonToLink
-          class="custom-font"
-          :buttonText="'Register'"
-          buttonRedirect="http://127.0.0.1:8000/register"
-          textColorBS="d-flex align-items-center"
-        />
+        <ButtonToLink class="custom-font" :buttonText="'Login'" :textColorBS="textColorBSProp" :buttonClass="'outline'"
+          buttonRedirect="http://127.0.0.1:8000/login" />
+        <ButtonToLink class="custom-font" :buttonText="'Register'" buttonRedirect="http://127.0.0.1:8000/register"
+          textColorBS="d-flex align-items-center" />
       </div>
     </div>
   </nav>
@@ -126,6 +126,7 @@ img {
 // Small devices (landscape phones, less than 768px)
 
 @media only screen and (max-width: 767.98px) {
+
   .show,
   .collapsing {
     display: flex;
@@ -136,6 +137,5 @@ img {
 
 // Medium devices (tablets, less than 992px)
 
-@media only screen and (max-width: 991.98px) {
-}
+@media only screen and (max-width: 991.98px) {}
 </style>

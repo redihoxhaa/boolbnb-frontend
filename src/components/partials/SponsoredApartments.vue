@@ -24,7 +24,6 @@ export default {
         .get(this.store.allApartmentsAPI + this.store.sponsoredApartmentsURI)
         .then((response) => {
           this.apartments = response.data;
-          console.log(response.data);
         });
     },
 
