@@ -187,7 +187,7 @@ export default {
     </div>
 
     <!-- Apartment Not fount -->
-    <h4 class="text-center" v-else>No apartment was found</h4>
+    <h4 class="text-center py-5" v-else>No apartment was found</h4>
 
   </div>
 
