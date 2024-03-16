@@ -28,20 +28,32 @@ export default {
             <img class="logo" src="../assets/img/logo-footer.svg" alt="Logo">
             <img class="logo-text" src="../assets/img/malhome.svg" alt="Logo">
           </div>
-          <p class="p-font my-4">At MalHome, we specialize in curating exquisite, luxury apartments for
-            short-term rentals. Our mission is to provide discerning travelers with exceptional accommodations that
-            combine elegance, comfort, and convenience. From stunning city penthouses to secluded beachfront villas, we
-            strive to exceed our guests' expectations and create unforgettable experiences. Welcome to a world of luxury
-            living with MalHome.</p>
+          <p class="p-font my-4">
+            MalHome is an online platform that allows users to book unique luxurious accommodations worldwide. Hosts can
+            offer houses, apartments, while travelers can search and book the perfect
+            lodging for their needs.</p>
           <div class="buttons d-flex gap-3 mb-5 mt-5 justify-content-center justify-content-sm-start">
 
 
-            <a class="btn custom-btn d-flex align-items-center gap-3" href="#"><img
-                src="../assets/img/ion_logo-google-playstore.svg" alt="Playstore logo"><span
-                class="d-none">PlayStore</span></a>
+            <a class="btn custom-btn d-flex align-items-center gap-3" href="#"><img src="../assets/img/boolean-logo.svg"
+                alt="Boolean logo"><span class="d-none">PlayStore</span></a>
             <a class="btn custom-btn d-flex align-items-center gap-3" href="#"><img src="../assets/img/vector.svg"
                 alt="App Store Logo"><span class="d-none">AppleStore</span> </a>
           </div>
+        </div>
+        <div class="col-md-3 col-lg-3">
+          <h5>Team 1 </h5>
+          <ul class="list-footer">
+            <li><a class="nav-link" target="_blank" href="#">Gaetano Chiapparino</a></li>
+            <li><a class="nav-link" target="_blank" href="#">Lorenzo De Vito</a></li>
+            <li><a class="nav-link" target="_blank" href="https://www.linkedin.com/in/mirko-cherchi/">Mirko Cherchi</a>
+            </li>
+            <li><a class="nav-link" target="_blank" href="https://www.linkedin.com/in/redihoxha/">Redi Hoxha</a></li>
+            <li><a class="nav-link ver" target="_blank" href="https://www.linkedin.com/in/vitodursopettersson/">Vito
+                D'Urso Pettersson</a>
+            </li>
+          </ul>
+
         </div>
         <div class="col-md-3 col-lg-3">
           <h5>Company </h5>
@@ -50,17 +62,6 @@ export default {
             <li><a class="nav-link" href="#">Legal Information</a></li>
             <li><a class="nav-link" href="#">Contact Us</a></li>
             <li><a class="nav-link" href="#">Blogs</a></li>
-          </ul>
-
-        </div>
-        <div class="col-md-3 col-lg-3">
-          <h5>Help Center</h5>
-          <ul class="list-footer">
-            <li><a class="nav-link" href="#">Find a Property</a></li>
-            <li><a class="nav-link" href="#">How To Host?</a></li>
-            <li><a class="nav-link" href="#">Why Us?</a></li>
-            <li><a class="nav-link" href="#">FAQs</a></li>
-            <li><a class="nav-link" href="#">Rental Guides</a></li>
           </ul>
         </div>
         <div class="col-md-12 text-center text-md-start col-lg-3">
@@ -84,7 +85,7 @@ export default {
       class="container d-flex gap-3 text-center text-sm-start flex-column flex-sm-row justify-content-between py-5 align-items-center">
 
       <div class="left">© 2024 MalHome</div>
-      <div class="right">Created with love by <span>Roberto Malone</span></div>
+      <div class="right">Created with love by <span>team 1 classe #110</span></div>
 
     </div>
   </footer>
@@ -93,6 +94,7 @@ export default {
 
 <style lang="scss" scoped>
 // USES
+
 footer {
   background-color: #EFF0F2;
 
