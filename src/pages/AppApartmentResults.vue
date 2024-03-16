@@ -139,9 +139,7 @@ export default {
   </div>
 
   <div class="d-flex justify-content-center mb-5 pb-5" v-if="loaderStatus">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
+    <div class="loader my-5"><img src="../assets/img/Risorsa+2.svg" alt=""></div>
   </div>
 
   <div class="content" v-else>
@@ -216,6 +214,38 @@ export default {
 .sticky-top {
   background-color: white;
 }
+
+.loader {
+  width: 48px;
+  height: 48px;
+  display: block;
+  margin: 20px auto;
+  box-sizing: border-box;
+  position: relative;
+  animation: animMarker 0.4s ease-in-out infinite alternate;
+}
+
+
+@keyframes animMarker {
+  0% {
+    transform: translate(0px, 8px);
+  }
+
+  100% {
+    transform: translate(0px, -8px);
+  }
+}
+
+@keyframes animShadow {
+  0% {
+    transform: scale(0.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 
 ::-webkit-scrollbar {
   width: 7px;

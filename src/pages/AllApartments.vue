@@ -45,9 +45,7 @@ export default {
   <div class="" v-if="loaderStatus && !apartments">
     <h1 class="page-title pb-5">All Apartments</h1>
     <div class="spaceholder d-flex justify-content-center">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+      <div class="loader my-5"><img src="../assets/img/Risorsa+2.svg" alt=""></div>
     </div>
   </div>
 
@@ -81,6 +79,37 @@ export default {
 .custom-container {
   padding: 0 10vw;
   margin-bottom: 40px;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  display: block;
+  margin: 20px auto;
+  box-sizing: border-box;
+  position: relative;
+  animation: animMarker 0.4s ease-in-out infinite alternate;
+}
+
+
+@keyframes animMarker {
+  0% {
+    transform: translate(0px, 8px);
+  }
+
+  100% {
+    transform: translate(0px, -8px);
+  }
+}
+
+@keyframes animShadow {
+  0% {
+    transform: scale(0.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .apartment-list {}
