@@ -60,7 +60,7 @@ export default {
 </script>
 
 <template>
-  <section class="mt-5 p-4 pt-5 p-sm-0" id="sponsored-apartments">
+  <section class="mt-5 p-4 pt-5 p-sm-0" id="sponsored-apartments" v-if="apartments">
     <div class="container d-md-flex gap-md-5">
       <div class="header text-center text-sm-start mt-5 mb-3">
         <h6>EXPLORE OUR</h6>
@@ -76,14 +76,7 @@ export default {
     </div>
     <div class="scrolling-container mb-5 pb-4 d-flex gap-4 user-select-none" ref="scrollContainer"
       @mousedown="startDragging" @mouseup="stopDragging" @mousemove="dragging">
-      <ApartmentCard v-if="apartments" v-for="apartment in apartments" :apartment="apartment" class="house-card" />
-      <div v-else>
-        <div class="spaceholder">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
-      </div>
+      <ApartmentCard v-for="apartment in apartments" :apartment="apartment" class="house-card" />
     </div>
   </section>
 </template>
