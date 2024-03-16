@@ -144,6 +144,7 @@ export default {
 
     .icon-sponsor {
         margin: 13px 9px;
+        cursor: default;
 
         div {
             div {

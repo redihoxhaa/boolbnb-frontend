@@ -92,6 +92,7 @@ export default {
   max-width: 1482px;
   margin-left: auto;
   padding-right: 24px;
+  cursor: pointer;
 }
 
 .scroll-snap {
