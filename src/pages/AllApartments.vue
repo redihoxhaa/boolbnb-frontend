@@ -39,11 +39,11 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
-    <div class="custom-container mb-4 mt-4">
-      <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
-    </div>
+
+  <div class="custom-container mb-4 mt-4">
+    <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
   </div>
+
 
   <div class="custom-border">
     <div class="" v-if="loaderStatus && !apartments">

@@ -85,7 +85,7 @@ export default {
 <template>
 
   <div class="custom-border">
-    <div class="container">
+    <div class="custom-container mb-4 mt-4">
       <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
     </div>
   </div>
@@ -299,13 +299,18 @@ export default {
   </div>
 
   <div class="container" v-else>
-    <div class="image-holder skeleton-loader mb-5">
+    <div class="image-holder skeleton-loader my-5">
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @use '../assets/scss/partials/variables' as *;
+
+.custom-container {
+  padding: 0 10vw;
+  margin-bottom: 40px;
+}
 
 .custom-border {
   border-bottom: 1px solid #dddddd;
