@@ -32,6 +32,7 @@ export default {
     },
   },
   mounted() {
+    document.title = 'MalHome - All Apartments';
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.getApartments();
   },

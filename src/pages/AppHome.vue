@@ -21,6 +21,7 @@ export default {
     };
   },
   mounted() {
+    document.title = 'MalHome - Homepage';
     gsap.registerPlugin(ScrollTrigger);
     gsap.from('.bosco-verticale', {
       duration: 1,

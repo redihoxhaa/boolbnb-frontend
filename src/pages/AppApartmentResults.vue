@@ -73,6 +73,8 @@ export default {
           // console.log("chiamata effettuata");
           this.apartmentResults = response.data.apartments;
           this.center = response.data.center;
+
+
         }).finally(() => {
           this.loaderStatus = false;
           // console.log('metto lo status a true'); 
@@ -118,6 +120,7 @@ export default {
     }
   },
   mounted() {
+    document.title = 'MalHome - ' + this.$route.params.address;
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.getApartments();
   },

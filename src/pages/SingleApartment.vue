@@ -31,6 +31,7 @@ export default {
         })
         .then((response) => {
           this.apartment = response.data;
+          document.title = 'MalHome - ' + this.apartment.title;
           this.getUser(response.data.user_id);
         });
     },
@@ -41,7 +42,7 @@ export default {
         apartment_id: this.apartment.id
       })
         .then(response => {
-          console.log(response.data);
+
         })
         .catch(error => {
           console.error(error);
