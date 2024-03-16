@@ -32,44 +32,54 @@ export default {
     },
   },
   mounted() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     this.getApartments();
   },
 };
 </script>
 
 <template>
-  <div class="custom-container mt-4">
-    <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
+  <div class="wrapper">
+    <div class="custom-container mb-4 mt-4">
+      <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
+    </div>
   </div>
 
+  <div class="custom-border">
+    <div class="" v-if="loaderStatus && !apartments">
+      <div class="custom-container">
+        <h1 class="page-title pb-5">All Apartments</h1>
+        <div class="apartment-list row g-5">
+          <div v-for="n in 10" class="col-custom-xxl col-xl-3 col-lg-4 col-md-4 col-sm-6">
+            <ApartmentCardSkeletonLoader />
+          </div>
 
-  <div class="" v-if="loaderStatus && !apartments">
-    <div class="custom-container">
+        </div>
+      </div>
+      <div class="spaceholder d-flex justify-content-center">
+        <div class="loader my-5"><img src="../assets/img/Risorsa+2.svg" alt=""></div>
+      </div>
+    </div>
+
+    <div class="custom-container" v-else>
       <h1 class="page-title pb-5">All Apartments</h1>
       <div class="apartment-list row g-5">
-        <div v-for="n in 10" class="col-custom-xxl col-xl-3 col-lg-4 col-md-4 col-sm-6">
-          <ApartmentCardSkeletonLoader />
+        <div v-for="apartment in apartments" class="col-custom-xxl col-xl-3 col-lg-4 col-md-4 col-sm-6">
+          <ApartmentCard :apartment="apartment" />
         </div>
 
       </div>
     </div>
-    <div class="spaceholder d-flex justify-content-center">
-      <div class="loader my-5"><img src="../assets/img/Risorsa+2.svg" alt=""></div>
-    </div>
   </div>
 
-  <div class="custom-container" v-else>
-    <h1 class="page-title pb-5">All Apartments</h1>
-    <div class="apartment-list row g-5">
-      <div v-for="apartment in apartments" class="col-custom-xxl col-xl-3 col-lg-4 col-md-4 col-sm-6">
-        <ApartmentCard :apartment="apartment" />
-      </div>
-
-    </div>
-  </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+.custom-border {
+  border-top: 1px solid #dddddd;
+  padding-top: 20px;
+}
+
 .spaceholder {
   height: 80vh;
 }
@@ -119,17 +129,6 @@ export default {
   100% {
     transform: scale(1);
   }
-}
-
-.apartment-list {}
-
-.apartment-card {
-
-  /* transition: transform 0.3s ease; */
-}
-
-.apartment-card:hover {
-  /* transform: translateY(-5px); */
 }
 
 .card-header {

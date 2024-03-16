@@ -811,7 +811,7 @@ input::-webkit-inner-spin-button {
     border-radius: 8px;
     background-color: $our-black;
     color: white;
-    padding: 27px 25px;
+    padding: 25px 25px;
     font-size: 12px;
     order: 0;
     margin-top: 0;

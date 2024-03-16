@@ -115,23 +115,10 @@ export default {
       <!-- Address group -->
       <div class="address-group">
         <label for="address" class="">Location</label>
-        <input
-          type="text"
-          id="address"
-          v-model="address"
-          placeholder="What are you dreaming of?"
-          @input="getAddresses"
-        />
-        <ul
-          id="suggestionsMenu"
-          class="suggestions-menu"
-          :class="{ 'd-none': !suggestions.length || closeSuggestion }"
-        >
-          <li
-            v-for="suggestion in suggestions"
-            :key="suggestion.id"
-            @click="selectAddress(suggestion)"
-          >
+        <input type="text" id="address" v-model="address" placeholder="What are you dreaming of?"
+          @input="getAddresses" />
+        <ul id="suggestionsMenu" class="suggestions-menu" :class="{ 'd-none': !suggestions.length || closeSuggestion }">
+          <li v-for="suggestion in suggestions" :key="suggestion.id" @click="selectAddress(suggestion)">
             {{ suggestion.address.freeformAddress }}
           </li>
         </ul>
@@ -221,7 +208,7 @@ export default {
       z-index: 5;
       top: 68px;
 
-      & > *:not(:last-child) {
+      &>*:not(:last-child) {
         border-bottom: 1px solid #dddddd;
       }
 

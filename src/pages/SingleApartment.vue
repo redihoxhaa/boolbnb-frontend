@@ -73,6 +73,8 @@ export default {
   },
   mounted() {
 
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     setTimeout(() => {
       this.registerVisit();
     }, 5000);
@@ -82,11 +84,13 @@ export default {
 
 <template>
 
-  <div class="container">
-    <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
+  <div class="custom-border">
+    <div class="container">
+      <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
+    </div>
   </div>
 
-  <div class="container" v-if="apartment">
+  <div class="container mt-5" v-if="apartment">
 
     <!-- Immagini dell'appartamento -->
     <div class="mb-5 pb-5 images-grid">
@@ -121,10 +125,10 @@ export default {
     </div>
 
     <!-- Dettagli dell'appartamento -->
-    <div class="row">
+    <div class="row g-5">
 
       <!-- Informazioni appartmaneto -->
-      <div class="col-md-8 mb-4 flex-grow-1">
+      <div class="col-lg-8 mb-4 flex-grow-1">
         <div class="card b-none">
 
           <!-- Title -->
@@ -267,9 +271,9 @@ export default {
       </div>
 
       <!-- Form contatti -->
-      <div class="col-md-4 sticky-container mb-5 mb-lg-0">
+      <div class="col-lg-4 sticky-container mt-0 mt-lg-5 mb-5 mb-lg-0">
 
-        <div class="form-sticky">
+        <div class="form-sticky mb-5">
 
           <!-- Form -->
           <MessageSender :apartmentID="apartment.id" />
@@ -295,13 +299,17 @@ export default {
   </div>
 
   <div class="container" v-else>
-    <div class="image-holder skeleton-loader">
+    <div class="image-holder skeleton-loader mb-5">
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @use '../assets/scss/partials/variables' as *;
+
+.custom-border {
+  border-bottom: 1px solid #dddddd;
+}
 
 .box {
   background-color: rgb(231, 231, 231);

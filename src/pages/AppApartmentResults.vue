@@ -118,7 +118,7 @@ export default {
     }
   },
   mounted() {
-
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     this.getApartments();
   },
 };
@@ -126,13 +126,14 @@ export default {
 
 <template>
 
-  <!-- Header -->
-  <div class="container-fluid sticky-top">
-    <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
+  <div class="custom-border sticky-top ">
+    <div class="container-fluid">
+      <HomeMenu linkColorBS="text-black" navColor="navbar-light" />
+    </div>
   </div>
 
   <!-- Advanced Search -->
-  <div class="container-fluid py-0">
+  <div class="container-fluid pt-5">
     <div class="col-12 col-lg-6 padding-layer-search">
       <AdvancedSearch :addressProp="this.$route.params.address" />
     </div>
@@ -191,10 +192,17 @@ export default {
 
   </div>
 
+
 </template>
 
 
 <style lang="scss" scoped>
+@use '../assets/scss/partials/variables' as *;
+
+.custom-border {
+  border-bottom: 1px solid #dddddd;
+}
+
 .map-loader {
   background-color: red;
   margin-top: -100px;
