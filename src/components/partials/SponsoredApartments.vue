@@ -59,7 +59,7 @@ export default {
 </script>
 
 <template>
-  <section class="mt-5 p-4 pt-5 p-sm-0" id="sponsored-apartments" v-if="apartments">
+  <section class="mt-5 p-4 pt-5 p-sm-0" id="sponsored-apartments" v-if="apartments && apartments.length">
     <div class="container d-md-flex gap-md-5">
       <div class="header text-center text-sm-start mt-5 mb-3">
         <h6>EXPLORE OUR</h6>
