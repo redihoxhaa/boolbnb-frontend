@@ -40,7 +40,7 @@ export default {
         key: this.store.tomTomAPIKey,
         container: this.$refs.map,
         center: mapCenter,
-        zoom: 14,
+        zoom: 12,
       });
 
       map.addControl(new tt.FullscreenControl());
@@ -225,6 +225,8 @@ export default {
       map.on('zoom', () => {
         this.updateSearchCircleRadius(map);
       });
+
+      this.updateSearchCircleRadius(map);
     },
 
     createCustomMarkerElement(isSponsored) {

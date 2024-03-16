@@ -214,28 +214,42 @@ export default {
             <div>
               <ul class="list-service">
                 <li v-for="service in apartment.services">
-                  <img v-if="service.id == '1'" class="service-icon" src="../assets/img/bathrooms_icon.svg" alt="">
-                  <img v-if="service.id == '2'" class="service-icon" src="../assets/img/wifi_icon.svg" alt="">
-                  <img v-if="service.id == '3'" class="service-icon" src="../assets/img/parking_icon.svg" alt="">
-                  <img v-if="service.id == '4'" class="service-icon" src="../assets/img/breakfast_icon.svg" alt="">
-                  <img v-if="service.id == '5'" class="service-icon" src="../assets/img/swimmingpool_icon.svg" alt="">
-                  <img v-if="service.id == '6'" class="service-icon" src="../assets/img/tv_icon.svg" alt="">
-                  <img v-if="service.id == '7'" class="service-icon" src="../assets/img/air_conditioning_icon.svg"
+                  <img v-if="service.name == 'Private Bathroom'" class="service-icon"
+                    src="../assets/img/bathrooms_icon.svg" alt="">
+                  <img v-if="service.name == 'Wifi'" class="service-icon" src="../assets/img/wifi_icon.svg" alt="">
+                  <img v-if="service.name == 'Parking'" class="service-icon" src="../assets/img/parking_icon.svg"
                     alt="">
-                  <img v-if="service.id == '8'" class="service-icon" src="../assets/img/heating_icon.svg" alt="">
-                  <img v-if="service.id == '9'" class="service-icon" src="../assets/img/gym_icon.svg" alt="">
-                  <img v-if="service.id == '10'" class="service-icon" src="../assets/img/pets_icon.svg" alt="">
-                  <img v-if="service.id == '11'" class="service-icon" src="../assets/img/room_service_icon.svg" alt="">
-                  <img v-if="service.id == '12'" class="service-icon" src="../assets/img/laundry_icon.svg" alt="">
-                  <img v-if="service.id == '13'" class="service-icon" src="../assets/img/concierge_icon.svg" alt="">
-                  <img v-if="service.id == '14'" class="service-icon" src="../assets/img/meeting_icon.svg" alt="">
-                  <img v-if="service.id == '15'" class="service-icon" src="../assets/img/airport_shuttle_icon.svg"
+                  <img v-if="service.name == 'Breakfast included'" class="service-icon"
+                    src="../assets/img/breakfast_icon.svg" alt="">
+                  <img v-if="service.name == 'Swimming Pool'" class="service-icon"
+                    src="../assets/img/swimmingpool_icon.svg" alt="">
+                  <img v-if="service.name == 'Cable TV'" class="service-icon" src="../assets/img/tv_icon.svg" alt="">
+                  <img v-if="service.name == 'Air Conditioning'" class="service-icon"
+                    src="../assets/img/air_conditioning_icon.svg" alt="">
+                  <img v-if="service.name == 'Heating'" class="service-icon" src="../assets/img/heating_icon.svg"
                     alt="">
-                  <img v-if="service.id == '16'" class="service-icon" src="../assets/img/front_desk_icon.svg" alt="">
-                  <img v-if="service.id == '17'" class="service-icon" src="../assets/img/restaurant_icon.svg" alt="">
-                  <img v-if="service.id == '18'" class="service-icon" src="../assets/img/bar_icon.svg" alt="">
-                  <img v-if="service.id == '19'" class="service-icon" src="../assets/img/business_icon.svg" alt="">
-                  <img v-if="service.id == '20'" class="service-icon" src="../assets/img/childcare_icon.svg" alt="">
+                  <img v-if="service.name == 'Gym'" class="service-icon" src="../assets/img/gym_icon.svg" alt="">
+                  <img v-if="service.name == 'Pets Allowed'" class="service-icon" src="../assets/img/pets_icon.svg"
+                    alt="">
+                  <img v-if="service.name == 'Room Service'" class="service-icon"
+                    src="../assets/img/room_service_icon.svg" alt="">
+                  <img v-if="service.name == 'Laundry Service'" class="service-icon"
+                    src="../assets/img/laundry_icon.svg" alt="">
+                  <img v-if="service.name == 'Concierge'" class="service-icon" src="../assets/img/concierge_icon.svg"
+                    alt="">
+                  <img v-if="service.name == 'Meeting Facilities'" class="service-icon"
+                    src="../assets/img/meeting_icon.svg" alt="">
+                  <img v-if="service.name == 'Airport Shuttle'" class="service-icon"
+                    src="../assets/img/airport_shuttle_icon.svg" alt="">
+                  <img v-if="service.name == '24-hour Front Desk'" class="service-icon"
+                    src="../assets/img/front_desk_icon.svg" alt="">
+                  <img v-if="service.name == 'Restaurant'" class="service-icon" src="../assets/img/restaurant_icon.svg"
+                    alt="">
+                  <img v-if="service.name == 'Bar/Lounge'" class="service-icon" src="../assets/img/bar_icon.svg" alt="">
+                  <img v-if="service.name == 'Business Center'" class="service-icon"
+                    src="../assets/img/business_icon.svg" alt="">
+                  <img v-if="service.name == 'Childcare Services'" class="service-icon"
+                    src="../assets/img/childcare_icon.svg" alt="">
                   <span>{{ service.name }}</span>
                 </li>
               </ul>
