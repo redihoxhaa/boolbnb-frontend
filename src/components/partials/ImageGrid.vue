@@ -188,6 +188,8 @@ export default {
 .center {
     position: relative;
     transform: translate(0, -20%);
+    object-fit: cover;
+
 
     &:hover {
         transform: scale(1.02) translate(0, -20%);

@@ -134,11 +134,11 @@ export default {
           <span class="card-address">{{ apartment.address }}</span>
 
           <!-- Icon Main Info -->
-          <div class="d-flex gap-3 mt-6">
+          <div class="mt-6 g-3 row">
 
             <!-- Rooms -->
-            <div class="bg-body-secondary rounded text-center box-sz">
-              <div class="d-flex text-center justify-content-center  align-items-center h-100">
+            <div class="text-center col-6 col-md-6 col-lg-3">
+              <div class="d-flex box text-center justify-content-center align-items-center ">
                 <div class="d-flex flex-column">
                   <svg class="m-auto mb-4" width="30" height="30" viewBox="0 0 18 16" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -153,8 +153,8 @@ export default {
             </div>
 
             <!-- Beds -->
-            <div class="bg-body-secondary rounded text-center box-sz">
-              <div class="d-flex text-center justify-content-center  align-items-center h-100">
+            <div class="text-center col-6 col-md-6 col-lg-3">
+              <div class="d-flex box text-center justify-content-center align-items-center ">
                 <div class="d-flex flex-column">
                   <svg class="m-auto mb-4" width="30" height="30" viewBox="0 0 16 12" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -168,8 +168,8 @@ export default {
             </div>
 
             <!-- Bathrooms -->
-            <div class="bg-body-secondary rounded text-center box-sz">
-              <div class="d-flex text-center justify-content-center  align-items-center h-100">
+            <div class="text-center col-6 col-md-6 col-lg-3">
+              <div class="d-flex box text-center justify-content-center align-items-center ">
                 <div class="d-flex flex-column">
                   <svg class="m-auto mb-4" width="30" height="30" viewBox="0 0 16 18" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -183,8 +183,8 @@ export default {
             </div>
 
             <!-- Square Meters -->
-            <div class="bg-body-secondary rounded text-center box-sz">
-              <div class="d-flex text-center justify-content-center  align-items-center h-100">
+            <div class="text-center col-6 col-md-6 col-lg-3">
+              <div class="d-flex box text-center justify-content-center align-items-center ">
                 <div class="d-flex flex-column">
                   <svg class="m-auto mb-2" width="40" height="40" viewBox="0 0 20 20" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -253,7 +253,7 @@ export default {
       </div>
 
       <!-- Form contatti -->
-      <div class="col-md-4 sticky-container">
+      <div class="col-md-4 sticky-container mb-5 mb-lg-0">
 
         <div class="form-sticky">
 
@@ -289,11 +289,17 @@ export default {
 <style lang="scss" scoped>
 @use '../assets/scss/partials/variables' as *;
 
+.box {
+  background-color: rgb(231, 231, 231);
+  height: 150px;
+  border-radius: 12px;
+}
+
 .image-holder {
   height: 400px;
   background-color: gray;
-  border-radius: 16px;
-  margin-bottom: 100vh;
+  border-radius: 18px;
+  // margin-bottom: 100vh;
 }
 
 .skeleton-loader {
