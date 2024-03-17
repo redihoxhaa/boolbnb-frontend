@@ -37,8 +37,10 @@ export default {
 
 
         <div v-if="images.length === 1" class="with-1-foto">
-            <img :src="`${this.store.imagesAPI}${images[0]}`" alt="Apartment image" class="w-100" data-bs-toggle="modal"
-                data-bs-target="#modal1" @click="openModal(0)">
+            <div class="parent">
+                <img :src="`${this.store.imagesAPI}${images[0]}`" alt="Apartment image" class="w-100"
+                    data-bs-toggle="modal" data-bs-target="#modal1" @click="openModal(0)">
+            </div>
 
         </div>
         <div v-else-if="images.length === 2" class="with-2-foto d-flex gap-4">
@@ -185,6 +187,22 @@ export default {
 
 
 <style lang="scss" scoped>
+.parent {
+
+    min-height: 500px;
+    position: relative;
+
+    img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+
+
+
+    }
+}
+
 .image-gallery {
     max-height: 500px;
     overflow: hidden;
