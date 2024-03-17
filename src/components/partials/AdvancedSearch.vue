@@ -123,6 +123,15 @@ export default {
       });
     },
 
+    dumpFilters() {
+      this.selectedServices = [];
+      this.selectedIndices['rooms'] = 0;
+      this.selectedIndices['beds'] = 0;
+      this.selectedIndices['bathrooms'] = 0;
+      this.roomsCounter = 1;
+      this.bedsCounter = 1;
+      this.bathroomsCounter = 1;
+    },
     setCounter(value, counter) {
       if (counter === 'rooms') {
         this.roomsCounter = value + 1;
@@ -419,7 +428,7 @@ export default {
             </div>
 
             <div class="d-flex w-100 align-items-center  ms-auto mt-4">
-              <button class="btn black-outline ms-4 mb-4">Reset Filters</button>
+              <button class="btn black-outline ms-4 mb-4" @click="dumpFilters">Reset Filters</button>
               <!-- Search button -->
               <div class="search-button-container-2 ms-auto pb-5 px-5" @click="closeModal">
                 <button @click="goToResults" @keyup.enter="goToResults" :disabled="this.address === ''">
