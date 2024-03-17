@@ -418,13 +418,15 @@ export default {
               </div>
             </div>
 
+            <div class="d-flex w-100 align-items-center  ms-auto mt-4">
+              <button class="btn black-outline ms-4 mb-4">Reset Filters</button>
+              <!-- Search button -->
+              <div class="search-button-container-2 ms-auto pb-5 px-5" @click="closeModal">
+                <button @click="goToResults" @keyup.enter="goToResults" :disabled="this.address === ''">
+                  <img src=" /src/assets/img/search-icon.svg" alt="search icon" />
+                </button>
+              </div>
 
-
-            <!-- Search button -->
-            <div class="search-button-container-2 ms-auto pb-5 px-5" @click="closeModal">
-              <button @click="goToResults" @keyup.enter="goToResults" :disabled="this.address === ''">
-                <img src=" /src/assets/img/search-icon.svg" alt="search icon" />
-              </button>
             </div>
           </div>
 
@@ -454,6 +456,16 @@ export default {
 
 <style lang="scss" scoped>
 @use '../../assets/scss/partials/variables' as *;
+
+.black-outline {
+  border: 1px solid #222222;
+  background-color: #00000000;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background-color: #00000006;
+  }
+}
 
 .selected {
   background-color: $our-black;
