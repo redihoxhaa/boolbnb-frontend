@@ -119,10 +119,12 @@ header {
 
   .main-title {
     color: #fff;
-    font-size: 55px;
+    font-size: 40px;
     line-height: 110%;
-    margin-top: 105px;
+    margin-top: 0px;
     font-weight: 400;
+    width: 80%;
+
 
     span {
       font-weight: bold;
@@ -143,7 +145,7 @@ header {
 
 .bosco-verticale {
   position: absolute;
-  right: -100px;
+  right: -550px;
   bottom: 0;
   z-index: 1;
   max-height: 760px;
@@ -154,91 +156,149 @@ header {
   margin-top: 50px;
 }
 
-// Large devices (desktops, less than 1200px)
-@media only screen and (max-width: 1199.98px) {
+// // Large devices (desktops, less than 1200px)
+// @media only screen and (max-width: 1199.98px) {
+//   .bosco-verticale {
+//     max-height: 600px;
+//     right: -180px;
+
+//   }
+
+//   .main-title {
+//     font-size: 40px !important;
+//   }
+
+//   .call-to-action {
+//     margin-top: 100px !important;
+//   }
+// }
+
+// // Medium devices (tablets, less than 992px)
+// @media only screen and (max-width: 991.98px) {
+
+
+//   .bosco-verticale {
+//     height: 800px;
+//     left: 630px;
+//     right: 0;
+//   }
+
+//   .main-title {
+//     font-size: 30px !important;
+//     margin-top: 40px;
+//   }
+// }
+
+// // Small devices (landscape phones, less than 768px)
+// @media only screen and (max-width: 767.98px) {
+//   header {
+//     .container {
+//       .main-title {
+//         font-size: 36px;
+//         margin-top: 40px;
+//       }
+
+//       .bosco-verticale {
+//         height: 500px;
+//         left: 410px;
+
+//       }
+//     }
+
+//     .call-to-action {
+//       margin-top: 80px !important;
+//     }
+
+//   }
+// }
+
+// // X-Small devices (portrait phones, less than 576px)
+// @media only screen and (max-width: 575.98px) {
+//   .bosco-verticale {
+//     height: 700px;
+//     left: 380px !important;
+
+//   }
+
+//   .main-title {
+//     font-size: 30px !important;
+//     width: 70%;
+//   }
+
+//   .call-to-action {
+//     margin-top: 80px !important;
+//   }
+// }
+
+// // X-Small devices (portrait phones, less than 515px)
+// @media only screen and (max-width: 515.98px) {
+//   .main-title {
+//     font-size: 25px !important;
+//   }
+// }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
   .bosco-verticale {
-    max-height: 600px;
-    right: -180px;
+    height: 730px;
+    right: -420px;
 
   }
 
   .main-title {
-    font-size: 40px !important;
-  }
-
-  .call-to-action {
-    margin-top: 100px !important;
-  }
-}
-
-// Medium devices (tablets, less than 992px)
-@media only screen and (max-width: 991.98px) {
-
-
-  .bosco-verticale {
-    height: 800px;
-    left: 630px;
-    right: 0;
-  }
-
-  .main-title {
-    font-size: 30px !important;
-    margin-top: 40px;
+    font-size: 55px;
+    max-width: 75%;
+    margin-top: 105px;
+    padding-top: 60px;
   }
 }
 
-// Small devices (landscape phones, less than 768px)
-@media only screen and (max-width: 767.98px) {
-  header {
-    .container {
-      .main-title {
-        font-size: 36px;
-        margin-top: 40px;
-      }
-
-      .bosco-verticale {
-        height: 500px;
-        left: 410px;
-
-      }
-    }
-
-    .call-to-action {
-      margin-top: 80px !important;
-    }
-
-  }
-}
-
-// X-Small devices (portrait phones, less than 576px)
-@media only screen and (max-width: 575.98px) {
-  .bosco-verticale {
-    height: 700px;
-    left: 380px !important;
-
-  }
-
-  .main-title {
-    font-size: 30px !important;
-    width: 70%;
-  }
-
-  .call-to-action {
-    margin-top: 80px !important;
-  }
-}
-
-// X-Small devices (portrait phones, less than 515px)
-@media only screen and (max-width: 515.98px) {
-  .main-title {
-    font-size: 25px !important;
-  }
-}
-
-
+// Medium devices (tablets, 768px and up)
 @media only screen and (min-width: 768px) {
+
+  .bosco-verticale {
+    right: -360px;
+    max-height: 670px;
+  }
+
   .sponsored-desktop {
     display: block !important;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .bosco-verticale {
+    right: -240px;
+    max-height: 660px;
+  }
+
+  .main-title {
+    font-size: 55px;
+    max-width: 70%;
+  }
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .bosco-verticale {
+    right: -100px;
+    max-height: 640px;
+  }
+
+  .main-title {
+    font-size: 55px;
+    max-width: 60%;
+  }
+}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {
+  .bosco-verticale {}
+
+  .main-title {
+    font-size: 55px;
+    max-width: 50%;
   }
 }
 </style>

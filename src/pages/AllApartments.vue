@@ -49,7 +49,7 @@ export default {
   <div class="custom-border">
     <div class="" v-if="loaderStatus && !apartments">
       <div class="custom-container">
-        <h1 class="page-title pb-5">All Apartments</h1>
+        <h1 class="page-title pb-5 pt-4">All Apartments</h1>
         <div class="apartment-list row g-5">
           <div v-for="n in 10" class="col-custom-xxl col-xl-3 col-lg-4 col-md-4 col-sm-6">
             <ApartmentCardSkeletonLoader />
@@ -61,7 +61,7 @@ export default {
     </div>
 
     <div class="custom-container" v-else>
-      <h1 class="page-title pb-5">All Apartments</h1>
+      <h1 class="page-title pb-5 pt-4">All Apartments</h1>
       <div class="apartment-list row g-5">
         <div v-for="apartment in apartments" class="col-custom-xxl col-xl-3 col-lg-4 col-md-4 col-sm-6">
           <ApartmentCard :apartment="apartment" />
