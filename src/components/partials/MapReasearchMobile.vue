@@ -301,7 +301,7 @@ export default {
 
       // Calcola il raggio del cerchio in pixel
 
-      const radiusInMeters = this.center.radius * 2300; // Converti il raggio in metri
+      const radiusInMeters = this.center.radius * 2650; // Converti il raggio in metri
       const radiusInPixels =
         (radiusInMeters /
           (156543.03392 * Math.cos((latitude * Math.PI) / 180))) *
