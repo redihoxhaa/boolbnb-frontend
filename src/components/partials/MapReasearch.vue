@@ -47,7 +47,7 @@ export default {
                 key: this.store.tomTomAPIKey,
                 container: this.$refs.map,
                 center: mapCenter,
-                zoom: 12
+                zoom: 14
             });
 
             map.addControl(new tt.FullscreenControl());

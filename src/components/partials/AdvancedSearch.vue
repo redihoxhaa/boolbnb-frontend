@@ -10,7 +10,7 @@ export default {
       roomsCounter: 0,
       bedsCounter: 0,
       bathroomsCounter: 0,
-      radiusCounter: 0,
+      radiusCounter: 1,
       isDropdownOpen: false,
       suggestions: [],
       services: [],
@@ -79,7 +79,7 @@ export default {
         rooms: this.roomsCounter || 0, // Se non è selezionato alcun numero di stanze, impostalo a 0
         beds: this.bedsCounter || 0, // Se non è selezionato alcun numero di letti, impostalo a 0
         bathrooms: this.bathroomsCounter || 0, // Se non è selezionato alcun numero di bagni, impostalo a 0
-        radius: this.radiusCounter || 5,
+        radius: this.radiusCounter || 1,
       };
 
       if (this.roomsCounter) {
@@ -97,6 +97,9 @@ export default {
       if (this.radiusCounter) {
         if (this.radiusCounter > 50) {
           this.radiusCounter = 50;
+          params.radius = this.radiusCounter;
+        } else if (this.radiusCounter < 1) {
+          this.radiusCounter = 1;
           params.radius = this.radiusCounter;
         } else {
           params.radius = this.radiusCounter;
@@ -220,10 +223,10 @@ export default {
 
       <div class="dropdown-content" v-if="isDropdownOpen" @click="preventClose">
         <div class="dropdown-input-group d-flex flex-column">
-          <input type="range" class="form-range dropdown-input" min="0" max="50" step="1" id="radius"
+          <input type="range" class="form-range dropdown-input" min="1" max="50" step="1" id="radius"
             v-model="this.radiusCounter" />
           <div class="km-infos d-flex justify-content-between">
-            <div>0 km</div>
+            <div>1 km</div>
             <div>50 km</div>
           </div>
         </div>
