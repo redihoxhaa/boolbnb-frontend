@@ -45,7 +45,7 @@ export default {
           <h5>Team 1 </h5>
           <ul class="list-footer">
             <li><a class="nav-link" target="_blank" href="#">Gaetano Chiapparino</a></li>
-            <li><a class="nav-link" target="_blank" href="#">Lorenzo De Vito</a></li>
+            <li><a class="nav-link" target="_blank" href="https://www.linkedin.com/in/lorenzo-devito/">Lorenzo De Vito</a></li>
             <li><a class="nav-link" target="_blank" href="https://www.linkedin.com/in/mirko-cherchi/">Mirko Cherchi</a>
             </li>
             <li><a class="nav-link" target="_blank" href="https://www.linkedin.com/in/redihoxha/">Redi Hoxha</a></li>
