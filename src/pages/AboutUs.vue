@@ -31,7 +31,7 @@ export default {
             <span>Sesto San Giovanni, Lombardia</span>
 
             <!-- Social -->
-            <ul class="list-unstyled d-flex">
+            <ul class="list-unstyled d-flex gap-2">
 
               <!-- LinkedIn -->
               <li class="me-3">
@@ -64,7 +64,7 @@ export default {
             <span>Catania, Sicilia</span>
 
             <!-- Social -->
-            <ul class="list-unstyled d-flex">
+            <ul class="list-unstyled d-flex gap-2">
 
               <!-- LinkedIn -->
               <li class="me-3">
@@ -97,7 +97,7 @@ export default {
             <span>Roma, Lazio</span>
 
             <!-- Social -->
-            <ul class="list-unstyled d-flex">
+            <ul class="list-unstyled d-flex gap-2">
 
               <!-- LinkedIn -->
               <li class="me-3">
@@ -130,7 +130,7 @@ export default {
             <span>Roma, Lazio</span>
 
             <!-- Social -->
-            <ul class="list-unstyled d-flex">
+            <ul class="list-unstyled d-flex gap-2">
 
               <!-- LinkedIn -->
               <li class="me-3">
@@ -160,14 +160,14 @@ export default {
           <!-- Info -->
           <div class="card-info">
             <h3>Gaetano Chiapparino</h3>
-            <span>Bari, Puglia</span>
+            <span></span>
 
             <!-- Social -->
-            <ul class="list-unstyled d-flex">
+            <ul class="list-unstyled d-flex gap-2">
 
               <!-- LinkedIn -->
               <li class="me-3">
-                <a href="https://www.linkedin.com/" target="_blank">
+                <a href="https://github.com/tuoprofilogithub" target="_blank">
                   <img class="about-us-icon linkedin-icon" src="../assets/img/linkedin_logo.svg" alt="GitHub">
                 </a>
               </li>
