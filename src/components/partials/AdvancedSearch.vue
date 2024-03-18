@@ -25,6 +25,7 @@ export default {
         beds: 0,
         bathrooms: 0
       },
+      filtersCounter: 0,
     };
   },
   created() {
@@ -131,7 +132,25 @@ export default {
       this.roomsCounter = 1;
       this.bedsCounter = 1;
       this.bathroomsCounter = 1;
+      this.filtersCounter = 0;
     },
+
+    countFilters() {
+      this.filtersCounter = this.selectedServices.length;
+
+      if (this.selectedIndices.rooms > 0) {
+        this.filtersCounter++;
+      }
+
+      if (this.selectedIndices.beds > 0) {
+        this.filtersCounter++;
+      }
+
+      if (this.selectedIndices.bathrooms > 0) {
+        this.filtersCounter++;
+      }
+    },
+
     setCounter(value, counter) {
       if (counter === 'rooms') {
         this.roomsCounter = value + 1;
@@ -142,6 +161,7 @@ export default {
       }
 
       this.selectedIndices[counter] = value;
+      this.countFilters();
     },
 
 
@@ -171,10 +191,12 @@ export default {
     addService(serviceID) {
       if (!this.selectedServices.includes(serviceID)) {
         this.selectedServices.push(serviceID);
+        this.filtersCounter++;
       } else {
         const index = this.selectedServices.indexOf(serviceID);
         if (index !== -1) {
           this.selectedServices.splice(index, 1);
+          this.filtersCounter--;
         }
       }
     },
@@ -269,6 +291,7 @@ export default {
               <div class="col-10 d-flex gap-2 justify-content-center"><img src="/src/assets/img/instant_mix.svg"
                   class="" alt="filters icon" />
                 <span>Filters</span>
+
               </div>
 
               <div class="col-1"><button type="button" class="close" ref="closeModal" data-bs-dismiss="modal"
@@ -447,7 +470,7 @@ export default {
     </div>
 
     <!-- Filtri -->
-    <div class="d-flex justify-content-between align-items-center h-100" role="button">
+    <div class=" position-relative d-flex justify-content-between align-items-center h-100" role="button">
       <button class="button-filters d-flex align-items-center h-100 gap-2" data-bs-toggle="modal"
         data-bs-target="#servicesModal">
         <div class="pic-service-container">
@@ -456,6 +479,7 @@ export default {
 
         </div>
         <span class="p-0 m-0 filters-label">Filters</span>
+        <span class="filters-counter" v-if="filtersCounter > 0">{{ filtersCounter }}</span>
       </button>
     </div>
 
@@ -469,6 +493,7 @@ export default {
 .black-outline {
   border: 1px solid #222222;
   background-color: #00000000;
+  font-size: 12px;
 
   &:hover {
     transition: all 0.2s ease-in-out;
@@ -496,7 +521,7 @@ export default {
   .service {
     font-size: 14px;
     border: 1px solid $placeholder;
-    padding: 0px 15px 0 0;
+    padding: 0px 8px 0 0;
     border-radius: 25px;
     cursor: pointer;
     display: flex;
@@ -814,6 +839,24 @@ input::-webkit-inner-spin-button {
     width: 100%;
 
   }
+}
+
+.filters-counter {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(40%, -40%);
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid $our-black;
+  color: black;
+  font-size: 10px;
+  font-weight: 800;
 }
 
 @media only screen and (min-width: 460px) {
